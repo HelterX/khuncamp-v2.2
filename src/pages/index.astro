@@ -1,17 +1,19 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Home">
+  <main class="min-h-screen flex flex-col items-center justify-center gap-4 px-6 text-center">
+    <p class="font-mono text-xs uppercase tracking-[0.12em] text-gold">Design tokens check</p>
+    <h1 class="font-display text-5xl font-bold text-ink">
+      We turn content into <span class="text-gold-light">customers.</span>
+    </h1>
+    <p class="font-body text-ink-dim max-w-md">
+      If this reads Bricolage Grotesque for the headline, Manrope for this line, and sits on an
+      obsidian background with gold/silver accents — the design tokens are wired correctly.
+    </p>
+    <button class="font-body font-semibold text-sm px-6 py-3 rounded-sm bg-silver text-obsidian">
+      Book a Call
+    </button>
+  </main>
+</Layout>

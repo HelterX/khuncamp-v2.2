@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Khun Camp V2 design tokens — "Obsidian & Gold" (locked 2026-09-04) */
+@theme {
+  /* obsidian base */
+  --color-obsidian: #0a0b0d;
+  --color-obsidian-surface: #131417;
+  --color-hairline: #202226;
+
+  /* text */
+  --color-ink: #f2f1ed;
+  --color-ink-dim: #a9acb0;
+  --color-ink-faint: #6e7175;
+
+  /* gold — signature accent only: logo, one highlighted word, stat figures.
+     never full sections or body text. */
+  --color-gold-deep: #7a5c1e;
+  --color-gold: #c9a227;
+  --color-gold-light: #e8c468;
+
+  /* chrome silver — CTAs, active states, dividers */
+  --color-silver-deep: #5b6065;
+  --color-silver: #9ba1a6;
+  --color-silver-light: #e4e7e9;
+
+  /* type: Modern Authority — Bricolage Grotesque + Manrope + JetBrains Mono */
+  --font-display: "Bricolage Grotesque Variable", ui-sans-serif, sans-serif;
+  --font-body: "Manrope Variable", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+body {
+  background-color: var(--color-obsidian);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
