@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tell Khun Camp about your content goals. We'll get back to you within one business day to see if we're a fit." />
+  <title>Contact · Khun Camp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="brand">
+        <span class="crest" aria-hidden="true"></span>
+        <span class="brand-name">KHUN CAMP</span>
+      </a>
+
+      <ul class="nav-links nav-desktop">
+        <li><a href="offer.html">The Offer</a></li>
+        <li><a href="proof.html">Proof</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html" class="btn btn-primary">Book a Call</a></li>
+      </ul>
+
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-mobile-menu" aria-label="Toggle menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" /></svg>
+      </button>
+    </div>
+
+    <div id="nav-mobile-menu" class="nav-mobile">
+      <ul>
+        <li><a href="offer.html">The Offer</a></li>
+        <li><a href="proof.html">Proof</a></li>
+        <li><a href="founder.html">Founder</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary">Book a Call</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="wrap section" style="padding-top:4rem;">
+      <div style="max-width:38rem; margin:0 auto; text-align:center;">
+        <p class="eyebrow gold center">Get in touch</p>
+        <h1 style="font-family:var(--font-display); font-weight:700; font-size:clamp(2rem,4vw,2.75rem); margin:0.75rem 0 1rem;">
+          Tell us about your content goals.
+        </h1>
+        <p style="color:var(--ink-dim); font-size:0.95rem; line-height:1.6;">
+          Fill out the form and we'll reach back out within one business day to see if we're a fit.
+          Or reach us directly — <a href="mailto:Shawn@getkhuncamp.com" style="color:var(--gold-light);">Shawn@getkhuncamp.com</a>
+        </p>
+      </div>
+
+      <!--
+        FORMSPREE SETUP: replace YOUR_FORM_ID below with the real endpoint
+        from https://formspree.io once the account/form is created.
+      -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST"
+        style="max-width:34rem; margin:2.5rem auto 0; display:flex; flex-direction:column; gap:1.25rem;">
+
+        <div>
+          <label for="name" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Name</label>
+          <input type="text" id="name" name="name" required
+            style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem;">
+        </div>
+
+        <div>
+          <label for="email" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Email</label>
+          <input type="email" id="email" name="email" required
+            style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem;">
+        </div>
+
+        <div>
+          <label for="budget" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Monthly budget</label>
+          <select id="budget" name="budget" required
+            style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem;">
+            <option value="">Select a range</option>
+            <option>Under $2,500 / mo</option>
+            <option>$2,500 – $4,000 / mo</option>
+            <option>$4,000 – $6,000 / mo</option>
+            <option>$6,000+ / mo</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="volume" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Content volume goal</label>
+          <select id="volume" name="content_volume_goal" required
+            style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem;">
+            <option value="">Select a target</option>
+            <option>1–2 pieces / week</option>
+            <option>3–5 pieces / week</option>
+            <option>Daily posting</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="challenge" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Biggest challenge with your content right now?</label>
+          <textarea id="challenge" name="biggest_challenge" rows="4"
+            style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem; resize:vertical;"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send →</button>
+      </form>
+
+      <!-- Replace href with your real Calendly/booking link once you have one -->
+      <p style="text-align:center; margin-top:2.5rem;">
+        <a href="mailto:Shawn@getkhuncamp.com" class="btn-ghost">Book a call instead →</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer-tagline">We make your content. <span class="text-gold">You run your business.</span></p>
+      <div class="footer-cols">
+        <div>
+          <p class="eyebrow" style="margin:0;">Navigate</p>
+          <ul>
+            <li><a href="offer.html">The Offer</a></li>
+            <li><a href="proof.html">Proof</a></li>
+            <li><a href="founder.html">Founder</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="eyebrow" style="margin:0;">Contact</p>
+          <ul>
+            <li><a href="mailto:Shawn@getkhuncamp.com">Shawn@getkhuncamp.com</a></li>
+            <li>Based in Southeast Asia.<br>Serving clients worldwide.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Khun Camp. All rights reserved.</p>
+        <div class="legal">
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
