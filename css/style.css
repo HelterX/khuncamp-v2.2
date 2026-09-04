@@ -135,6 +135,12 @@ img { max-width: 100%; display: block; }
 
 /* ---- proof strip ---- */
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.stats-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 820px) and (min-width: 641px) {
+  .stats-4 { grid-template-columns: repeat(2, 1fr); }
+  .stats-4 .stat:nth-child(3) { border-left: none; border-top: 1px solid var(--hairline); padding-top: 1.25rem; }
+  .stats-4 .stat:nth-child(4) { border-top: 1px solid var(--hairline); padding-top: 1.25rem; }
+}
 .stat { text-align: center; padding: 1rem 0.5rem; border-left: 1px solid var(--hairline); }
 .stat:first-child { border-left: none; }
 .stat .value { font-family: var(--font-mono); font-size: 1.9rem; font-weight: 500; color: var(--gold-light); font-variant-numeric: tabular-nums; }
