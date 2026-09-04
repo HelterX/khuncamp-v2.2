@@ -1,0 +1,49 @@
+---
+const navigate = [
+  { label: "The Offer", href: "/offer" },
+  { label: "Proof", href: "/proof" },
+  { label: "Founder", href: "/founder" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
+];
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-hairline bg-obsidian-surface">
+  <div class="mx-auto max-w-6xl px-6 py-16">
+    <p class="font-display max-w-md text-2xl font-bold text-ink text-balance">
+      We make your content. <span class="text-gold-light">You run your business.</span>
+    </p>
+
+    <div class="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.1em] text-ink-faint">Navigate</p>
+        <ul class="mt-4 flex flex-col gap-3 font-body text-sm text-ink-dim">
+          {navigate.map((link) => (
+            <li>
+              <a href={link.href} class="transition-colors hover:text-ink">{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.1em] text-ink-faint">Contact</p>
+        <p class="mt-4 font-body text-sm text-ink-dim">
+          <a href="mailto:Shawn@getkhuncamp.com" class="transition-colors hover:text-ink">Shawn@getkhuncamp.com</a>
+        </p>
+        <p class="mt-3 font-body text-sm text-ink-dim">
+          Based in Southeast Asia.<br />Serving clients worldwide.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-4 border-t border-hairline pt-6 font-body text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
+      <p>© {currentYear} Khun Camp. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="/terms" class="transition-colors hover:text-ink-dim">Terms</a>
+        <a href="/privacy" class="transition-colors hover:text-ink-dim">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -3,6 +3,8 @@ import "@fontsource-variable/bricolage-grotesque";
 import "@fontsource-variable/manrope";
 import "@fontsource-variable/jetbrains-mono";
 import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
   title: string;
@@ -22,6 +24,8 @@ const { title, description = "Khun Camp — content operating system for founder
     <title>{title} · Khun Camp</title>
   </head>
   <body>
+    <Nav />
     <slot />
+    <Footer />
   </body>
 </html>
