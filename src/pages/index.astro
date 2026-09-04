@@ -1,19 +1,201 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import FaqItem from "../components/FaqItem.astro";
+
+const stats = [
+  { value: "60K", label: "YouTube subscribers built from scratch" },
+  { value: "4", label: "Clients on record" },
+  { value: "3 yrs", label: "Operating out of Southeast Asia" },
+];
+
+const deliverables = [
+  {
+    title: "Strategy and content pillars",
+    body: "We work out what you should be talking about, then build a 90-day plan around it — your audience, your offer, your angles, mapped before anything gets made.",
+  },
+  {
+    title: "Scripts and filming direction",
+    body: "You get the shot list and the words. No wasted weekends on footage that can't be used.",
+  },
+  {
+    title: "Editing and production",
+    body: "Footage comes back finished, cut to your look, captioned, ready to go out — every piece follows your brand rules.",
+  },
+  {
+    title: "Posting, scheduling and community",
+    body: "Everything goes out on time across your platforms. Comments and DMs answered in your voice.",
+  },
+];
+
+const steps = [
+  { n: "01", title: "We learn your brand properly", body: "One recorded call, real questions. Voice guide and audience avatar come back for sign-off before anything gets made." },
+  { n: "02", title: "We build the system", body: "Pillars, templates, the 90-day plan, analytics tracking — the one-time build everything else runs on." },
+  { n: "03", title: "We run it every month", body: "Content, report, and a call to decide what changes next. You film when we ask — we handle everything else." },
+];
+
+const testimonials = [
+  { quote: "The footage and audio turned out beautifully and really captured the feeling of the event. Professional, relaxed, and very easy to work with.", name: "Callie Johnson", role: "Founder, The Resonance Container" },
+  { quote: "The interview with Khun Camp was a standout moment at Nomad Fest. The questions were thoughtful and grounding.", name: "M Jay", role: "Founder, The Erosa" },
+  { quote: "Shawn brought a powerful mix of creativity, initiative, and leadership. Proactive, solution-oriented, and a fantastic collaborator.", name: "Markos", role: "Content creator, 29K subscribers" },
+];
+
+const offerItems = [
+  "Brand and audience audit",
+  "Content pillars and 90-day roadmap",
+  "Scripts, editing, and production",
+  "Posting and scheduling",
+  "Community replies in your voice",
+  "Monthly strategy call and report",
+];
 ---
 
 <Layout title="Home">
-  <main class="min-h-screen flex flex-col items-center justify-center gap-4 px-6 text-center">
-    <p class="font-mono text-xs uppercase tracking-[0.12em] text-gold">Design tokens check</p>
-    <h1 class="font-display text-5xl font-bold text-ink">
-      We turn content into <span class="text-gold-light">customers.</span>
-    </h1>
-    <p class="font-body text-ink-dim max-w-md">
-      If this reads Bricolage Grotesque for the headline, Manrope for this line, and sits on an
-      obsidian background with gold/silver accents — the design tokens are wired correctly.
-    </p>
-    <button class="font-body font-semibold text-sm px-6 py-3 rounded-sm bg-silver text-obsidian">
-      Book a Call
-    </button>
+  <main>
+    <!-- Hero -->
+    <section class="mx-auto max-w-6xl px-6 pt-20 pb-16 text-center sm:pt-28">
+      <p class="font-mono text-xs uppercase tracking-[0.14em] text-gold">Content Operating System</p>
+      <h1 class="mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-[1.08] tracking-tight text-ink text-balance sm:text-6xl">
+        We turn content into <span class="text-gold-light">customers.</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-xl font-body text-base leading-relaxed text-ink-dim">
+        Strategy, scripts, filming direction, editing, posting, and community replies. One team, one
+        monthly fee, no scrambling on a Sunday night for something to put up.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a href="/contact" class="rounded-sm px-6 py-3 font-body text-sm font-semibold text-obsidian"
+          style="background: linear-gradient(135deg, var(--color-silver-deep), var(--color-silver-light) 35%, #cfd3d5 55%, var(--color-silver) 80%);">
+          Book a Call
+        </a>
+        <a href="/proof" class="font-body text-sm font-semibold text-ink-dim transition-colors hover:text-ink">
+          See the evidence →
+        </a>
+      </div>
+    </section>
+
+    <!-- Proof strip -->
+    <section class="border-y border-hairline bg-obsidian-surface">
+      <div class="mx-auto grid max-w-6xl grid-cols-1 divide-y divide-hairline px-6 py-10 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        {stats.map((s) => (
+          <div class="px-2 py-4 text-center first:pt-0 sm:py-0">
+            <p class="font-mono text-3xl font-medium tabular-nums text-gold-light">{s.value}</p>
+            <p class="mx-auto mt-2 max-w-[20ch] font-body text-xs text-ink-faint">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- What we take off your desk -->
+    <section class="mx-auto max-w-6xl px-6 py-20">
+      <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink-faint">What we take off your desk</p>
+      <div class="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+        {deliverables.map((d) => (
+          <div class="border-t border-hairline pt-5">
+            <h3 class="font-display text-lg font-bold text-ink">{d.title}</h3>
+            <p class="mt-2 max-w-[48ch] font-body text-sm leading-relaxed text-ink-dim">{d.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="border-t border-hairline bg-obsidian-surface">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink-faint">How it works</p>
+        <div class="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-3">
+          {steps.map((s) => (
+            <div>
+              <p class="font-mono text-sm text-gold">{s.n}</p>
+              <h3 class="mt-3 font-display text-lg font-bold text-ink">{s.title}</h3>
+              <p class="mt-2 font-body text-sm leading-relaxed text-ink-dim">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="mx-auto max-w-6xl px-6 py-20">
+      <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink-faint">What people say</p>
+      <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-3">
+        {testimonials.map((t) => <TestimonialCard {...t} />)}
+      </div>
+    </section>
+
+    <!-- Offer summary -->
+    <section class="border-t border-hairline bg-obsidian-surface">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink-faint">One offer, full service</p>
+        <h2 class="mt-4 max-w-lg font-display text-3xl font-bold text-ink text-balance">Content operating system</h2>
+        <div class="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+          {offerItems.map((item) => (
+            <div class="flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4 shrink-0 text-gold">
+                <path d="M4 10l4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span class="font-body text-sm text-ink-dim">{item}</span>
+            </div>
+          ))}
+        </div>
+        <div class="mt-9 flex flex-wrap items-center gap-4">
+          <a href="/contact" class="rounded-sm px-6 py-3 font-body text-sm font-semibold text-obsidian"
+            style="background: linear-gradient(135deg, var(--color-silver-deep), var(--color-silver-light) 35%, #cfd3d5 55%, var(--color-silver) 80%);">
+            Book a Call
+          </a>
+          <a href="/offer" class="font-body text-sm font-semibold text-ink-dim transition-colors hover:text-ink">
+            See the full offer →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Founder teaser -->
+    <section class="mx-auto max-w-3xl px-6 py-20 text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink-faint">The founder</p>
+      <h2 class="mt-4 font-display text-2xl font-bold text-ink">Shawn Arrington</h2>
+      <p class="mx-auto mt-4 max-w-xl font-body text-sm leading-relaxed text-ink-dim">
+        Former US Army. 60,000 YouTube subscribers built from scratch in Southeast Asia. Three years
+        figuring out what makes content actually convert, not just perform — Khun Camp is the
+        operating system he built and still runs himself.
+      </p>
+      <a href="/founder" class="mt-5 inline-block font-body text-sm font-semibold text-gold-light transition-opacity hover:opacity-80">
+        Full story →
+      </a>
+    </section>
+
+    <!-- FAQ -->
+    <section class="border-t border-hairline bg-obsidian-surface">
+      <div class="mx-auto max-w-3xl px-6 py-20">
+        <p class="font-mono text-xs uppercase tracking-[0.12em] text-ink-faint">Common questions</p>
+        <div class="mt-6">
+          <FaqItem question="What do I actually have to do?">
+            Film when we give you the shot list. Show up for the monthly strategy call. That's it — everything else is handled.
+          </FaqItem>
+          <FaqItem question="What's the difference between the build fee and the retainer?">
+            The build is a one-time project that sets up your whole content system. The retainer is the ongoing monthly engagement that runs it. Exact scope and cost come out of a quick call, not a fixed menu.
+          </FaqItem>
+          <FaqItem question="How long before content drives actual customers?">
+            Typically 60 to 90 days before content drives consistent inbound. The first month is building the system right so every month after compounds instead of starting over.
+          </FaqItem>
+          <FaqItem question="Is there a minimum commitment?">
+            We ask for three months minimum on the retainer. Content growth is a compounding channel — three months is enough to see real data on what's working.
+          </FaqItem>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="mx-auto max-w-3xl px-6 py-24 text-center">
+      <h2 class="font-display text-3xl font-bold text-ink text-balance sm:text-4xl">
+        Ready to hand off the channel?
+      </h2>
+      <p class="mx-auto mt-4 max-w-md font-body text-sm leading-relaxed text-ink-dim">
+        Book a call. We'll look at your content, your offer, and your audience, and tell you exactly how we'd run it.
+      </p>
+      <a href="/contact" class="mt-7 inline-block rounded-sm px-7 py-3.5 font-body text-sm font-semibold text-obsidian"
+        style="background: linear-gradient(135deg, var(--color-silver-deep), var(--color-silver-light) 35%, #cfd3d5 55%, var(--color-silver) 80%);">
+        Book a Call
+      </a>
+    </section>
   </main>
 </Layout>
