@@ -134,11 +134,9 @@ img { max-width: 100%; display: block; }
 .photo-band img {
   display: block;
   width: 100%;
+  max-width: 58rem;
   margin: 0 auto;
   height: auto;
-}
-@media (min-width: 1024px) {
-  .photo-band img { width: 78%; max-width: 100rem; }
 }
 
 /* hero entrance: each direct child fades/rises in, staggered */
