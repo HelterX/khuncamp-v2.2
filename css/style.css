@@ -127,14 +127,14 @@ img { max-width: 100%; display: block; }
 }
 .hero-ctas { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center; }
 
-/* ---- photo band: cream divider (top half, full width) behind a taller, narrower photo ---- */
+/* ---- photo band: cream divider (centered, full width) behind a taller, narrower photo ---- */
 .photo-band {
   position: relative;
 }
 .photo-band::before {
   content: "";
   position: absolute;
-  top: 0;
+  top: 25%;
   left: 0;
   right: 0;
   height: 50%;
