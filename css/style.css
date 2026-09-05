@@ -127,34 +127,16 @@ img { max-width: 100%; display: block; }
 }
 .hero-ctas { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center; }
 
-/* ---- photo frame: image offset over a cream rectangle ---- */
-.photo-frame {
-  position: relative;
-  max-width: 58rem;
-  margin: 0 auto;
-  padding: 1.75rem 1.75rem 3rem;
-}
-.photo-frame::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 62%;
-  height: 78%;
+/* ---- photo band: full-bleed cream section, image centered and narrower ---- */
+.photo-band {
   background: var(--cream);
-  z-index: 0;
 }
-.photo-frame img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: auto;
+.photo-band img {
   display: block;
-  border-radius: 2px;
-}
-@media (max-width: 640px) {
-  .photo-frame { padding: 1.1rem 1.1rem 2rem; }
-  .photo-frame::before { width: 50%; height: 70%; }
+  width: 100%;
+  max-width: 68rem;
+  margin: 0 auto;
+  height: auto;
 }
 
 /* hero entrance: each direct child fades/rises in, staggered */
