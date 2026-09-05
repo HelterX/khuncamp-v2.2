@@ -127,11 +127,23 @@ img { max-width: 100%; display: block; }
 }
 .hero-ctas { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center; }
 
-/* ---- photo band: full-bleed cream section, image centered and narrower ---- */
+/* ---- photo band: cream divider (top half, full width) behind a taller, narrower photo ---- */
 .photo-band {
+  position: relative;
+}
+.photo-band::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
   background: var(--cream);
+  z-index: 0;
 }
 .photo-band img {
+  position: relative;
+  z-index: 1;
   display: block;
   width: 100%;
   max-width: 58rem;
