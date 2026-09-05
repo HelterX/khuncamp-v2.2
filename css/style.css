@@ -136,7 +136,9 @@ img { max-width: 100%; display: block; }
   width: 100%;
   max-width: 58rem;
   margin: 0 auto;
-  height: auto;
+  aspect-ratio: 93 / 56;
+  object-fit: cover;
+  object-position: center 35%;
 }
 
 /* hero entrance: each direct child fades/rises in, staggered */
