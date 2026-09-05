@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://khuncamp.com/sitemap.xml
