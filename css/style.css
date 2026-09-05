@@ -132,6 +132,33 @@ img { max-width: 100%; display: block; }
 }
 .hero-ctas { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; align-items: center; }
 
+/* hero entrance: each direct child fades/rises in, staggered */
+.hero > * {
+  opacity: 0;
+  animation: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.hero > *:nth-child(1) { animation-delay: 0.05s; }
+.hero > *:nth-child(2) { animation-delay: 0.16s; }
+.hero > *:nth-child(3) { animation-delay: 0.28s; }
+.hero > *:nth-child(4) { animation-delay: 0.4s; }
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- scroll reveal (JS adds .reveal, then .is-visible on intersect) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero > * { animation: none; opacity: 1; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
 /* ---- proof strip ---- */
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
 .stats-4 { grid-template-columns: repeat(4, 1fr); }
