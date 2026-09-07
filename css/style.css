@@ -77,6 +77,21 @@ img { max-width: 100%; display: block; }
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--hairline);
 }
+.nav--overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+}
+.nav--overlay.is-scrolled {
+  background: rgba(14, 14, 14, 0.85);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--hairline);
+}
+.nav--overlay .nav-mobile.open { background: rgba(14, 14, 14, 0.95); }
 .nav-inner {
   max-width: 72rem;
   margin: 0 auto;

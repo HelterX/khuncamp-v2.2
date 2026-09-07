@@ -11,13 +11,30 @@ function khInit() {
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   // ---- smooth scroll (Lenis) ----
+  var lenis = null;
   if (!reduceMotion && window.Lenis) {
-    var lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    lenis = new Lenis({ duration: 1.1, smoothWheel: true });
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
+  }
+
+  // ---- transparent-over-hero nav, solid on scroll ----
+  // Lenis virtualizes scrolling and doesn't dispatch native window "scroll"
+  // events, so this has to key off Lenis's own event when it's active.
+  var overlayNav = document.querySelector(".nav--overlay");
+  if (overlayNav) {
+    var setNavScrolled = function (y) {
+      overlayNav.classList.toggle("is-scrolled", y > 40);
+    };
+    if (lenis) {
+      lenis.on("scroll", function (e) { setNavScrolled(e.scroll); });
+    } else {
+      window.addEventListener("scroll", function () { setNavScrolled(window.scrollY); }, { passive: true });
+    }
+    setNavScrolled(window.scrollY);
   }
 
   // ---- scroll reveal ----
