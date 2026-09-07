@@ -305,10 +305,10 @@ h2.section-title { font-family: var(--font-display); font-size: 1.9rem; font-wei
 .footer-mark img { width: 22px; height: 17px; object-fit: contain; }
 .footer-mark span { font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
 .footer-statement { margin: 1.6rem 0 0; font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.125rem); line-height: 1.25; max-width: 26rem; color: var(--ink); }
-.footer-social-plain { display: flex; gap: 1rem; margin-top: 1.75rem; }
-.footer-social-plain a { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; color: var(--ink-faint); transition: color 0.2s ease; }
-.footer-social-plain a:hover { color: var(--cream); }
-.footer-social-plain svg { width: 16px; height: 16px; display: block; }
+.footer-social-plain { display: flex; gap: 0.6rem; margin-top: 1.75rem; }
+.footer-social-plain a { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; transition: transform 0.2s ease, opacity 0.2s ease; }
+.footer-social-plain a:hover { transform: translateY(-2px); opacity: 0.85; }
+.footer-social-plain svg { width: 28px; height: 28px; display: block; }
 .footer-editorial-right { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; text-align: right; }
 .footer-editorial-right ul { list-style: none; margin: 0.75rem 0 0; padding: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 0.6rem; font-size: 0.9rem; color: var(--ink-dim); }
 .footer-editorial-right a:hover { color: var(--ink); }
