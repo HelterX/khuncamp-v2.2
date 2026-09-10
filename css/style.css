@@ -31,6 +31,8 @@
   --taupe: #bfb3a4;
   --brass: #c9a227;
   --brass-deep: #7a5c12;
+
+  --nav-surface: rgba(14, 14, 14, 0.85);
 }
 
 * { box-sizing: border-box; }
@@ -104,7 +106,7 @@ img { max-width: 100%; display: block; }
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(14, 14, 14, 0.85);
+  background: var(--nav-surface);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--hairline);
 }
@@ -237,6 +239,8 @@ img { max-width: 100%; display: block; }
   --ink-dim: #6b5d4e;
   --ink-faint: #8a7a68;
   --hairline: rgba(42, 33, 27, 0.15);
+  --nav-surface: rgba(241, 237, 228, 0.92);
+  color: var(--ink);
 }
 .theme-dark-warm {
   background: var(--espresso);
@@ -245,7 +249,12 @@ img { max-width: 100%; display: block; }
   --cream: var(--brass);
   --cream-deep: var(--brass-deep);
   --cream-bright: var(--brass);
+  --ink: var(--paper);
+  --ink-dim: var(--taupe);
+  --ink-faint: #9c8f7d;
   --hairline: rgba(241, 237, 228, 0.12);
+  --nav-surface: rgba(42, 33, 27, 0.9);
+  color: var(--ink);
 }
 .theme-dark-warm .parallax-overlay { background: rgba(42, 33, 27, 0.82); }
 
