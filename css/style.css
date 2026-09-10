@@ -220,6 +220,107 @@ img { max-width: 100%; display: block; }
   .home-hero-stat--bottom { right: 0.75rem; }
 }
 
+/* ==========================================================================
+   Repaint theme scopes — let existing dark-themed components (eyebrow-lg,
+   text-gold, btn-primary, checklist-card, .card, .faq, section-alt, etc.)
+   be reused on the new palette just by wrapping a section, instead of
+   rewriting every nested selector by hand.
+   ========================================================================== */
+.theme-light {
+  background: var(--paper);
+  --obsidian: var(--paper);
+  --obsidian-surface: var(--sand);
+  --cream: var(--brass-deep);
+  --cream-deep: var(--brass-deep);
+  --cream-bright: var(--brass-deep);
+  --ink: var(--ink-warm);
+  --ink-dim: #6b5d4e;
+  --ink-faint: #8a7a68;
+  --hairline: rgba(42, 33, 27, 0.15);
+}
+.theme-dark-warm {
+  background: var(--espresso);
+  --obsidian: var(--espresso);
+  --obsidian-surface: #33281f;
+  --cream: var(--brass);
+  --cream-deep: var(--brass-deep);
+  --cream-bright: var(--brass);
+  --hairline: rgba(241, 237, 228, 0.12);
+}
+.theme-dark-warm .parallax-overlay { background: rgba(42, 33, 27, 0.82); }
+
+/* ---- who we are ---- */
+.who-we-are { background: var(--paper); }
+.who-band { position: relative; border-radius: 20px; overflow: hidden; margin-bottom: 3rem; }
+.who-band img { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
+.who-band-caption {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  right: 2rem;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.3rem;
+  max-width: 26rem;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+.who-intro { max-width: 42rem; margin: 0 auto 3rem; text-align: center; color: #55493d; font-size: 1.05rem; line-height: 1.7; }
+.who-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.who-stat { text-align: center; padding: 1.5rem 1rem; background: var(--sand); border-radius: 16px; }
+.who-stat .num { font-family: var(--font-display); font-weight: 900; font-size: 1.9rem; color: var(--brass-deep); }
+.who-stat .label { font-size: 0.82rem; color: #6b5d4e; margin-top: 0.35rem; }
+@media (max-width: 820px) {
+  .who-stats { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- testimonials (moved up, retheme light) ---- */
+.testimonials-light { background: var(--sand); }
+.card-light { border: 1px solid var(--clay); background: var(--paper); border-radius: 14px; padding: 1.75rem; display: flex; flex-direction: column; height: 100%; }
+.card-light .stars { color: var(--brass-deep); font-size: 0.8rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
+.card-light blockquote { flex: 1; margin: 0; font-size: 0.9rem; line-height: 1.6; color: #4a3f34; }
+.card-light figcaption { margin-top: 1.25rem; font-size: 0.9rem; display: flex; align-items: center; gap: 0.7rem; }
+.card-light figcaption b { color: var(--ink-warm); display: block; }
+.card-light figcaption span { color: #8a7a68; }
+.avatar-placeholder {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--espresso);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  flex: none;
+}
+
+/* ---- what we do (visual proof strip) ---- */
+.proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.proof-item { border-radius: 14px; overflow: hidden; position: relative; }
+.proof-item img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.proof-tag { position: absolute; left: 0.85rem; bottom: 0.85rem; background: rgba(42, 33, 27, 0.85); color: var(--paper); font-size: 0.72rem; font-weight: 600; padding: 0.35rem 0.7rem; border-radius: 100px; }
+@media (max-width: 820px) {
+  .proof-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- what we can do for you (bento feature grid) ---- */
+.can-do-section { background: var(--sand); }
+.bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+.bento-card { background: var(--paper); border: 1px solid var(--clay); border-radius: 16px; padding: 1.75rem; }
+.bento-icon { width: 40px; height: 40px; border-radius: 10px; background: var(--sand); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; color: var(--brass-deep); }
+.bento-card h3 { font-family: var(--font-display); font-size: 1.05rem; margin: 0 0 0.5rem; color: var(--ink-warm); }
+.bento-card p { font-size: 0.88rem; line-height: 1.55; color: #6b5d4e; margin: 0; }
+@media (max-width: 820px) {
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- time saved ---- */
+.time-saved { background: var(--sand); text-align: center; }
+.time-saved .num { font-family: var(--font-display); font-weight: 900; font-size: clamp(3.5rem, 9vw, 6rem); color: var(--brass-deep); line-height: 1; }
+.time-saved p { max-width: 34rem; margin: 1rem auto 0; color: #55493d; font-size: 1.05rem; line-height: 1.6; }
+
 /* ---- hero (generic page-header used by interior pages) ---- */
 .hero { padding-top: 6rem; padding-bottom: 4rem; text-align: center; }
 .hero h1 {
