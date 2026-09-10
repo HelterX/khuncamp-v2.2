@@ -47,7 +47,7 @@ function khInit() {
         var rect = el.getBoundingClientRect();
         var vh = window.innerHeight;
         var progress = (vh - rect.top) / (vh + rect.height);
-        var offset = (progress - 0.5) * 60;
+        var offset = (progress - 0.5) * 100;
         media.style.transform = "translate3d(0, " + offset.toFixed(1) + "px, 0)";
       });
     };
