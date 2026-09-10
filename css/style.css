@@ -39,6 +39,11 @@ img { max-width: 100%; display: block; }
 .wrap { max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
 .section { padding-top: 5rem; padding-bottom: 5rem; }
 .section-alt { background: var(--obsidian-surface); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.section-parallax { position: relative; overflow: hidden; }
+.parallax-media { position: absolute; inset: -12% 0; z-index: 0; will-change: transform; }
+.parallax-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.parallax-overlay { position: absolute; inset: 0; background: rgba(14, 14, 14, 0.82); z-index: 1; }
+.section-parallax > .wrap { position: relative; z-index: 2; }
 .eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;

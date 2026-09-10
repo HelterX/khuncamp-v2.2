@@ -37,6 +37,29 @@ function khInit() {
     setNavScrolled(window.scrollY);
   }
 
+  // ---- parallax section backgrounds ----
+  var parallaxSections = document.querySelectorAll("[data-parallax]");
+  if (parallaxSections.length && !reduceMotion) {
+    var updateParallax = function () {
+      parallaxSections.forEach(function (el) {
+        var media = el.querySelector(".parallax-media");
+        if (!media) return;
+        var rect = el.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var progress = (vh - rect.top) / (vh + rect.height);
+        var offset = (progress - 0.5) * 60;
+        media.style.transform = "translate3d(0, " + offset.toFixed(1) + "px, 0)";
+      });
+    };
+    if (lenis) {
+      lenis.on("scroll", updateParallax);
+    } else {
+      window.addEventListener("scroll", updateParallax, { passive: true });
+    }
+    window.addEventListener("resize", updateParallax);
+    updateParallax();
+  }
+
   // ---- scroll reveal ----
   var revealTargets = document.querySelectorAll(
     "main > section, .item, .step, .card"
