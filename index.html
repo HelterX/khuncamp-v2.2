@@ -20,15 +20,15 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=37">
+  <link rel="stylesheet" href="css/style.css?v=38">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 </head>
-<body>
+<body class="theme-dark-warm">
 
-  <header class="nav nav--overlay">
+  <header class="nav">
     <div class="nav-inner">
       <a href="index.html" class="brand">
         <img src="images/logo/khuncamp-mark.png" alt="Khun Camp" class="crest">
@@ -38,6 +38,7 @@
       <ul class="nav-links nav-desktop">
         <li><a href="offer.html">The Offer</a></li>
         <li><a href="proof.html">Proof</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="founder.html">Founder</a></li>
         <li><a href="blog.html">Blog</a></li>
         <li><a href="contact.html" class="btn btn-primary">Book a Call</a></li>
@@ -52,6 +53,7 @@
       <ul>
         <li><a href="offer.html">The Offer</a></li>
         <li><a href="proof.html">Proof</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="founder.html">Founder</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
@@ -60,55 +62,50 @@
   </header>
 
   <main>
-    <!-- Hero (repaint in progress — warm palette, per Shawn's direction change) -->
+    <!-- Hero — matches Shawn's v3 mockup -->
     <section class="home-hero">
       <div class="wrap home-hero-inner">
         <div class="home-hero-text">
-          <p class="home-hero-badge"><span class="dot"></span>Content Operating System</p>
-          <h1 class="home-hero-title">We turn content into <span class="accent">customers.</span></h1>
+          <p class="home-hero-badge"><span class="dot"></span>Content Operating System · Founder-led brands</p>
+          <h1 class="home-hero-title">You film it. We turn it into <span class="accent">customers.</span></h1>
           <p class="home-hero-lede">Strategy, scripts, filming direction, editing, posting, and community replies. One team, one monthly fee, no scrambling on a Sunday night for something to put up.</p>
           <div class="home-hero-ctas">
             <a href="contact.html" class="btn-solid">Book a Call →</a>
-            <a href="proof.html" class="btn-underline">See the evidence</a>
+            <a href="proof.html" class="btn-outline">See the evidence →</a>
           </div>
         </div>
         <div class="home-hero-media">
           <div class="home-hero-photo">
             <img src="images/photos/khun-camp-podcast-recording-studio.webp" alt="Behind the scenes of a Khun Camp podcast recording session" loading="eager">
           </div>
-          <!-- TODO placeholder figures — swap for Shawn's real numbers -->
           <div class="home-hero-stat home-hero-stat--top">
             <div class="num">3 yrs</div>
             <div class="label">Running the system</div>
           </div>
+          <!-- TODO: confirm this figure with Shawn before launch -->
           <div class="home-hero-stat home-hero-stat--bottom">
-            <div class="num">60K+</div>
-            <div class="label">Subscribers grown</div>
+            <div class="num">2,112</div>
+            <div class="label">Subs built from zero</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Who we are -->
-    <section class="who-we-are wrap section">
-      <p class="eyebrow-lg">Who we are</p>
-      <div class="who-band">
-        <img src="images/photos/khun-camp-shawn-podcast-interview.webp" alt="Shawn recording a Khun Camp podcast episode in the studio" loading="lazy">
-        <p class="who-band-caption">Content built and run by the person who grew his own channel to 60K first.</p>
+    <!-- Marquee -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
+        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
+        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
+        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
       </div>
-      <p class="who-intro">Former US Army. Shawn grew his own YouTube channel to 60,000 subscribers from scratch in Southeast Asia, then spent three years figuring out what actually makes content convert — not just perform. Khun Camp is that system, run by the person who built it.</p>
-      <!-- TODO placeholder figures — swap for Shawn's real numbers -->
-      <div class="who-stats">
-        <div class="who-stat"><div class="num">3 yrs</div><div class="label">Running the system</div></div>
-        <div class="who-stat"><div class="num">60K+</div><div class="label">Subscribers grown</div></div>
-        <div class="who-stat"><div class="num">12+</div><div class="label">Founders served</div></div>
-        <div class="who-stat"><div class="num">48hr</div><div class="label">Avg. turnaround</div></div>
-      </div>
-    </section>
+    </div>
 
     <!-- Testimonials — moved up early per Shawn: proof belongs near the top -->
-    <section class="testimonials-light wrap section">
-      <p class="eyebrow-lg">What people say</p>
+    <section class="theme-light testimonials-light wrap section">
+      <p class="eyebrow-lg">People we have worked with</p>
+      <h2 class="section-title">Real names, real faces, real words.</h2>
+      <p class="intro" style="margin:0.75rem 0 2rem; color:#55493d; max-width:40rem;">Not logos we borrowed. These are people who worked with us and said so on the record.</p>
       <!-- TODO: swap avatar-placeholder initials for real photos once Shawn sends them -->
       <div class="grid-3">
         <figure class="card-light">
@@ -132,56 +129,97 @@
       </div>
     </section>
 
-    <!-- What we do — visual proof, not another paragraph -->
-    <section class="theme-light wrap section">
-      <p class="eyebrow-lg">What we do</p>
-      <div class="proof-grid">
-        <div class="proof-item"><img src="images/photos/desk-strategy-content-pillars.webp" alt="Content strategy written in a planner" loading="lazy"><span class="proof-tag">Strategy</span></div>
-        <div class="proof-item"><img src="images/photos/desk-scripts-filming-direction.webp" alt="Clapperboard on a film set" loading="lazy"><span class="proof-tag">Filming</span></div>
-        <div class="proof-item"><img src="images/photos/desk-editing-production.webp" alt="Editor color-grading footage on dual monitors" loading="lazy"><span class="proof-tag">Editing</span></div>
-        <div class="proof-item"><img src="images/photos/desk-posting-scheduling-community.webp" alt="Scheduling content from a phone" loading="lazy"><span class="proof-tag">Posting</span></div>
+    <!-- Who this is for + what we can do for you, combined -->
+    <section class="wrap section">
+      <div class="mkt-split">
+        <div class="mkt-split-text">
+          <p class="eyebrow-lg">Who this is for</p>
+          <h2>Founders who outgrew doing it themselves.</h2>
+          <p>You already know content works. You have the offer, the audience, and the thing worth saying. What you do not have is another ten hours a week to script, edit, post, and answer comments.</p>
+          <p>If you are still the bottleneck between a good idea and a posted video, that is exactly what this fixes.</p>
+        </div>
+        <div class="pillar-list">
+          <div class="pillar-item">
+            <span class="pillar-num">01</span>
+            <div>
+              <h3>Strategy and content pillars</h3>
+              <p>We work out what you should be talking about, then build a 90-day plan around it — your audience, your offer, your angles, mapped before anything gets made.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-num">02</span>
+            <div>
+              <h3>Scripts and filming direction</h3>
+              <p>You get the shot list and the words. No wasted weekends on footage that can't be used.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-num">03</span>
+            <div>
+              <h3>Editing and production</h3>
+              <p>Footage comes back finished, cut to your look, captioned, ready to go out — every piece follows your brand rules.</p>
+            </div>
+          </div>
+          <div class="pillar-item">
+            <span class="pillar-num">04</span>
+            <div>
+              <h3>Posting, scheduling and community</h3>
+              <p>Everything goes out on time across your platforms. Comments and DMs answered in your voice.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- What we can do for you -->
-    <section class="can-do-section wrap section">
-      <p class="eyebrow-lg">What we can do for you</p>
-      <div class="bento-grid">
-        <div class="bento-card">
-          <div class="bento-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.5" fill="currentColor"/></svg></div>
-          <h3>Strategy and content pillars</h3>
-          <p>We work out what you should be talking about, then build a 90-day plan around it — your audience, your offer, your angles, mapped before anything gets made.</p>
+    <!-- What it gives you back: real task/hours breakdown -->
+    <section class="theme-light hours-section wrap section">
+      <p class="eyebrow-lg">What it gives you back</p>
+      <h2>The hours you stop spending.</h2>
+      <p class="intro">One published long-form video and the shorts cut from it, start to finish. Here is who does what once the system is running.</p>
+      <div class="hours-table">
+        <div class="hours-row"><span class="task">Deciding what to make</span><span class="hrs"><span class="hrs-num">1.5</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row"><span class="task">Scripting and shot list</span><span class="hrs"><span class="hrs-num">2.0</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row"><span class="task">Filming</span><span class="hrs"><span class="hrs-num">1.0</span><span class="hours-tag you">You</span></span></div>
+        <div class="hours-row"><span class="task">Editing the long-form</span><span class="hrs"><span class="hrs-num">4.0</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row"><span class="task">Cutting 3 to 5 shorts</span><span class="hrs"><span class="hrs-num">2.5</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row"><span class="task">Thumbnails, titles, descriptions</span><span class="hrs"><span class="hrs-num">1.5</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row"><span class="task">Posting and scheduling</span><span class="hrs"><span class="hrs-num">1.0</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row"><span class="task">Comments and DMs</span><span class="hrs"><span class="hrs-num">1.5</span><span class="hours-tag">Khun Camp</span></span></div>
+        <div class="hours-row hours-row--total"><span class="task">Your time, per video</span><span class="hrs"><span class="hrs-num">1.0</span><span class="hours-tag you">You</span></span></div>
+      </div>
+      <p class="hours-disclosure">⚠ Placeholder math — swap for Shawn's real measured hours before this ships.</p>
+    </section>
+
+    <!-- Recent work -->
+    <section id="work" class="work-section wrap section">
+      <p class="eyebrow-lg">Recent work</p>
+      <h2>What comes back to you.</h2>
+      <p class="intro">Shorts play in place. Long-form opens on YouTube.</p>
+      <div class="work-grid">
+        <div class="work-item">
+          <span class="work-play">▶</span>
+          <div class="work-caption"><b>ANANTA</b><span>Statue comes alive</span></div>
         </div>
-        <div class="bento-card">
-          <div class="bento-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l3-3h12l3 3M3 7v12a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7M3 7h18"/></svg></div>
-          <h3>Scripts and filming direction</h3>
-          <p>You get the shot list and the words. No wasted weekends on footage that can't be used.</p>
+        <div class="work-item">
+          <span class="work-play">▶</span>
+          <div class="work-caption"><b>ANANTA</b><span>Yeet master</span></div>
         </div>
-        <div class="bento-card">
-          <div class="bento-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 10h2M16 14h2"/></svg></div>
-          <h3>Editing and production</h3>
-          <p>Footage comes back finished, cut to your look, captioned, ready to go out — every piece follows your brand rules.</p>
-        </div>
-        <div class="bento-card">
-          <div class="bento-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"/></svg></div>
-          <h3>Posting, scheduling and community</h3>
-          <p>Everything goes out on time across your platforms. Comments and DMs answered in your voice.</p>
+        <div class="work-item">
+          <span class="work-play">▶</span>
+          <div class="work-caption"><b>MLBB</b><span>Top 3 ranking</span></div>
         </div>
       </div>
     </section>
 
-    <!-- Marquee -->
-    <div class="marquee theme-dark-warm" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
-        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
-        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
-        <span>Strategy</span><span><em>production</em></span><span>Distribution</span><span><em>feedback</em></span>
-      </div>
-    </div>
+    <!-- Brand partnerships -->
+    <section class="theme-light studios-section wrap section">
+      <p class="eyebrow-lg">Brand partnerships</p>
+      <h2>Studios bring us their launches.</h2>
+      <p class="intro">We do not only run this for founders. Game studios hire the same system to put their titles in front of players.</p>
+    </section>
 
     <!-- Founder teaser -->
-    <div class="founder-wrap theme-dark-warm">
+    <div class="founder-wrap">
       <span class="founder-watermark" aria-hidden="true">K</span>
       <section class="wrap section founder founder-badge">
         <div class="founder-badge-photo">
@@ -190,108 +228,18 @@
         <div class="founder-badge-text">
           <p class="eyebrow-lg">The founder</p>
           <h2>Shawn Arrington</h2>
-          <p>Former US Army. 60,000 YouTube subscribers built from scratch in Southeast Asia. Three years figuring out what makes content actually convert, not just perform — Khun Camp is the operating system he built and still runs himself.</p>
+          <p>Former US Army. 60,100 YouTube subscribers built from scratch in Southeast Asia across 6,900 published videos. Three years working out what makes content actually convert, not just perform.</p>
+          <p>Khun Camp is the operating system he built for his own channel and still runs himself, every day. You are not hiring an agency that read about this. You are hiring the person doing it.</p>
           <a href="founder.html" class="more">Full story →</a>
         </div>
       </section>
     </div>
 
-    <!-- How it works -->
-    <section class="section-alt section-parallax theme-dark-warm" data-parallax>
-      <div class="parallax-media"><img src="images/photos/khun-camp-podcast-studio-recording-session.webp" alt="Shawn recording a Khun Camp podcast episode in the studio" loading="lazy"></div>
-      <div class="parallax-overlay"></div>
-      <div class="wrap section">
-        <p class="eyebrow-lg">How it works</p>
-        <div class="grid-3 step-cards">
-          <div class="step">
-            <div class="step-media">
-              <img src="images/photos/step-learn-brand.webp" alt="Reviewing brand strategy notes" loading="lazy">
-              <span class="step-badge">01</span>
-            </div>
-            <h3>We learn your brand properly</h3>
-            <p>One recorded call, real questions. Voice guide and audience avatar come back for sign-off before anything gets made.</p>
-          </div>
-          <div class="step">
-            <div class="step-media">
-              <img src="images/photos/step-build-system.webp" alt="Planning content pillars on a whiteboard" loading="lazy">
-              <span class="step-badge">02</span>
-            </div>
-            <h3>We build the system</h3>
-            <p>Pillars, templates, the 90-day plan, analytics tracking — the one-time build everything else runs on.</p>
-          </div>
-          <div class="step">
-            <div class="step-media">
-              <img src="images/photos/step-run-monthly.webp" alt="Reviewing the monthly performance report" loading="lazy">
-              <span class="step-badge">03</span>
-            </div>
-            <h3>We run it every month</h3>
-            <p>Content, report, and a call to decide what changes next. You film when we ask — we handle everything else.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Offer summary -->
-    <section class="theme-light">
-      <div class="wrap section offer-split">
-        <div class="offer-split-text">
-          <p class="eyebrow-lg">One offer, full service</p>
-          <h2 class="section-title">Content operating system</h2>
-          <p class="offer-split-lede">Everything your channel needs, built once and run every month — one team accountable for the whole thing.</p>
-          <div class="hero-ctas" style="justify-content:flex-start;">
-            <a href="contact.html" class="btn btn-primary">Book a Call</a>
-            <a href="offer.html" class="btn-ghost">See the full offer →</a>
-          </div>
-        </div>
-        <div class="checklist-card">
-          <div><span class="check">✓</span> Brand and audience audit</div>
-          <div><span class="check">✓</span> Content pillars and 90-day roadmap</div>
-          <div><span class="check">✓</span> Scripts, editing, and production</div>
-          <div><span class="check">✓</span> Posting and scheduling</div>
-          <div><span class="check">✓</span> Community replies in your voice</div>
-          <div><span class="check">✓</span> Monthly strategy call and report</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Time saved -->
-    <!-- TODO placeholder figure — swap for Shawn's real hours/effort number -->
-    <section class="time-saved wrap section">
-      <p class="eyebrow-lg center">Time saved</p>
-      <div class="num">20+ hrs</div>
-      <p>Given back to you every month — the time strategy, scripting, filming direction, editing, and posting would otherwise cost a founder running it solo.</p>
-    </section>
-
-    <!-- FAQ -->
-    <section class="theme-light">
-      <div class="wrap section">
-        <p class="eyebrow-lg center">Common questions</p>
-        <div class="faq">
-          <details>
-            <summary>What do I actually have to do? <span class="icon">+</span></summary>
-            <p>Film when we give you the shot list. Show up for the monthly strategy call. That's it — everything else is handled.</p>
-          </details>
-          <details>
-            <summary>What's the difference between the build fee and the retainer? <span class="icon">+</span></summary>
-            <p>The build is a one-time project that sets up your whole content system. The retainer is the ongoing monthly engagement that runs it. Exact scope and cost come out of a quick call, not a fixed menu.</p>
-          </details>
-          <details>
-            <summary>How long before content drives actual customers? <span class="icon">+</span></summary>
-            <p>Typically 60 to 90 days before content drives consistent inbound. The first month is building the system right so every month after compounds instead of starting over.</p>
-          </details>
-          <details>
-            <summary>Is there a minimum commitment? <span class="icon">+</span></summary>
-            <p>We ask for three months minimum on the retainer. Content growth is a compounding channel — three months is enough to see real data on what's working.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
     <!-- Final CTA — booking link, bottom of page -->
-    <section class="wrap section final-cta theme-dark-warm">
+    <section class="cta-brass wrap section">
       <h2>Ready to hand off the channel?</h2>
-      <p>Book a call. We'll look at your content, your offer, and your audience, and tell you exactly how we'd run it.</p>
-      <a href="contact.html" class="btn btn-primary">Book a Call</a>
+      <p>Book a call. We'll look at your content, your offer, and your audience, and tell you exactly how we'd run it. If it's not a fit, we'll say so on the call.</p>
+      <a href="contact.html" class="btn-dark">Book a Call</a>
     </section>
   </main>
 
