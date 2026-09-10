@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=31">
+  <link rel="stylesheet" href="css/style.css?v=32">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -60,29 +60,34 @@
   </header>
 
   <main>
-    <!-- Hero -->
-    <div class="hero-media">
-      <video class="hero-video" autoplay muted loop playsinline poster="images/photos/hero-bts-poster.jpg">
-        <source src="videos/hero-bts-studio-lighting.mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-      <section class="wrap hero">
-        <p class="eyebrow gold">Content Operating System</p>
-        <h1>We turn content into <span class="text-gold">customers.</span></h1>
-        <p class="lede">Strategy, scripts, filming direction, editing, posting, and community replies. One team, one monthly fee, no scrambling on a Sunday night for something to put up.</p>
-        <div class="hero-ctas">
-          <a href="contact.html" class="btn btn-primary">Book a Call</a>
-          <a href="proof.html" class="btn-ghost">See the evidence →</a>
+    <!-- Hero (repaint in progress — warm palette, per Shawn's direction change) -->
+    <section class="home-hero">
+      <div class="wrap home-hero-inner">
+        <div class="home-hero-text">
+          <p class="home-hero-badge"><span class="dot"></span>Content Operating System</p>
+          <h1 class="home-hero-title">We turn content into <span class="accent">customers.</span></h1>
+          <p class="home-hero-lede">Strategy, scripts, filming direction, editing, posting, and community replies. One team, one monthly fee, no scrambling on a Sunday night for something to put up.</p>
+          <div class="home-hero-ctas">
+            <a href="contact.html" class="btn-solid">Book a Call →</a>
+            <a href="proof.html" class="btn-underline">See the evidence</a>
+          </div>
         </div>
-      </section>
-    </div>
-
-    <!-- Hero photo: overlaps the seam between the video hero and the section below -->
-    <div class="hero-overlap">
-      <div class="hero-overlap-card">
-        <img src="images/photos/khun-camp-podcast-recording-studio.webp" alt="Behind the scenes of a Khun Camp podcast recording session" loading="eager">
+        <div class="home-hero-media">
+          <div class="home-hero-photo">
+            <img src="images/photos/khun-camp-podcast-recording-studio.webp" alt="Behind the scenes of a Khun Camp podcast recording session" loading="eager">
+          </div>
+          <!-- TODO placeholder figures — swap for Shawn's real numbers -->
+          <div class="home-hero-stat home-hero-stat--top">
+            <div class="num">3 yrs</div>
+            <div class="label">Running the system</div>
+          </div>
+          <div class="home-hero-stat home-hero-stat--bottom">
+            <div class="num">60K+</div>
+            <div class="label">Subscribers grown</div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
 
     <!-- What we take off your desk -->
     <section class="wrap section">
