@@ -383,7 +383,7 @@ img { max-width: 100%; display: block; }
 .work-pending-label { position: absolute; top: 0.85rem; left: 0.85rem; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--ink-warm); border: 1px solid var(--hairline); border-radius: 100px; padding: 0.25rem 0.6rem; z-index: 1; background: var(--paper); }
 
 /* shorts row: 9:16, gold outline play button, two-line caption */
-.work-grid--shorts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 1.25rem; }
+.work-grid--shorts { display: grid; grid-template-columns: repeat(3, calc((100% - 4 * 1.25rem) / 5)); justify-content: center; gap: 1.25rem; margin-bottom: 1.25rem; }
 .work-grid--shorts .work-item { aspect-ratio: 9 / 16; }
 .work-play { position: relative; z-index: 1; width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--brass); display: flex; align-items: center; justify-content: center; color: var(--brass); font-size: 0.9rem; background: rgba(10, 10, 10, 0.6); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); }
 .work-grid--shorts .work-caption b { display: block; color: var(--paper); font-size: 0.85rem; }
