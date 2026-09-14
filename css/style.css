@@ -26,7 +26,7 @@
   --paper: #f1ede4;
   --sand: #e3dbcc;
   --clay: #a87b5c;
-  --espresso: #2a211b;
+  --espresso: #4a3826;
   --ink-warm: #241e19;
   --taupe: #bfb3a4;
   --brass: #c9a227;
@@ -235,7 +235,7 @@ img { max-width: 100%; display: block; }
 .theme-dark-warm {
   background: var(--espresso);
   --obsidian: var(--espresso);
-  --obsidian-surface: #33281f;
+  --obsidian-surface: #55402c;
   --cream: var(--brass);
   --cream-deep: var(--brass-deep);
   --cream-bright: var(--brass);
@@ -243,10 +243,10 @@ img { max-width: 100%; display: block; }
   --ink-dim: var(--taupe);
   --ink-faint: #9c8f7d;
   --hairline: rgba(241, 237, 228, 0.12);
-  --nav-surface: rgba(42, 33, 27, 0.9);
+  --nav-surface: rgba(74, 56, 38, 0.9);
   color: var(--ink);
 }
-.theme-dark-warm .parallax-overlay { background: rgba(42, 33, 27, 0.82); }
+.theme-dark-warm .parallax-overlay { background: rgba(74, 56, 38, 0.82); }
 
 /* ---- who we are ---- */
 .who-we-are { background: var(--paper); }
