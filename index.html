@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=42">
+  <link rel="stylesheet" href="css/style.css?v=43">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -28,7 +28,7 @@
 </head>
 <body class="theme-dark-warm">
 
-  <header class="nav">
+  <header class="nav nav--overlay">
     <div class="nav-inner">
       <a href="index.html" class="brand">
         <img src="images/logo/khuncamp-mark.png" alt="Khun Camp" class="crest">
@@ -62,31 +62,24 @@
   </header>
 
   <main>
-    <!-- Hero — matches Shawn's v3 mockup -->
-    <section class="home-hero">
-      <div class="wrap home-hero-inner">
-        <div class="home-hero-text">
-          <p class="home-hero-badge"><span class="dot"></span>Content Operating System · Founder-led brands</p>
-          <h1 class="home-hero-title">You film it. We turn it into <span class="accent">customers.</span></h1>
-          <p class="home-hero-lede">Strategy, scripts, filming direction, editing, posting, and community replies. One team, one monthly fee, no scrambling on a Sunday night for something to put up.</p>
-          <div class="home-hero-ctas">
-            <a href="contact.html" class="btn-solid">Book a Call →</a>
-            <a href="proof.html" class="btn-outline">See the evidence →</a>
-          </div>
+    <!-- Hero — video background. TODO: swap hero-bts-studio-lighting.mp4 for Shawn's real clip once the file/link comes through -->
+    <section class="video-hero">
+      <video class="video-hero-bg" autoplay muted loop playsinline poster="images/photos/hero-bts-poster.jpg">
+        <source src="videos/hero-bts-studio-lighting.mp4" type="video/mp4">
+      </video>
+      <div class="video-hero-overlay"></div>
+      <div class="wrap video-hero-inner">
+        <p class="video-hero-badge"><span class="dot"></span>Content Operating System · Founder-led brands</p>
+        <h1 class="video-hero-title">You film it. We turn it into <span class="accent">customers.</span></h1>
+        <p class="video-hero-lede">Strategy, scripts, filming direction, editing, posting, and community replies. One team, one monthly fee, no scrambling on a Sunday night for something to put up.</p>
+        <div class="video-hero-ctas">
+          <a href="contact.html" class="btn-solid">Book a Call →</a>
+          <a href="proof.html" class="btn-outline-light">See the evidence →</a>
         </div>
-        <div class="home-hero-media">
-          <div class="home-hero-photo">
-            <img src="images/photos/khun-camp-podcast-recording-studio.webp" alt="Behind the scenes of a Khun Camp podcast recording session" loading="eager">
-          </div>
-          <div class="home-hero-stat home-hero-stat--top">
-            <div class="num">3 yrs</div>
-            <div class="label">Running the system</div>
-          </div>
-          <!-- TODO: confirm this figure with Shawn before launch -->
-          <div class="home-hero-stat home-hero-stat--bottom">
-            <div class="num">2,112</div>
-            <div class="label">Subs built from zero</div>
-          </div>
+        <!-- TODO: confirm this figure with Shawn before launch -->
+        <div class="video-hero-stats">
+          <div class="video-hero-stat"><div class="num">3 yrs</div><div class="label">Running the system</div></div>
+          <div class="video-hero-stat video-hero-stat--dark"><div class="num">2,112</div><div class="label">Subs built from zero</div></div>
         </div>
       </div>
     </section>
