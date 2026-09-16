@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=56">
+  <link rel="stylesheet" href="css/style.css?v=57">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -104,30 +104,35 @@
       <p class="eyebrow-lg">People we have worked with</p>
       <h2 class="section-title">Real names, real faces, real words.</h2>
       <p class="intro" style="margin:0.75rem 0 2rem; color:#55493d; max-width:40rem;">Not logos we borrowed. These are people who worked with us and said so on the record.</p>
-      <div class="testimonials-featured">
-        <div class="testimonial-feature-card">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <blockquote>"The footage and audio turned out beautifully and really captured the feeling of the event. Professional, relaxed, and very easy to work with."</blockquote>
-          <div class="testimonial-feature-person">
-            <img src="images/photos/callie-johnson-testimonial.webp" alt="Callie Johnson" loading="lazy">
-            <div><b>Callie Johnson</b><span>Founder, The Resonance Container</span></div>
-          </div>
+      <div class="testimonials-split">
+        <div class="testimonials-photo-strip">
+          <img src="images/photos/callie-johnson-testimonial.webp" alt="Callie Johnson" loading="lazy">
+          <img src="images/photos/m-jay-the-erosa-testimonial.webp" alt="M Jay" loading="lazy">
+          <img src="images/photos/jamrell-buynay-testimonial.webp" alt="Jamrell Buynay" loading="lazy">
         </div>
-        <div class="testimonial-support-list">
-          <div class="testimonial-support-item">
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <p>"The interview with Khun Camp was a standout moment at Nomad Fest. The questions were thoughtful and grounding."</p>
-            <div class="testimonial-support-person">
-              <img src="images/photos/m-jay-the-erosa-testimonial.webp" alt="M Jay" loading="lazy">
-              <div><b>M Jay</b><span>Founder, The Erosa</span></div>
+        <div class="testimonials-list">
+          <div class="testimonials-list-item">
+            <img class="testimonials-avatar" src="images/photos/callie-johnson-testimonial.webp" alt="Callie Johnson" loading="lazy">
+            <div>
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>"The footage and audio turned out beautifully and really captured the feeling of the event. Professional, relaxed, and very easy to work with."</blockquote>
+              <div class="who"><b>Callie Johnson</b><span>Founder, The Resonance Container</span></div>
             </div>
           </div>
-          <div class="testimonial-support-item">
-            <div class="stars" aria-hidden="true">★★★★★</div>
-            <p>"Shawn has shown great leadership and initiative. He's definitely someone I'd like to have on my team."</p>
-            <div class="testimonial-support-person">
-              <img src="images/photos/jamrell-buynay-testimonial.webp" alt="Jamrell Buynay" loading="lazy">
-              <div><b>Jamrell Buynay</b><span>Host and segment producer, Filipinos of Thailand</span></div>
+          <div class="testimonials-list-item">
+            <img class="testimonials-avatar" src="images/photos/m-jay-the-erosa-testimonial.webp" alt="M Jay" loading="lazy">
+            <div>
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>"The interview with Khun Camp was a standout moment at Nomad Fest. The questions were thoughtful and grounding."</blockquote>
+              <div class="who"><b>M Jay</b><span>Founder, The Erosa</span></div>
+            </div>
+          </div>
+          <div class="testimonials-list-item">
+            <img class="testimonials-avatar" src="images/photos/jamrell-buynay-testimonial.webp" alt="Jamrell Buynay" loading="lazy">
+            <div>
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <blockquote>"Shawn has shown great leadership and initiative. He's definitely someone I'd like to have on my team."</blockquote>
+              <div class="who"><b>Jamrell Buynay</b><span>Host and segment producer, Filipinos of Thailand</span></div>
             </div>
           </div>
         </div>
@@ -212,7 +217,7 @@
       <p class="eyebrow-lg">Recent work</p>
       <h2>What comes back to you.</h2>
       <p class="intro">Shorts play in place. Long-form opens on YouTube.</p>
-      <!-- Real, verified links (checked 2026-09-14). Two long-form slots pending correct links from Shawn — the ones he sent for "Da Lat Adventure" / "Modern Dating EP2" pointed to unrelated reaction videos. -->
+      <!-- Real, verified links (checked 2026-09-16). "Da Lat Adventure" and "Modern Dating EP2" re-sourced directly from youtube.com/@StillKhunShawn/videos after Shawn's original links pointed to an unrelated reaction channel; "Modern Dating EP2" was ambiguous (no video titled exactly that) so it's mapped to Khun Camp #3.2, the "part 2" of the Modern Dating two-parter — confirm with Shawn if he meant a different video. -->
       <div class="work-grid--shorts">
         <a class="work-item is-real" href="https://youtube.com/shorts/In6czFThorU" target="_blank" rel="noopener">
           <img class="work-thumb" src="https://i.ytimg.com/vi/In6czFThorU/hqdefault.jpg" alt="" loading="lazy">
@@ -239,11 +244,17 @@
           <p class="work-caption-below">I Make Videos at 2AM Because I Feel Alone · personal</p>
         </div>
         <div>
-          <div class="work-item is-pending"><span class="work-pending-label">Link pending</span><span class="work-play--yt">▶</span></div>
+          <a class="work-item is-real" href="https://youtu.be/BEsvnt0lRQs" target="_blank" rel="noopener">
+            <img class="work-thumb" src="https://i.ytimg.com/vi/BEsvnt0lRQs/hqdefault.jpg" alt="" loading="lazy">
+            <span class="work-play--yt">▶</span>
+          </a>
           <p class="work-caption-below">Da Lat Adventure · vlog</p>
         </div>
         <div>
-          <div class="work-item is-pending"><span class="work-pending-label">Link pending</span><span class="work-play--yt">▶</span></div>
+          <a class="work-item is-real" href="https://youtu.be/ZJhR1NA-bxo" target="_blank" rel="noopener">
+            <img class="work-thumb" src="https://i.ytimg.com/vi/ZJhR1NA-bxo/hqdefault.jpg" alt="" loading="lazy">
+            <span class="work-play--yt">▶</span>
+          </a>
           <p class="work-caption-below">Modern Dating EP2 · interview</p>
         </div>
       </div>
