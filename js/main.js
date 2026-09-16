@@ -83,19 +83,54 @@ function khInit() {
     revealTargets.forEach(function (el) { observer.observe(el); });
   }
 
-  // ---- testimonials: click a photo to feature it ----
+  // ---- testimonials: click a photo (or dot, or swipe) to feature it ----
+  var photoStrip = document.querySelector(".testimonials-photo-strip");
   var photoStripBtns = document.querySelectorAll(".photo-strip-item");
+  var dotBtns = document.querySelectorAll(".testimonials-dot");
+
+  function setActiveTestimonial(target) {
+    photoStripBtns.forEach(function (b) {
+      b.classList.toggle("is-active", b.getAttribute("data-testimonial") === target);
+    });
+    document.querySelectorAll(".testimonials-list-item").forEach(function (item) {
+      item.classList.toggle("is-active", item.getAttribute("data-testimonial") === target);
+    });
+    dotBtns.forEach(function (d) {
+      d.classList.toggle("is-active", d.getAttribute("data-testimonial") === target);
+    });
+  }
+
   photoStripBtns.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var target = btn.getAttribute("data-testimonial");
-      document.querySelectorAll(".photo-strip-item").forEach(function (b) {
-        b.classList.toggle("is-active", b === btn);
-      });
-      document.querySelectorAll(".testimonials-list-item").forEach(function (item) {
-        item.classList.toggle("is-active", item.getAttribute("data-testimonial") === target);
-      });
+      setActiveTestimonial(btn.getAttribute("data-testimonial"));
     });
   });
+  dotBtns.forEach(function (dot) {
+    dot.addEventListener("click", function () {
+      setActiveTestimonial(dot.getAttribute("data-testimonial"));
+    });
+  });
+
+  if (photoStrip) {
+    var touchStartX = 0, touchStartY = 0, touchTracking = false;
+    photoStrip.addEventListener("touchstart", function (e) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchTracking = true;
+    }, { passive: true });
+    photoStrip.addEventListener("touchend", function (e) {
+      if (!touchTracking) return;
+      touchTracking = false;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      var dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy)) return;
+      var current = document.querySelector(".photo-strip-item.is-active");
+      var order = Array.prototype.map.call(photoStripBtns, function (b) { return b.getAttribute("data-testimonial"); });
+      var idx = order.indexOf(current.getAttribute("data-testimonial"));
+      var nextIdx = dx < 0 ? (idx + 1) % order.length : (idx - 1 + order.length) % order.length;
+      setActiveTestimonial(order[nextIdx]);
+    }, { passive: true });
+  }
 }
 
 if (document.readyState === "loading") {

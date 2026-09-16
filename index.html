@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=58">
+  <link rel="stylesheet" href="css/style.css?v=59">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -105,10 +105,17 @@
       <h2 class="section-title">Real names, real faces, real words.</h2>
       <p class="intro" style="margin:0.75rem 0 2rem; color:#55493d; max-width:40rem;">Not logos we borrowed. These are people who worked with us and said so on the record.</p>
       <div class="testimonials-split">
-        <div class="testimonials-photo-strip">
-          <button type="button" class="photo-strip-item is-active" data-testimonial="0" aria-label="Show Callie Johnson's testimonial"><img src="images/photos/callie-johnson-testimonial.webp" alt="Callie Johnson" loading="lazy"></button>
-          <button type="button" class="photo-strip-item" data-testimonial="1" aria-label="Show M Jay's testimonial"><img src="images/photos/m-jay-the-erosa-testimonial.webp" alt="M Jay" loading="lazy"></button>
-          <button type="button" class="photo-strip-item" data-testimonial="2" aria-label="Show Jamrell Buynay's testimonial"><img src="images/photos/jamrell-buynay-testimonial.webp" alt="Jamrell Buynay" loading="lazy"></button>
+        <div class="testimonials-photo-col">
+          <div class="testimonials-photo-strip">
+            <button type="button" class="photo-strip-item is-active" data-testimonial="0" aria-label="Show Callie Johnson's testimonial"><img src="images/photos/callie-johnson-testimonial.webp" alt="Callie Johnson" loading="lazy"><span class="hint" aria-hidden="true">+</span></button>
+            <button type="button" class="photo-strip-item" data-testimonial="1" aria-label="Show M Jay's testimonial"><img src="images/photos/m-jay-the-erosa-testimonial.webp" alt="M Jay" loading="lazy"><span class="hint" aria-hidden="true">+</span></button>
+            <button type="button" class="photo-strip-item" data-testimonial="2" aria-label="Show Jamrell Buynay's testimonial"><img src="images/photos/jamrell-buynay-testimonial.webp" alt="Jamrell Buynay" loading="lazy"><span class="hint" aria-hidden="true">+</span></button>
+          </div>
+          <div class="testimonials-dots" role="tablist" aria-label="Select a testimonial photo">
+            <button type="button" class="testimonials-dot is-active" data-testimonial="0" aria-label="Callie Johnson"></button>
+            <button type="button" class="testimonials-dot" data-testimonial="1" aria-label="M Jay"></button>
+            <button type="button" class="testimonials-dot" data-testimonial="2" aria-label="Jamrell Buynay"></button>
+          </div>
         </div>
         <div class="testimonials-list">
           <div class="testimonials-list-item is-active" data-testimonial="0">
@@ -342,6 +349,6 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=8"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>
