@@ -82,6 +82,20 @@ function khInit() {
     );
     revealTargets.forEach(function (el) { observer.observe(el); });
   }
+
+  // ---- testimonials: click a photo to feature it ----
+  var photoStripBtns = document.querySelectorAll(".photo-strip-item");
+  photoStripBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = btn.getAttribute("data-testimonial");
+      document.querySelectorAll(".photo-strip-item").forEach(function (b) {
+        b.classList.toggle("is-active", b === btn);
+      });
+      document.querySelectorAll(".testimonials-list-item").forEach(function (item) {
+        item.classList.toggle("is-active", item.getAttribute("data-testimonial") === target);
+      });
+    });
+  });
 }
 
 if (document.readyState === "loading") {
