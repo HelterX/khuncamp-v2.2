@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=61">
+  <link rel="stylesheet" href="css/style.css?v=62">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -295,12 +295,86 @@
     </div>
 
     <!-- Final CTA — booking link, bottom of page -->
-    <section class="cta-brass wrap section">
-      <h2>Ready to hand off the channel?</h2>
-      <p>Book a call. We'll look at your content, your offer, and your audience, and tell you exactly how we'd run it. If it's not a fit, we'll say so on the call.</p>
-      <a href="contact.html" class="btn-dark">Book a Call</a>
+    <section class="theme-light wrap section">
+      <div class="intake-split">
+        <div class="intake-split-text">
+          <p class="eyebrow-lg">Get in touch</p>
+          <h2>Tell us about your content goals.</h2>
+          <p class="intro">Fill out the form and we'll reach back out within one business day to see if we're a fit.</p>
+          <div class="intake-trust">
+            <div class="intake-trust-item"><b>&#10003;</b><p>One team handles strategy, filming direction, editing, and posting &mdash; no agency hand-offs.</p></div>
+            <div class="intake-trust-item"><b>&#10003;</b><p>Real clients, real names &mdash; every testimonial on this site is on the record.</p></div>
+            <div class="intake-trust-item"><b>&#10003;</b><p>We reply within one business day, every time.</p></div>
+          </div>
+        </div>
+        <div class="intake-card">
+          <form class="intake-form" action="https://formspree.io/f/xbgrqqbr" method="POST">
+            <input type="hidden" name="_next" value="https://khuncamp.com/thank-you.html">
+            <div class="intake-row">
+              <div class="field">
+                <label for="h-name">Your name</label>
+                <input type="text" id="h-name" name="name" placeholder="First and last" required autocomplete="name">
+              </div>
+              <div class="field">
+                <label for="h-email">Email address</label>
+                <input type="email" id="h-email" name="email" placeholder="you@company.com" required autocomplete="email">
+              </div>
+            </div>
+            <div class="intake-row">
+              <div class="field">
+                <label for="h-budget">Monthly budget</label>
+                <select id="h-budget" name="budget" required>
+                  <option value="" disabled selected>Select a range</option>
+                  <option value="under-2500">Under $2,500 / mo</option>
+                  <option value="2500-4000">$2,500 – $4,000 / mo</option>
+                  <option value="4000-6000">$4,000 – $6,000 / mo</option>
+                  <option value="5000+">$5,000+ / mo</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="h-volume">Content volume goal</label>
+                <select id="h-volume" name="content_volume" required>
+                  <option value="" disabled selected>Select a target</option>
+                  <option value="1-2-wk">1–2 pieces / week</option>
+                  <option value="3-5-wk">3–5 pieces / week</option>
+                  <option value="daily">Daily posting</option>
+                  <option value="not-sure">Not sure yet</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="h-pain">Biggest challenge with your content right now?</label>
+              <textarea id="h-pain" name="pain_point" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn-solid">Send →</button>
+          </form>
+        </div>
+      </div>
     </section>
   </main>
+
+  <script>
+    (function () {
+      var f = document.querySelector('main .intake-form');
+      if (!f) return;
+      f.addEventListener('submit', function () {
+        var data = {
+          name: this.name.value,
+          email: this.email.value,
+          budget: this.budget.value,
+          content_volume: this.content_volume.value,
+          pain_point: this.pain_point.value,
+          source: 'website',
+          submitted_date: new Date().toISOString()
+        };
+        fetch('https://directory-skeptic-activist.ngrok-free.dev/webhook/formspree-intake', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        }).catch(function () {});
+      });
+    })();
+  </script>
 
   <footer class="footer theme-dark-warm">
     <div class="wrap">
