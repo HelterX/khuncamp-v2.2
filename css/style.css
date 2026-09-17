@@ -421,6 +421,22 @@ img { max-width: 100%; display: block; }
 .work-grid--long .work-caption span { color: var(--taupe); font-size: 0.85rem; }
 .work-caption-below { color: var(--taupe); font-size: 0.85rem; margin: 0.75rem 0 0; }
 
+/* ---- most watched: real top-viewed videos, 2-row grid ---- */
+.watched-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 1fr; gap: 1.25rem; }
+.watched-card { display: flex; flex-direction: column; color: inherit; text-decoration: none; }
+.watched-thumb { position: relative; aspect-ratio: 16 / 9; border: 1px solid rgba(19, 17, 16, 0.15); overflow: hidden; margin-bottom: 0.75rem; }
+.watched-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease; }
+.watched-card:hover .watched-thumb img { transform: scale(1.04); }
+.watched-play { position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px; border-radius: 50%; background: rgba(10, 10, 10, 0.65); border: 1px solid var(--brass); color: var(--brass); display: flex; align-items: center; justify-content: center; font-size: 12px; }
+.watched-card h4 { margin: 0 0 0.35rem; font-size: 0.85rem; font-weight: 700; color: var(--ink-warm); line-height: 1.35; flex: 1; }
+.watched-card span { font-size: 0.75rem; color: var(--taupe); }
+@media (max-width: 980px) {
+  .watched-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .watched-grid { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 980px) {
   .work-grid--shorts { grid-template-columns: repeat(3, 1fr); }
 }
