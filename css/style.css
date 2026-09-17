@@ -351,6 +351,12 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---- who this is for + pillars (dark, split two-column) ---- */
+.pillars-bg-section { position: relative; overflow: hidden; }
+.pillars-blob { position: absolute; border-radius: 40%; pointer-events: none; }
+.pillars-blob-1 { width: 32rem; height: 26rem; background: linear-gradient(135deg, rgba(212, 175, 55, .35), rgba(212, 175, 55, 0)); top: -9rem; left: 7rem; filter: blur(6px); transform: rotate(-12deg); }
+.pillars-blob-2 { width: 29rem; height: 24rem; background: linear-gradient(135deg, rgba(19, 17, 16, .06), rgba(19, 17, 16, 0)); bottom: -10rem; right: 3rem; filter: blur(6px); transform: rotate(18deg); }
+.pillars-blob-3 { width: 19rem; height: 19rem; background: radial-gradient(circle, rgba(212, 175, 55, .22), transparent 70%); top: 38%; right: 18%; }
+.pillars-card-frame { position: relative; background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1.5px solid var(--ink-warm); box-shadow: 0 40px 80px rgba(19, 17, 16, 0.1); padding: 3.5rem 3.25rem; }
 .mkt-split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: center; }
 .mkt-split-text h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.75rem, 3.5vw, 2.5rem); line-height: 1.1; color: var(--ink-warm); margin: 0.75rem 0 1.25rem; }
 .mkt-split-text p { color: var(--taupe); font-size: 0.98rem; line-height: 1.7; margin: 0 0 1rem; }
@@ -368,6 +374,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 820px) {
   .mkt-split { grid-template-columns: 1fr; gap: 2rem; }
   .mkt-split-badge { left: 0.75rem; bottom: 1rem; }
+  .pillars-card-frame { padding: 2rem 1.5rem; }
 }
 
 /* ---- time saved: real task/hours breakdown table ---- */
