@@ -72,8 +72,9 @@
         </p>
       </div>
 
-      <form action="https://formspree.io/f/xbgrqqbr" method="POST"
+      <form class="intake-form" action="https://formspree.io/f/xbgrqqbr" method="POST"
         style="max-width:34rem; margin:2.5rem auto 0; display:flex; flex-direction:column; gap:1.25rem;">
+        <input type="hidden" name="_next" value="https://khuncamp.com/thank-you.html">
 
         <div>
           <label for="name" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Name</label>
@@ -91,41 +92,63 @@
           <label for="budget" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Monthly budget</label>
           <select id="budget" name="budget" required
             style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem;">
-            <option value="">Select a range</option>
-            <option>Under $2,500 / mo</option>
-            <option>$2,500 – $4,000 / mo</option>
-            <option>$4,000 – $6,000 / mo</option>
-            <option>$6,000+ / mo</option>
+            <option value="" disabled selected>Select a range</option>
+            <option value="under-2500">Under $2,500 / mo</option>
+            <option value="2500-4000">$2,500 – $4,000 / mo</option>
+            <option value="4000-6000">$4,000 – $6,000 / mo</option>
+            <option value="5000+">$5,000+ / mo</option>
           </select>
         </div>
 
         <div>
           <label for="volume" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Content volume goal</label>
-          <select id="volume" name="content_volume_goal" required
+          <select id="volume" name="content_volume" required
             style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem;">
-            <option value="">Select a target</option>
-            <option>1–2 pieces / week</option>
-            <option>3–5 pieces / week</option>
-            <option>Daily posting</option>
-            <option>Not sure yet</option>
+            <option value="" disabled selected>Select a target</option>
+            <option value="1-2-wk">1–2 pieces / week</option>
+            <option value="3-5-wk">3–5 pieces / week</option>
+            <option value="daily">Daily posting</option>
+            <option value="not-sure">Not sure yet</option>
           </select>
         </div>
 
         <div>
           <label for="challenge" style="display:block; font-size:0.8rem; color:var(--ink-faint); margin-bottom:0.4rem; font-family:var(--font-mono); text-transform:uppercase; letter-spacing:0.06em;">Biggest challenge with your content right now?</label>
-          <textarea id="challenge" name="biggest_challenge" rows="4"
+          <textarea id="challenge" name="pain_point" rows="4" required
             style="width:100%; padding:0.75rem 1rem; background:var(--obsidian-surface); border:1px solid var(--hairline); color:var(--ink); border-radius:2px; font-family:var(--font-body); font-size:0.95rem; resize:vertical;"></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send →</button>
       </form>
 
-      <!-- Replace href with your real Calendly/booking link once you have one -->
       <p style="text-align:center; margin-top:2.5rem;">
-        <a href="mailto:Shawn@getkhuncamp.com" class="btn-ghost">Book a call instead →</a>
+        <a href="https://calendar.app.google/1PVSKsN8UGwQiG3g7" class="btn-ghost" target="_blank" rel="noopener">Book a call instead →</a>
       </p>
     </section>
   </main>
+
+  <!-- Forwards submissions to the same intake webhook v1 uses to post into #khuncamp-forms.
+       NOTE: this endpoint is an ngrok free-tier URL (directory-skeptic-activist.ngrok-free.dev) —
+       those are temporary and go offline whenever the tunnel isn't running. Confirm with Shawn
+       this is still live before relying on it; it's not a stable production endpoint. -->
+  <script>
+    document.querySelector('.intake-form').addEventListener('submit', function (e) {
+      var data = {
+        name: this.name.value,
+        email: this.email.value,
+        budget: this.budget.value,
+        content_volume: this.content_volume.value,
+        pain_point: this.pain_point.value,
+        source: 'website',
+        submitted_date: new Date().toISOString()
+      };
+      fetch('https://directory-skeptic-activist.ngrok-free.dev/webhook/formspree-intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(function () {});
+    });
+  </script>
 
   <footer class="footer theme-dark-warm">
     <div class="wrap">
