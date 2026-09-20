@@ -20,7 +20,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=42">
+  <link rel="stylesheet" href="css/style.css?v=67">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -40,7 +40,7 @@
         <li><a href="proof.html">Proof</a></li>
         <li><a href="founder.html">Founder</a></li>
         <li><a href="blog.html">Blog</a></li>
-        <li><a href="contact.html" class="btn btn-primary">Book a Call</a></li>
+        <li><a href="book.html?src=nav" class="btn btn-primary">Book a Call</a></li>
       </ul>
 
       <button id="nav-toggle" class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-mobile-menu" aria-label="Toggle menu">
@@ -55,11 +55,14 @@
         <li><a href="founder.html">Founder</a></li>
         <li><a href="blog.html">Blog</a></li>
       </ul>
-      <a href="contact.html" class="btn btn-primary">Book a Call</a>
+      <a href="book.html?src=nav" class="btn btn-primary">Book a Call</a>
     </div>
   </header>
 
   <main>
+    <p style="text-align:center; background:var(--brass); color:var(--espresso); font-weight:700; font-size:0.9rem; padding:0.85rem 1rem; margin:0;">
+      Ready to talk now? <a href="book.html?src=contact" style="color:var(--espresso); text-decoration:underline;">Book a call →</a>
+    </p>
     <section class="wrap section" style="padding-top:4rem;">
       <div style="max-width:38rem; margin:0 auto; text-align:center;">
         <p class="eyebrow gold center">Get in touch</p>
@@ -122,7 +125,7 @@
       </form>
 
       <p style="text-align:center; margin-top:2.5rem;">
-        <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2ag5ERwicAwUuJZ2tL6hrJJgZargaObWA_epwzaQFtfiwB4iyuBoHmqcLfKebei6J8iquVRh3-" class="btn-ghost" target="_blank" rel="noopener">Book a call instead →</a>
+        <a href="book.html?src=contact" class="btn-ghost">Book a call instead →</a>
       </p>
     </section>
   </main>
@@ -199,7 +202,11 @@
     </div>
   </footer>
 
+  <div class="sticky-book-bar" id="sticky-book-bar">
+    <a href="book.html?src=sticky">Book a Call →</a>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=7"></script>
+  <script src="js/main.js?v=10"></script>
 </body>
 </html>

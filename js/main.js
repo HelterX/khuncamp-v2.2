@@ -111,6 +111,20 @@ function khInit() {
     });
   });
 
+  // ---- sticky mobile "Book a Call" bar: appears once scrolled past the hero fold ----
+  var stickyBar = document.getElementById("sticky-book-bar");
+  if (stickyBar) {
+    var setStickyVisible = function (y) {
+      stickyBar.classList.toggle("is-visible", y > window.innerHeight * 0.6);
+    };
+    if (lenis) {
+      lenis.on("scroll", function (e) { setStickyVisible(e.scroll); });
+    } else {
+      window.addEventListener("scroll", function () { setStickyVisible(window.scrollY); }, { passive: true });
+    }
+    setStickyVisible(window.scrollY);
+  }
+
   if (photoStrip) {
     var touchStartX = 0, touchStartY = 0, touchTracking = false;
     photoStrip.addEventListener("touchstart", function (e) {
