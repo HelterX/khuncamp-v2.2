@@ -499,7 +499,25 @@ img { max-width: 100%; display: block; }
 }
 
 /* ---- hero (generic page-header used by interior pages) ---- */
-.hero { padding-top: 6rem; padding-bottom: 4rem; text-align: center; }
+.hero {
+  padding-top: 6rem; padding-bottom: 4rem; text-align: center;
+  position: relative; overflow: hidden;
+  background-image:
+    linear-gradient(rgba(19, 17, 16, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(19, 17, 16, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.hero::before {
+  content: "Khun Camp";
+  position: absolute; top: -1rem; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-accent); font-style: italic; font-weight: 300;
+  font-size: clamp(6rem, 15vw, 10.5rem); color: rgba(19, 17, 16, 0.04);
+  white-space: nowrap; z-index: 0; pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0) 0%, var(--paper) 78%);
+}
 .hero h1 {
   font-family: var(--font-display);
   font-weight: 400;
@@ -521,6 +539,8 @@ img { max-width: 100%; display: block; }
 /* ---- hero photo: card overlapping the seam between the video hero and the section below ---- */
 /* hero entrance: each direct child fades/rises in, staggered */
 .hero > * {
+  position: relative;
+  z-index: 1;
   opacity: 0;
   animation: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
@@ -532,6 +552,24 @@ img { max-width: 100%; display: block; }
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* ---- corner-frame: thin gold corner ticks accenting a content block ---- */
+.corner-frame { position: relative; }
+.corner-tick { position: absolute; width: 18px; height: 18px; pointer-events: none; }
+.corner-tick::before { content: ""; position: absolute; width: 100%; height: 1.5px; background: var(--brass); }
+.corner-tick::after { content: ""; position: absolute; width: 1.5px; height: 100%; background: var(--brass); }
+.ct-tl { top: 1.75rem; left: 1.5rem; }
+.ct-tl::before { top: 0; left: 0; }
+.ct-tl::after { top: 0; left: 0; }
+.ct-tr { top: 1.75rem; right: 1.5rem; }
+.ct-tr::before { top: 0; left: 0; }
+.ct-tr::after { top: 0; right: 0; }
+.ct-bl { bottom: 1.75rem; left: 1.5rem; }
+.ct-bl::before { bottom: 0; left: 0; }
+.ct-bl::after { top: 0; left: 0; }
+.ct-br { bottom: 1.75rem; right: 1.5rem; }
+.ct-br::before { bottom: 0; left: 0; }
+.ct-br::after { top: 0; right: 0; }
 
 /* ---- scroll reveal (JS adds .reveal, then .is-visible on intersect) ---- */
 .reveal {
