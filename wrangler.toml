@@ -1,0 +1,7 @@
+name = "khuncamp-v2-2"
+compatibility_date = "2026-09-01"
+main = "worker.js"
+
+[assets]
+directory = "."
+binding = "ASSETS"

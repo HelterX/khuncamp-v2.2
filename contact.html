@@ -134,10 +134,9 @@
     </section>
   </main>
 
-  <!-- Forwards submissions to the same intake webhook v1 uses to post into #khuncamp-forms.
-       NOTE: this endpoint is an ngrok free-tier URL (directory-skeptic-activist.ngrok-free.dev) —
-       those are temporary and go offline whenever the tunnel isn't running. Confirm with Shawn
-       this is still live before relying on it; it's not a stable production endpoint. -->
+  <!-- Posts a lead notification into #tech-team via the site's own /api/lead-notify Worker
+       route, which holds the Slack webhook URL server-side (Cloudflare secret, never shipped
+       to the browser). Replaces the old ngrok-tunnel relay, which went offline for good. -->
   <script>
     document.querySelector('.intake-form').addEventListener('submit', function (e) {
       var data = {
@@ -146,13 +145,13 @@
         budget: this.budget.value,
         content_volume: this.content_volume.value,
         pain_point: this.pain_point.value,
-        source: 'website',
-        submitted_date: new Date().toISOString()
+        source: window.location.pathname
       };
-      fetch('https://directory-skeptic-activist.ngrok-free.dev/webhook/formspree-intake', {
+      fetch('/api/lead-notify', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
+        keepalive: true
       }).catch(function () {});
     });
   </script>

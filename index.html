@@ -451,13 +451,13 @@
           budget: this.budget.value,
           content_volume: this.content_volume.value,
           pain_point: this.pain_point.value,
-          source: 'website',
-          submitted_date: new Date().toISOString()
+          source: window.location.pathname
         };
-        fetch('https://directory-skeptic-activist.ngrok-free.dev/webhook/formspree-intake', {
+        fetch('/api/lead-notify', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
+          keepalive: true
         }).catch(function () {});
       });
     })();
