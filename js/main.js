@@ -21,22 +21,6 @@ function khInit() {
     requestAnimationFrame(raf);
   }
 
-  // ---- transparent-over-hero nav, solid on scroll ----
-  // Lenis virtualizes scrolling and doesn't dispatch native window "scroll"
-  // events, so this has to key off Lenis's own event when it's active.
-  var overlayNav = document.querySelector(".nav--overlay");
-  if (overlayNav) {
-    var setNavScrolled = function (y) {
-      overlayNav.classList.toggle("is-scrolled", y > 40);
-    };
-    if (lenis) {
-      lenis.on("scroll", function (e) { setNavScrolled(e.scroll); });
-    } else {
-      window.addEventListener("scroll", function () { setNavScrolled(window.scrollY); }, { passive: true });
-    }
-    setNavScrolled(window.scrollY);
-  }
-
   // ---- parallax section backgrounds ----
   var parallaxSections = document.querySelectorAll("[data-parallax]");
   if (parallaxSections.length && !reduceMotion) {
