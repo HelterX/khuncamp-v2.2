@@ -572,6 +572,32 @@ img { max-width: 100%; display: block; }
 .ct-br::before { bottom: 0; left: 0; }
 .ct-br::after { top: 0; right: 0; }
 
+/* ---- book.html: calendar glass card + "how it works" timeline ---- */
+.book-cal-section { position: relative; overflow: hidden; }
+.book-cal-glow {
+  position: absolute; width: 32rem; height: 26rem; left: 50%; top: -4rem; transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.16), transparent 70%); z-index: 0; pointer-events: none;
+}
+.book-cal-card {
+  position: relative; z-index: 1; max-width: 46rem; margin: 0 auto;
+  background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid var(--ink-warm); box-shadow: 0 40px 80px rgba(19, 17, 16, 0.1);
+  border-radius: 2px; overflow: hidden;
+}
+.book-steps { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
+.book-steps::before { content: ""; position: absolute; top: 22px; left: 12%; right: 12%; height: 1.5px; background: rgba(212, 175, 55, 0.4); z-index: 0; }
+.book-step { position: relative; z-index: 1; text-align: center; }
+.book-step-num {
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; background: var(--paper); border: 1.5px solid var(--brass); color: var(--brass-deep);
+  display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-weight: 700; margin: 0 auto 1rem;
+}
+.book-step h3 { font-size: 0.95rem; margin: 0 0 0.4rem; }
+.book-step p { font-size: 0.85rem; color: var(--ink-dim); margin: 0; line-height: 1.55; }
+@media (max-width: 700px) {
+  .book-steps { grid-template-columns: 1fr; gap: 2rem; }
+  .book-steps::before { display: none; }
+}
+
 /* ---- scroll reveal (JS adds .reveal, then .is-visible on intersect) ---- */
 .reveal {
   opacity: 0;
