@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Khun Camp referral partner program: refer a business, earn $250 plus 15% of their retainer for 3 months.">
+<title>Khun Camp Affiliate Playbook</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<style>
+:root{
+  --bg:#FDF9EE; --surface:#FFFFFF; --ink:#131110; --muted:#5C5650; --line:rgba(19,17,16,0.15);
+  --accent:#131110; --accent-ink:#D4AF37; --accent-soft:rgba(212,175,55,0.12); --money:#8A6D1F; --money-soft:#F8ECC9;
+  --warn:#A33A2A; --warn-soft:#F8E6E2;
+  --display:"Satoshi",ui-sans-serif,system-ui,sans-serif;
+  --body:"Satoshi",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:"Satoshi",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);padding-inline:16px}
+.wrap{max-width:760px;margin:0 auto;padding-block:24px 64px;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.15}
+h1{font-size:clamp(2rem,6vw,3rem);font-weight:900;letter-spacing:-.02em}
+h2{font-size:1.6rem;font-weight:800;letter-spacing:-.01em}
+h3{font-size:1.1rem;font-weight:600}
+p{margin:0}
+.eyebrow{font:600 .75rem/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--money)}
+section{display:flex;flex-direction:column;gap:18px;scroll-margin-top:64px}
+.lead{font-size:1.1rem;color:var(--muted);max-width:62ch}
+a{color:var(--money)}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-16px;padding:10px 16px;overflow-x:auto;white-space:nowrap}
+nav .in{max-width:760px;margin:0 auto;display:flex;gap:6px}
+nav a{font:500 .85rem var(--body);text-decoration:none;color:var(--ink);padding:6px 12px;border-radius:2px;border:1px solid var(--line)}
+nav a.cta{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.hero{display:flex;flex-direction:column;gap:18px;padding-top:12px}
+.earn{background:var(--money-soft);border:1px solid var(--line);border-radius:2px;padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.earn .n{font:900 2rem/1 var(--display);color:var(--money)}
+.earn .l{color:var(--muted);font-size:.9rem;margin-top:6px}
+ul.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.box.no{background:var(--warn-soft)}
+.box.no h3{color:var(--warn)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);font:900 1.4rem/1 var(--display);color:var(--money);padding-top:2px}
+.steps b{display:block}
+.script{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:2px;padding:16px;white-space:pre-wrap;font-size:.97rem}
+.scriptwrap{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,.btn{font:700 .9rem var(--body);border-radius:2px;padding:10px 16px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);cursor:pointer;text-decoration:none;display:inline-block}
+button.ghost,.btn.ghost{background:transparent;color:var(--accent)}
+button:focus-visible,a:focus-visible{outline:3px solid var(--money);outline-offset:2px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px;font-variant-numeric:tabular-nums;background:var(--surface);border:1px solid var(--line);border-radius:2px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font:600 .75rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td.r,th.r{text-align:right}
+tr.total td{font-weight:700;color:var(--money);border-bottom:0}
+.note{font-size:.9rem;color:var(--muted)}
+.qa{display:flex;flex-direction:column;gap:14px}
+.qa div{display:flex;flex-direction:column;gap:4px}
+.qa b{font-weight:600}
+.cta-box{background:var(--surface);border:1px solid var(--line);border-radius:2px;padding:22px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.btn.big{font-size:1rem;padding:14px 22px}
+footer{font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+</head>
+<body>
+
+<nav aria-label="Sections"><div class="in">
+  <a href="#who">Who we are</a><a href="#fit">Who to refer</a><a href="#pitch">The pitch</a><a href="#how">How it works</a><a href="#pay">Commission</a><a href="#rules">Rules</a><a href="#join" class="cta">Join</a><a href="#lead" class="cta">Submit a lead</a>
+</div></nav>
+
+<main class="wrap">
+
+<header class="hero">
+  <span class="eyebrow">Referral partner program</span>
+  <h1>Refer a business. Get paid when they sign.</h1>
+  <p class="lead">Khun Camp runs content for founders and creators who are too busy to do it themselves. You know people who need that. Introduce them, explain what we do, and get them on a call with Shawn. If they become a client, you earn a signing bonus plus a share of their first three months.</p>
+  <div class="earn">
+    <div><div class="n">$250</div><div class="l">when your referral signs and pays</div></div>
+    <div><div class="n">15%</div><div class="l">of their monthly retainer for the first 3 months</div></div>
+    <div><div class="n">7 days</div><div class="l">after each client payment clears, paid to you by Wise</div></div>
+  </div>
+</header>
+
+<section id="who">
+  <span class="eyebrow">Who we are</span>
+  <h2>Khun Camp is a done-for-you content team</h2>
+  <p>Khun Camp was founded in 2026 by Shawn Arrington, a US Army veteran with 14 years in digital media. Shawn has run his own YouTube channel, KhunShawn, since 2012 (60,100 subscribers, 3,000+ long-form pieces published across platforms), and spent 2021 to 2024 as a contractor producing content for Gamer's Little Playground, a YouTube channel with over 3 million subscribers. The team works remotely across Southeast Asia.</p>
+  <p>We also run campaigns for brands. For the launch of ANANTA, a NetEase game, we produced 17 branded pieces that drew 12,700+ views.</p>
+  <p>Website: <a href="https://khuncamp.com/">khuncamp.com</a></p>
+</section>
+
+<section>
+  <span class="eyebrow">What we do</span>
+  <h2>The client films. We handle everything else.</h2>
+  <p>Most business owners know they should post video, but a single video takes around 15 hours from idea to published. That is why they post once and stop. With Khun Camp, the client spends about 2.5 hours per video on camera, and our team does the rest.</p>
+  <div class="grid2">
+    <div class="box"><h3>Strategy</h3><p>A 90-day content plan built around what the client sells.</p></div>
+    <div class="box"><h3>Scripts and direction</h3><p>We write the scripts and tell them what to film.</p></div>
+    <div class="box"><h3>Editing</h3><p>Full editing of every long-form video.</p></div>
+    <div class="box"><h3>Shorts</h3><p>3 to 5 short clips cut from every long video.</p></div>
+    <div class="box"><h3>Posting</h3><p>Scheduling and publishing across their platforms.</p></div>
+    <div class="box"><h3>Community</h3><p>Replying to comments and DMs so their audience stays warm.</p></div>
+  </div>
+</section>
+
+<section id="fit">
+  <span class="eyebrow">Who to refer</span>
+  <h2>Who is a good fit</h2>
+  <div class="grid2">
+    <div class="box">
+      <h3>Refer these people</h3>
+      <ul class="clean">
+        <li><b>Founders and experts</b> such as coaches, consultants, retreat hosts and course creators who sell a real offer and want to be known for it.</li>
+        <li><b>Small creators</b> with around 2,000 to 5,000 followers who post consistently and want to turn their audience into income.</li>
+        <li><b>Any business owner</b> who knows they need content but has no time, no editor and no one running it.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h3>Signs they are ready</h3>
+      <ul class="clean">
+        <li>They already sell something (a service, program or product).</li>
+        <li>They have filmed before but post on and off.</li>
+        <li>They do everything themselves, with no editor or assistant.</li>
+        <li>They have said "I need to post more" or "I don't have time for content."</li>
+      </ul>
+    </div>
+    <div class="box no">
+      <h3>Probably not a fit</h3>
+      <ul class="clean">
+        <li>No business, offer or income plan yet.</li>
+        <li>Only looking for a one-off video or a cheap editor.</li>
+        <li>Has not posted anything in months and is not planning to film.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="pitch">
+  <span class="eyebrow">The pitch</span>
+  <h2>How to explain it in 30 seconds</h2>
+  <p>You do not need to sell. Explain who we are, what we do and how it helps, then get them on a free call. Shawn handles pricing and details on the call.</p>
+
+  <div class="scriptwrap">
+    <h3>Say it like this</h3>
+    <div class="script" id="s1">I know a team called Khun Camp. They run content for business owners who don't have time to do it. You film for about two hours per video, and they handle the rest: strategy, scripts, editing, short clips, posting and replying to comments. The founder, Shawn, is an Army vet who's been doing YouTube for over a decade. He does a free call to see if it's a fit. Want me to connect you?</div>
+    <div class="row"><button type="button" class="ghost" data-copy="s1">Copy</button></div>
+  </div>
+
+  <div class="scriptwrap">
+    <h3>WhatsApp message to a prospect</h3>
+    <div class="script" id="s2">Hey [Name], you mentioned wanting to post more content for [their business]. I know a team that handles it end to end. You film, they do the strategy, editing, shorts and posting. Here's their site: khuncamp.com
+
+Shawn, the founder, does a free call to see if it fits. Can I pass him your number, or would you rather book directly? khuncamp.com/book.html</div>
+    <div class="row"><button type="button" class="ghost" data-copy="s2">Copy</button></div>
+  </div>
+
+  <h3>When they ask</h3>
+  <div class="qa">
+    <div><b>"How much does it cost?"</b><p>"It depends on what you need. Shawn goes through options on the call." Never quote a price, even a guess.</p></div>
+    <div><b>"Will it get me more clients or followers?"</b><p>"That's exactly what the call is for. Shawn will look at what you're doing now and tell you what he'd change." Never promise results.</p></div>
+    <div><b>"Do you work for them?"</b><p>"No, I'm a referral partner. I just know their work and think it fits you."</p></div>
+    <div><b>"I'm not ready yet."</b><p>"No problem. The call is free and there's no pressure. It's worth knowing your options." If they still say no, leave it and check in again later.</p></div>
+  </div>
+</section>
+
+<section id="how">
+  <span class="eyebrow">How it works</span>
+  <h2>From introduction to payout</h2>
+  <ol class="steps">
+    <li><div><b>Join the program</b>Fill in the <a href="#join">sign-up form</a> below. Shawn will confirm on WhatsApp.</div></li>
+    <li><div><b>Spot someone who fits</b>Use the fit list above. Quality matters more than volume.</div></li>
+    <li><div><b>Give the short pitch</b>Explain who we are and what we do, then ask if they want a free call.</div></li>
+    <li><div><b>Submit the lead</b>Fill in the <a href="#lead">lead form</a> before or on the same day you share the booking link. Your 90-day credit starts when you submit it.</div></li>
+    <li><div><b>Shawn runs the call</b>He takes it from there: discovery, pricing and closing. You will get updates on where the lead stands.</div></li>
+    <li><div><b>The client signs and pays</b>Your $250 bonus and your first 15% are paid 7 days after the client's first payment clears. Months 2 and 3 are paid 7 days after each of those payments clears.</div></li>
+  </ol>
+</section>
+
+<section id="pay">
+  <span class="eyebrow">Commission</span>
+  <h2>What you earn per client</h2>
+  <p>You earn a <b>$250 signing bonus</b>, plus <b>15% of the monthly retainer the client actually pays</b> for their first 3 months. Payouts go to your Wise account in USD.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Example: $2,000/month retainer</th><th class="r">You earn</th></tr></thead>
+      <tbody>
+        <tr><td>Client signs and makes first payment</td><td class="r">$250</td></tr>
+        <tr><td>Month 1 retainer (15%)</td><td class="r">$300</td></tr>
+        <tr><td>Month 2 retainer (15%)</td><td class="r">$300</td></tr>
+        <tr><td>Month 3 retainer (15%)</td><td class="r">$300</td></tr>
+        <tr class="total"><td>Total from one client</td><td class="r">$1,150</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">The $2,000 figure is only an example to show the math. Retainers vary by client and scope, and your 15% is always based on what the client pays. There is no cap. Refer five clients and you earn on all five.</p>
+</section>
+
+<section id="rules">
+  <span class="eyebrow">Rules</span>
+  <h2>Program terms</h2>
+  <ul class="clean">
+    <li><b>90-day credit.</b> If your lead signs within 90 days of your lead form submission, you get paid. If two people submit the same lead, the first submission gets the credit.</li>
+    <li><b>New leads only.</b> If Khun Camp is already talking to that person, it does not count. Shawn will tell you within 48 hours if a lead is already in the pipeline.</li>
+    <li><b>Paid on cleared money.</b> Commission is paid only on payments the client actually makes. If a client cancels, refunds or does not pay, that month's commission is not owed.</li>
+    <li><b>No price quotes.</b> Pricing is only discussed on the call with Shawn.</li>
+    <li><b>No promises.</b> Do not promise views, followers, sales or any specific result.</li>
+    <li><b>No spam.</b> Refer people you know or have a real conversation with. No mass messages, bought lists or posting in groups on our behalf.</li>
+    <li><b>You are an independent partner.</b> You are not an employee or team member of Khun Camp, and you cannot sign agreements or make commitments for us.</li>
+    <li><b>Your taxes are yours.</b> You are responsible for any taxes on what you earn in your country.</li>
+    <li><b>Changes.</b> Khun Camp may update these terms with notice on WhatsApp. Leads you already submitted keep the terms they were submitted under.</li>
+  </ul>
+</section>
+
+<section id="join">
+  <span class="eyebrow">Step 1</span>
+  <h2>Join the program</h2>
+  <p>Fill this in once. It takes about 2 minutes and goes straight to Shawn. He will confirm on WhatsApp.</p>
+  <div class="cta-box">
+    <a class="btn big" href="https://docs.google.com/forms/d/e/1FAIpQLSeuROYL4TODj1Gxb1Hi-GEFocXzalafKsZui4pULUIyxmgcWg/viewform" target="_blank" rel="noopener">Open the sign-up form</a>
+    <p class="note">You will need your WhatsApp number, email, country and Wise account email or Wisetag. No Google account needed.</p>
+  </div>
+</section>
+
+<section id="lead">
+  <span class="eyebrow">Step 2</span>
+  <h2>Submit a lead</h2>
+  <p>Send one form per person. Your 90-day credit starts the moment you submit.</p>
+  <div class="cta-box">
+    <a class="btn big" href="https://docs.google.com/forms/d/e/1FAIpQLSf9FenkMtp-osg4GQRdhUMWf006Y-8oVrmUxLJa7yq0-6877A/viewform" target="_blank" rel="noopener">Open the lead form</a>
+    <p class="note">After you submit, send your lead the booking link <b>khuncamp.com/book.html</b> and ask them to mention your name when they book.</p>
+  </div>
+</section>
+
+<footer>Khun Camp · <a href="https://khuncamp.com/">khuncamp.com</a> · Book a call: <a href="https://khuncamp.com/book.html">khuncamp.com/book.html</a> · Shawn@getkhuncamp.com</footer>
+</main>
+
+<script>
+(function(){
+  document.addEventListener("click",function(e){
+    var btn=e.target.closest("[data-copy]"); if(!btn) return;
+    var el=document.getElementById(btn.getAttribute("data-copy")); if(!el) return;
+    var done=function(){btn.textContent="Copied";setTimeout(function(){btn.textContent="Copy"},1500)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Selected, press copy";setTimeout(function(){btn.textContent="Copy"},2000)};
+    try{navigator.clipboard.writeText(el.innerText).then(done,fallback)}catch(err){fallback()}
+  });
+})();
+</script>
+</body>
+</html>
