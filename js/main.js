@@ -129,6 +129,20 @@ function khInit() {
       setActiveTestimonial(order[nextIdx]);
     }, { passive: true });
   }
+
+  var lifeVideoTile = document.querySelector(".life-tile-video");
+  if (lifeVideoTile) {
+    lifeVideoTile.addEventListener("click", function () {
+      var img = lifeVideoTile.querySelector("img");
+      var video = document.createElement("video");
+      video.src = lifeVideoTile.getAttribute("data-video");
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      lifeVideoTile.classList.add("is-playing");
+      if (img) img.replaceWith(video); else lifeVideoTile.prepend(video);
+    }, { once: true });
+  }
 }
 
 if (document.readyState === "loading") {
