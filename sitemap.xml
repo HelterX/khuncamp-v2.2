@@ -38,7 +38,7 @@
   </url>
   <url>
     <loc>https://khuncamp.com/blog.html</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -57,6 +57,12 @@
   <url>
     <loc>https://khuncamp.com/blog/the-funnel-gap-most-businesses-never-see.html</loc>
     <lastmod>2026-09-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://khuncamp.com/blog/hiring-an-editor-wont-fix-your-content-problem.html</loc>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

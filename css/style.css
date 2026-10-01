@@ -461,6 +461,25 @@ img { max-width: 100%; display: block; }
   .life-tile { width: 10.5rem; height: 14rem; }
 }
 
+/* ---- blog article: editorial column breakout ---- */
+.article-intro::first-letter { font-family: var(--font-display); font-size: 3.2rem; line-height: 0.75; float: left; padding: 0.1rem 0.5rem 0 0; color: var(--brass-deep); font-weight: 700; }
+.article-grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); margin: 0.5rem 0; }
+.article-grid3 .ed-col { padding: 1.5rem; border-left: 1px solid var(--hairline); }
+.article-grid3 .ed-col:first-child { padding-left: 0; border-left: none; }
+.article-grid3 .ed-col:last-child { padding-right: 0; }
+.article-grid3 img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; filter: grayscale(45%); display: block; margin-bottom: 1rem; border-radius: 2px; }
+.article-grid3 .ed-label { font: 600 0.7rem/1 var(--font-mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--brass-deep); margin: 0 0 0.5rem; }
+.article-grid3 h3 { font-family: var(--font-display); font-size: 1rem; color: var(--ink); margin: 0 0 0.5rem; font-weight: 700; }
+.article-grid3 p { font-size: 0.85rem; margin: 0; color: var(--ink-dim); line-height: 1.6; }
+.article-cta-editorial { text-align: center; padding: 1.5rem 0; border-bottom: 1px solid var(--hairline); }
+.article-cta-editorial p { font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: var(--ink); margin: 0 0 0.75rem; }
+.article-cta-editorial a { font: 700 0.85rem var(--font-body); color: var(--brass-deep); text-decoration: none; border-bottom: 1px solid var(--brass-deep); padding-bottom: 2px; }
+@media (max-width: 640px) {
+  .article-grid3 { grid-template-columns: 1fr; }
+  .article-grid3 .ed-col { border-left: none; border-top: 1px solid var(--hairline); padding: 1.5rem 0; }
+  .article-grid3 .ed-col:first-child { border-top: none; padding-top: 0; }
+}
+
 @media (max-width: 980px) {
   .work-grid--shorts { grid-template-columns: repeat(3, 1fr); }
 }
