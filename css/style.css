@@ -524,6 +524,28 @@ img { max-width: 100%; display: block; }
   .founder-stats-grid .fstat:nth-child(2), .founder-stats-grid .fstat:nth-child(4) { border-left: 1px solid rgba(212, 175, 55, 0.3); }
 }
 
+/* ---- founder: alternating career timeline ---- */
+.f-timeline-wrap { padding: 4rem 1.5rem; }
+.f-timeline2 { position: relative; max-width: 50rem; margin: 2.5rem auto 0; }
+.f-timeline2::before { content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: linear-gradient(180deg, transparent, var(--brass) 10%, var(--brass) 90%, transparent); transform: translateX(-50%); }
+.f-timeline2 li { list-style: none; position: relative; display: grid; grid-template-columns: 1fr 3rem 1fr; align-items: center; padding: 2rem 0; }
+.f-timeline2 .f-node { width: 1.1rem; height: 1.1rem; border-radius: 50%; background: var(--ink-warm); border: 2px solid var(--brass); box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px rgba(212, 175, 55, 0.3); margin: 0 auto; position: relative; z-index: 1; }
+.f-timeline2 .f-side { padding: 0 2rem; }
+.f-timeline2 li.f-odd .f-side.left { text-align: right; }
+.f-timeline2 li.f-odd .f-side.right { visibility: hidden; }
+.f-timeline2 li.f-even .f-side.left { visibility: hidden; }
+.f-timeline2 .yr { display: block; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--brass-deep); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+.f-timeline2 h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0 0 0.4rem; color: var(--ink); }
+.f-timeline2 p { margin: 0; color: var(--ink-dim); font-size: 0.88rem; line-height: 1.6; }
+@media (max-width: 700px) {
+  .f-timeline2::before { left: 0.55rem; }
+  .f-timeline2 li { grid-template-columns: 1.1rem 1fr; gap: 1rem; padding: 0 0 2rem; }
+  .f-timeline2 .f-node { grid-column: 1; grid-row: 1; margin: 0.3rem 0 0; }
+  .f-timeline2 li.f-odd .f-side.left { grid-column: 2; grid-row: 1; text-align: left; padding: 0; visibility: visible; }
+  .f-timeline2 li.f-even .f-side.right { grid-column: 2; grid-row: 1; text-align: left; padding: 0; visibility: visible; }
+  .f-timeline2 li.f-odd .f-side.right, .f-timeline2 li.f-even .f-side.left { display: none; }
+}
+
 @media (max-width: 980px) {
   .work-grid--shorts { grid-template-columns: repeat(3, 1fr); }
 }
