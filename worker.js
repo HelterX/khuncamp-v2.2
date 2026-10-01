@@ -38,6 +38,17 @@ export default {
       return env.ASSETS.fetch(new Request(new URL("/index.html", url), request));
     }
 
+    // Serve extensionless URLs (e.g. /blog, /blog/some-post) from the matching
+    // .html file, without a redirect, so the clean URL stays in the address bar.
+    const lastSegment = url.pathname.split("/").pop();
+    if (lastSegment && !lastSegment.includes(".")) {
+      const htmlUrl = new URL(url.pathname + ".html", url);
+      const htmlResponse = await env.ASSETS.fetch(new Request(htmlUrl, request));
+      if (htmlResponse.status === 200) {
+        return htmlResponse;
+      }
+    }
+
     return env.ASSETS.fetch(request);
   },
 };
