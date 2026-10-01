@@ -375,10 +375,12 @@ img { max-width: 100%; display: block; }
   .story-photo-stack { flex-direction: row; }
   .story-photo-stack img { aspect-ratio: 4 / 5; }
 }
-.nomadfest-intro { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
-.nomadfest-intro-photos { display: flex; gap: 0.6rem; flex: none; }
-.nomadfest-intro-photos img { width: 5rem; height: 6.25rem; object-fit: cover; border-radius: 2px; border: 1.5px solid var(--brass); display: block; }
-.nomadfest-intro p { margin: 0; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.6; max-width: 32ch; }
+.nomadfest-intro { background: var(--paper); border: 1px solid var(--hairline); border-radius: 2px; padding: 1.5rem 1.75rem; display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+.nomadfest-intro-photos { display: flex; flex: none; }
+.nomadfest-intro-photos img { width: 4.5rem; height: 5.6rem; object-fit: cover; border-radius: 2px; border: 2px solid var(--paper); box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); display: block; }
+.nomadfest-intro-photos img:last-child { margin-left: -1.1rem; }
+.nomadfest-intro-text .label { display: block; font: 700 0.68rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--brass-deep); margin-bottom: 0.35rem; }
+.nomadfest-intro-text p { margin: 0; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.5; }
 @media (max-width: 560px) {
   .nomadfest-intro { flex-direction: column; align-items: flex-start; }
 }
