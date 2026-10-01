@@ -366,6 +366,22 @@ img { max-width: 100%; display: block; }
 .mkt-split-text p { color: var(--taupe); font-size: 0.98rem; line-height: 1.7; margin: 0 0 1rem; }
 .mkt-split-media { position: relative; }
 .mkt-split-media img { width: 100%; height: 100%; display: block; object-fit: cover; aspect-ratio: 4 / 4.6; border-radius: 2px; border: 1.5px solid var(--brass); box-shadow: none; }
+.story-photo-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 0.75rem; }
+.story-photo-grid .story-photo-main img { width: 100%; height: 100%; display: block; object-fit: cover; aspect-ratio: 4 / 4.6; border-radius: 2px; border: 1.5px solid var(--brass); }
+.story-photo-stack { display: flex; flex-direction: column; gap: 0.75rem; }
+.story-photo-stack img { width: 100%; min-width: 0; flex: 1; object-fit: cover; aspect-ratio: 4 / 2.2; border-radius: 2px; border: 1.5px solid var(--brass); display: block; }
+@media (max-width: 480px) {
+  .story-photo-grid { grid-template-columns: 1fr; }
+  .story-photo-stack { flex-direction: row; }
+  .story-photo-stack img { aspect-ratio: 4 / 5; }
+}
+.nomadfest-intro { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+.nomadfest-intro-photos { display: flex; gap: 0.6rem; flex: none; }
+.nomadfest-intro-photos img { width: 5rem; height: 6.25rem; object-fit: cover; border-radius: 2px; border: 1.5px solid var(--brass); display: block; }
+.nomadfest-intro p { margin: 0; color: var(--ink-dim); font-size: 0.9rem; line-height: 1.6; max-width: 32ch; }
+@media (max-width: 560px) {
+  .nomadfest-intro { flex-direction: column; align-items: flex-start; }
+}
 .mkt-split-badge { position: absolute; left: -1.25rem; bottom: 2rem; background: var(--espresso); color: var(--paper); border: 1px solid rgba(212, 175, 55, 0.4); border-top: 2px solid var(--brass); border-radius: 0; padding: 0.85rem 1.1rem; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); display: flex; align-items: center; gap: 0.6rem; }
 .mkt-split-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--brass); flex: none; }
 .mkt-split-badge span { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.02em; }
