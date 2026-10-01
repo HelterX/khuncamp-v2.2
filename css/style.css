@@ -509,20 +509,6 @@ img { max-width: 100%; display: block; }
   .blog-ribbon { height: 4rem; }
 }
 
-/* ---- founder: glass-card stat band ---- */
-.founder-stats-wrap { padding: 3.5rem 1.5rem; position: relative; background: radial-gradient(ellipse 60% 50% at 20% 20%, rgba(212, 175, 55, 0.07), transparent), var(--paper); }
-.founder-stats-frame { max-width: 64rem; margin: 0 auto; position: relative; background: rgba(255, 255, 255, 0.55); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); border: 1.5px solid var(--ink-warm); box-shadow: 0 40px 80px rgba(19, 17, 16, 0.12); padding: 2.75rem 2.5rem; }
-.founder-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-.founder-stats-grid .fstat { text-align: center; padding: 0 1rem; border-left: 1px solid rgba(212, 175, 55, 0.3); }
-.founder-stats-grid .fstat:first-child { border-left: none; }
-.founder-stats-grid .fstat b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 2.1rem; color: var(--ink-warm); letter-spacing: -0.01em; }
-.founder-stats-grid .fstat span { display: block; margin-top: 0.5rem; font-size: 0.75rem; color: var(--taupe); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
-@media (max-width: 760px) {
-  .founder-stats-frame { padding: 2rem 1.5rem; }
-  .founder-stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 1.75rem; }
-  .founder-stats-grid .fstat:nth-child(3) { border-left: none; }
-  .founder-stats-grid .fstat:nth-child(2), .founder-stats-grid .fstat:nth-child(4) { border-left: 1px solid rgba(212, 175, 55, 0.3); }
-}
 
 /* ---- founder: alternating career timeline ---- */
 .f-timeline-wrap { padding: 4rem 1.5rem; }
@@ -545,6 +531,11 @@ img { max-width: 100%; display: block; }
   .f-timeline2 li.f-even .f-side.right { grid-column: 2; grid-row: 1; text-align: left; padding: 0; visibility: visible; }
   .f-timeline2 li.f-odd .f-side.right, .f-timeline2 li.f-even .f-side.left { display: none; }
 }
+
+/* ---- founder: single premium stat band ---- */
+.founder-stat-single { background: var(--ink-warm); padding: 4.5rem 1.5rem; text-align: center; }
+.founder-stat-single b { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--brass); }
+.founder-stat-single span { display: block; margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); font-weight: 600; }
 
 @media (max-width: 980px) {
   .work-grid--shorts { grid-template-columns: repeat(3, 1fr); }
