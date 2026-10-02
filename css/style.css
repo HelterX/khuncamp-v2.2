@@ -550,10 +550,21 @@ img { max-width: 100%; display: block; }
   .f-timeline2 li.f-odd .f-side.right, .f-timeline2 li.f-even .f-side.left { display: none; }
 }
 
-/* ---- founder: single premium stat band ---- */
-.founder-stat-single { background: var(--ink-warm); padding: 4.5rem 1.5rem; text-align: center; }
-.founder-stat-single b { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(3.5rem, 9vw, 6rem); line-height: 1; color: var(--brass); }
-.founder-stat-single span { display: block; margin-top: 1rem; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255, 255, 255, 0.6); font-weight: 600; }
+/* ---- founder: photo hero with built-in stats row ---- */
+.founder-hero-wrap { max-width: 72rem; margin: 0 auto; padding: 5rem 1.5rem 3rem; }
+.founder-hero-badge { display: inline-flex; align-items: center; border: 1px solid var(--hairline); border-radius: 999px; padding: 0.4rem 0.9rem; font: 600 0.75rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--brass-deep); }
+.founder-hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 3rem; align-items: center; margin-top: 1.5rem; }
+.founder-hero-name { font-family: var(--font-display); font-weight: 400; font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; color: var(--ink-warm); margin: 0 0 1.25rem; }
+.founder-hero-grid .lede { max-width: 34rem; margin: 0 0 1.75rem; color: var(--ink-dim); line-height: 1.65; }
+.founder-hero-media { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid var(--brass); aspect-ratio: 4 / 4.8; }
+.founder-hero-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.founder-hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--hairline); }
+.founder-hero-stats .fh-stat b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 2.25rem; color: var(--ink-warm); }
+.founder-hero-stats .fh-stat span { display: block; margin-top: 0.35rem; font-size: 0.8rem; color: var(--taupe); }
+@media (max-width: 760px) {
+  .founder-hero-grid { grid-template-columns: 1fr; }
+  .founder-hero-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+}
 
 @media (max-width: 980px) {
   .work-grid--shorts { grid-template-columns: repeat(3, 1fr); }
