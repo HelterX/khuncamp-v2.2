@@ -960,7 +960,7 @@ h2.section-title { font-family: var(--font-display); font-size: 1.9rem; font-wei
 .faq p { color: var(--ink-dim); font-size: 0.9rem; line-height: 1.6; max-width: 60ch; margin: 0.75rem 0 0; }
 
 /* ---- final CTA ---- */
-.final-cta { max-width: 34rem; margin: 0 auto; text-align: center; }
+.final-cta { max-width: none; margin: 0 auto; text-align: center; }
 .final-cta h2 { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.25rem); margin: 0 0 1rem; }
 .final-cta p { color: var(--ink-dim); font-size: 0.9rem; line-height: 1.6; max-width: 28rem; margin: 0 auto; }
 .final-cta .btn { margin-top: 1.5rem; }
@@ -1042,3 +1042,20 @@ h2.section-title { font-family: var(--font-display); font-size: 1.9rem; font-wei
   .intake-row { grid-template-columns: 1fr; }
   .intake-card { padding: 1.75rem; }
 }
+
+/* ---- desktop scale: keep the 1.5rem page margin, but stop photos and type from feeling zoomed on wide screens ---- */
+@media (min-width: 1100px) {
+  html { font-size: 15px; }
+  .video-hero { min-height: 88vh; }
+  .video-hero-split { grid-template-columns: 1fr minmax(0, 25rem); gap: 4rem; padding-top: 6.5rem; padding-bottom: 3rem; }
+  .video-hero-media { width: 100%; justify-self: end; }
+  .mkt-split { grid-template-columns: 1fr minmax(0, 27rem); gap: 5rem; }
+  .testimonials-split { grid-template-columns: minmax(0, 27rem) 1fr; gap: 4rem; }
+  .founder-badge { grid-template-columns: minmax(0, 20rem) 1fr; gap: 5rem; }
+  .founder-badge-text p { max-width: 46rem; }
+  .work-grid--shorts { grid-template-columns: repeat(3, min(calc((100% - 4 * 1.25rem) / 5), 14rem)); }
+  .founder-hero-grid { grid-template-columns: 1fr minmax(0, 26rem); gap: 4rem; }
+  .process-card img { aspect-ratio: 2 / 1; }
+}
+.pillars-card-frame.wrap { margin: 0 1.5rem; }
+@media (max-width: 760px) { .pillars-card-frame.wrap { margin: 0 1rem; } }
