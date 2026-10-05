@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=99">
+  <link rel="stylesheet" href="css/style.css?v=102">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -294,29 +294,63 @@
       </div>
     </section>
 
-    <!-- Recent work -->
-    <section id="work" class="work-section wrap section">
-      <p class="eyebrow-lg">Recent work</p>
-      <h2>What comes back to you.</h2>
-      <p class="intro">Shorts play in place. Long-form opens on YouTube.</p>
-      <!-- Real, verified links. "Modern Dating EP2" = Khun Camp #3.2 (ZJhR1NA-bxo), confirmed as the real second half of a two-part "Modern Dating" mini-series (#3.1 is titled "Modern Dating Truths EXPOSED!"); a standalone dating-topic video Jeric flagged separately was considered and rejected in favor of this closer match. No video titled "Da Lat Adventure" exists on the channel (the one previously linked here, BEsvnt0lRQs, is now private anyway) — swapped in a real substitute, "4 Years in Chiang Mai" (Sgmn-oLi2iY, verified 2026-09-18), as a temporary stand-in; caption changed to match its real content rather than keep a mismatched label. -->
-      <div class="work-grid--shorts">
-        <a class="work-item is-real" href="https://youtube.com/shorts/In6czFThorU" target="_blank" rel="noopener">
-          <img class="work-thumb" src="https://i.ytimg.com/vi/In6czFThorU/hqdefault.jpg" alt="" loading="lazy">
-          <span class="work-play">▶</span>
-          <div class="work-caption"><b>ANANTA</b><span>Did the Yamcha meme</span></div>
-        </a>
-        <a class="work-item is-real" href="https://youtube.com/shorts/jUGSX2LTU5w" target="_blank" rel="noopener">
-          <img class="work-thumb" src="https://i.ytimg.com/vi/jUGSX2LTU5w/hqdefault.jpg" alt="" loading="lazy">
-          <span class="work-play">▶</span>
-          <div class="work-caption"><b>ANANTA</b><span>Doesn't care about plagiarism</span></div>
-        </a>
-        <a class="work-item is-real" href="https://youtube.com/shorts/7vv7SMIdElo" target="_blank" rel="noopener">
-          <img class="work-thumb" src="https://i.ytimg.com/vi/7vv7SMIdElo/hqdefault.jpg" alt="" loading="lazy">
-          <span class="work-play">▶</span>
-          <div class="work-caption"><b>ANANTA</b><span>Cyberpunk Jackie flashbacks</span></div>
-        </a>
+    <!-- Recent work: YouTube shorts carousel (real links; thumbnails are the videos' own vertical covers) -->
+    <section id="work" class="work-section wrap section vc-section">
+      <div class="vc-head">
+        <p class="eyebrow-lg center">Our work on YouTube</p>
+        <h2 class="vc-title">Watch the work, <strong>not the pitch</strong></h2>
+        <p class="vc-intro">Shorts we have filmed, edited and posted. Tap a video to play it right here.</p>
       </div>
+      <div class="vc-viewport">
+        <button class="vc-arrow vc-prev" type="button" aria-label="Previous video">&#8249;</button>
+        <div class="vc-track" tabindex="-1">
+          <div class="vc-card" data-id="e9CFXLW2l_Q" data-tag="From the channel" data-title="How Many of Your Family Would Put You Up?">
+            <a class="vc-link" href="https://youtube.com/shorts/e9CFXLW2l_Q" target="_blank" rel="noopener" aria-label="Play: How Many of Your Family Would Put You Up?">
+              <img src="images/photos/yt-e9CFXLW2l_Q.webp" alt="Khun Camp short: How Many of Your Family Would Put You Up?" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+          <div class="vc-card" data-id="hUShDscgUpI" data-tag="From the channel" data-title="Language Is the Only Tool We Have">
+            <a class="vc-link" href="https://youtube.com/shorts/hUShDscgUpI" target="_blank" rel="noopener" aria-label="Play: Language Is the Only Tool We Have">
+              <img src="images/photos/yt-hUShDscgUpI.webp" alt="Khun Camp short: Language Is the Only Tool We Have" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+          <div class="vc-card" data-id="In6czFThorU" data-tag="Client work · ANANTA" data-title="Did the Yamcha meme">
+            <a class="vc-link" href="https://youtube.com/shorts/In6czFThorU" target="_blank" rel="noopener" aria-label="Play: Did the Yamcha meme">
+              <img src="images/photos/yt-In6czFThorU.webp" alt="Khun Camp short: Did the Yamcha meme" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+          <div class="vc-card" data-id="jUGSX2LTU5w" data-tag="Client work · ANANTA" data-title="Doesn't care about plagiarism">
+            <a class="vc-link" href="https://youtube.com/shorts/jUGSX2LTU5w" target="_blank" rel="noopener" aria-label="Play: Doesn't care about plagiarism">
+              <img src="images/photos/yt-jUGSX2LTU5w.webp" alt="Khun Camp short: Doesn't care about plagiarism" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+          <div class="vc-card" data-id="7vv7SMIdElo" data-tag="Client work · ANANTA" data-title="Cyberpunk Jackie flashbacks">
+            <a class="vc-link" href="https://youtube.com/shorts/7vv7SMIdElo" target="_blank" rel="noopener" aria-label="Play: Cyberpunk Jackie flashbacks">
+              <img src="images/photos/yt-7vv7SMIdElo.webp" alt="Khun Camp short: Cyberpunk Jackie flashbacks" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+          <div class="vc-card" data-id="L0qOZ59Dw2U" data-tag="From the channel" data-title="2 Rappers: Why You Must Leave Your City to Succeed">
+            <a class="vc-link" href="https://youtube.com/shorts/L0qOZ59Dw2U" target="_blank" rel="noopener" aria-label="Play: 2 Rappers: Why You Must Leave Your City to Succeed">
+              <img src="images/photos/yt-L0qOZ59Dw2U.webp" alt="Khun Camp short: 2 Rappers: Why You Must Leave Your City to Succeed" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+          <div class="vc-card" data-id="PjwowYzdNzQ" data-tag="From the channel" data-title="Manifestation Isn't Mystical. It's Neural Pathways">
+            <a class="vc-link" href="https://youtube.com/shorts/PjwowYzdNzQ" target="_blank" rel="noopener" aria-label="Play: Manifestation Isn't Mystical. It's Neural Pathways">
+              <img src="images/photos/yt-PjwowYzdNzQ.webp" alt="Khun Camp short: Manifestation Isn't Mystical. It's Neural Pathways" width="450" height="800" loading="lazy">
+              <span class="vc-play" aria-hidden="true">&#9654;</span>
+            </a>
+          </div>
+        </div>
+        <button class="vc-arrow vc-next" type="button" aria-label="Next video">&#8250;</button>
+      </div>
+      <p class="vc-caption" aria-live="polite"><b></b><span></span></p>
+      <p class="vc-note">Long-form episodes open on YouTube.</p>
       <div class="work-grid--long">
         <div>
           <a class="work-item is-real" href="https://youtu.be/p4Xc44pJLwI" target="_blank" rel="noopener">
@@ -614,6 +648,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
-  <script src="js/main.js?v=13"></script>
+  <script src="js/main.js?v=14"></script>
 </body>
 </html>

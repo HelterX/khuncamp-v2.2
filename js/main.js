@@ -144,6 +144,87 @@ function khInit() {
     }, { once: true });
   }
 
+  // ---- YouTube shorts carousel: centre-snap, arrows, drag, play in place ----
+  var vcTrack = document.querySelector(".vc-track");
+  if (vcTrack) {
+    var vcCards = [].slice.call(vcTrack.querySelectorAll(".vc-card"));
+    var vcCap = document.querySelector(".vc-caption");
+    var vcActive = -1, vcTick = false;
+
+    var vcStop = function (card) {
+      if (card && card._vcHtml) { card.innerHTML = card._vcHtml; card._vcHtml = null; }
+    };
+    var vcSetActive = function (i) {
+      if (i === vcActive) return;
+      if (vcActive > -1) vcStop(vcCards[vcActive]);
+      vcActive = i;
+      vcCards.forEach(function (el, k) { el.classList.toggle("is-active", k === i); });
+      if (vcCap) {
+        vcCap.querySelector("b").textContent = vcCards[i].getAttribute("data-tag");
+        vcCap.querySelector("span").textContent = vcCards[i].getAttribute("data-title");
+      }
+    };
+    var vcNearest = function () {
+      var mid = vcTrack.scrollLeft + vcTrack.clientWidth / 2, best = 0, dist = Infinity;
+      vcCards.forEach(function (el, i) {
+        var d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid);
+        if (d < dist) { dist = d; best = i; }
+      });
+      return best;
+    };
+    var vcCenter = function (i, smooth) {
+      i = Math.max(0, Math.min(vcCards.length - 1, i));
+      var el = vcCards[i];
+      vcTrack.scrollTo({ left: el.offsetLeft + el.offsetWidth / 2 - vcTrack.clientWidth / 2, behavior: smooth ? "smooth" : "auto" });
+    };
+
+    vcTrack.addEventListener("scroll", function () {
+      if (vcTick) return;
+      vcTick = true;
+      requestAnimationFrame(function () { vcTick = false; vcSetActive(vcNearest()); });
+    }, { passive: true });
+
+    document.querySelector(".vc-prev").addEventListener("click", function () { vcCenter(vcActive - 1, true); });
+    document.querySelector(".vc-next").addEventListener("click", function () { vcCenter(vcActive + 1, true); });
+
+    // mouse drag (touch uses native scrolling)
+    var vcDown = false, vcMoved = false, vcStartX = 0, vcStartLeft = 0;
+    vcTrack.addEventListener("pointerdown", function (e) {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      vcDown = true; vcMoved = false; vcStartX = e.clientX; vcStartLeft = vcTrack.scrollLeft;
+    });
+    window.addEventListener("pointermove", function (e) {
+      if (!vcDown) return;
+      var dx = e.clientX - vcStartX;
+      if (!vcMoved && Math.abs(dx) > 6) { vcMoved = true; vcTrack.classList.add("is-dragging"); }
+      if (vcMoved) vcTrack.scrollLeft = vcStartLeft - dx;
+    });
+    window.addEventListener("pointerup", function () {
+      if (!vcDown) return;
+      vcDown = false;
+      if (vcMoved) { vcTrack.classList.remove("is-dragging"); vcCenter(vcNearest(), true); }
+    });
+
+    // click: bring a side card to the centre, play the centred one in place
+    vcTrack.addEventListener("click", function (e) {
+      var link = e.target.closest(".vc-link");
+      if (!link) return;
+      e.preventDefault();
+      if (vcMoved) { vcMoved = false; return; }
+      var card = link.parentNode, i = vcCards.indexOf(card);
+      if (i !== vcActive) { vcCenter(i, true); return; }
+      card._vcHtml = card.innerHTML;
+      card.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + card.getAttribute("data-id") +
+        '?autoplay=1&playsinline=1&rel=0&modestbranding=1" title="' + card.getAttribute("data-title").replace(/"/g, "&quot;") +
+        '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+    });
+
+    var vcStart = Math.min(3, vcCards.length - 1);
+    vcSetActive(vcStart);
+    vcCenter(vcStart, false);
+    window.addEventListener("resize", function () { vcCenter(vcActive, false); });
+  }
+
   // ---- Southeast Asia dropdown: close on outside click or Escape ----
   var seaMore = document.querySelector(".sea-more");
   if (seaMore) {
