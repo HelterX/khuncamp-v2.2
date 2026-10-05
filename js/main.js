@@ -143,6 +143,17 @@ function khInit() {
       if (img) img.replaceWith(video); else lifeVideoTile.prepend(video);
     }, { once: true });
   }
+
+  // ---- Southeast Asia dropdown: close on outside click or Escape ----
+  var seaMore = document.querySelector(".sea-more");
+  if (seaMore) {
+    document.addEventListener("click", function (e) {
+      if (seaMore.open && !seaMore.contains(e.target)) seaMore.open = false;
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && seaMore.open) { seaMore.open = false; seaMore.querySelector("summary").focus(); }
+    });
+  }
 }
 
 if (document.readyState === "loading") {
