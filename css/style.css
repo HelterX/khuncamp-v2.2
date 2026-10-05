@@ -1059,3 +1059,18 @@ h2.section-title { font-family: var(--font-display); font-size: 1.9rem; font-wei
 }
 .pillars-card-frame.wrap { margin: 0 1.5rem; }
 @media (max-width: 760px) { .pillars-card-frame.wrap { margin: 0 1rem; } }
+
+/* ---- tablet: cap stacked photos, give process panels room, keep shorts in a row of three ---- */
+@media (max-width: 1099px) {
+  .video-hero-media { width: 100%; max-width: 26rem; margin-inline: auto; }
+  .mkt-split-media { max-width: 30rem; margin-inline: auto; }
+  .testimonials-photo-col { max-width: 32rem; margin-inline: auto; width: 100%; }
+}
+@media (min-width: 761px) and (max-width: 900px) {
+  .process-stack { grid-template-columns: 1fr; gap: 2.5rem; }
+  .process-card img { aspect-ratio: 16 / 9; }
+  .process-panel { margin: -3.5rem 2rem 0; }
+}
+@media (min-width: 561px) and (max-width: 980px) {
+  .work-grid--shorts { grid-template-columns: repeat(3, 1fr); }
+}
