@@ -577,6 +577,9 @@ img { max-width: 100%; display: block; }
 .process-text p { margin: 0; font-size: 0.78rem; line-height: 1.5; color: rgba(255, 255, 255, 0.78); }
 .process-arrow { flex: none; width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--brass); color: var(--ink-warm); display: flex; align-items: center; justify-content: center; font-weight: 700; text-decoration: none; transition: transform 0.2s ease; }
 .process-arrow:hover { transform: translate(2px, -2px); }
+@media (max-width: 900px) {
+  .process-card { height: 21rem; }
+}
 @media (max-width: 640px) {
   .process-grid { grid-template-columns: 1fr; }
   .process-card { height: 23rem; }
