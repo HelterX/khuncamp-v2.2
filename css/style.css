@@ -1408,3 +1408,44 @@ a.sg-day:hover { transform: translateY(-4px); border-color: var(--brass); }
 .cs-feature p { margin: 0; color: rgba(255, 255, 255, 0.72); font-size: 0.92rem; max-width: 36rem; }
 .cs-feature .go { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--brass); color: var(--ink-warm); font-weight: 700; font-size: 0.85rem; padding: 0.8rem 1.3rem; border-radius: 999px; white-space: nowrap; }
 @media (max-width: 760px) { .cs-feature { grid-template-columns: 1fr; padding: 1.5rem; } }
+
+/* ---- homepage proof band ---- */
+.pf-band { position: relative; overflow: hidden; background: radial-gradient(110% 90% at 88% 10%, #1f3836 0%, var(--espresso) 55%); color: #fff; }
+.pf-band::before { content: ""; position: absolute; left: -12%; bottom: -30%; width: 46rem; height: 46rem; border-radius: 50%; background: radial-gradient(circle, rgba(212, 175, 55, 0.16), transparent 66%); pointer-events: none; }
+.pf-in { position: relative; max-width: none; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3.5rem; align-items: center; }
+.pf-copy .eyebrow-lg { color: var(--brass); margin: 0 0 1.1rem; }
+.pf-band h2 { margin: 0 0 1.2rem; font-family: var(--font-display); font-weight: 300; font-size: clamp(2.4rem, 4.6vw, 4rem); line-height: 1; letter-spacing: -0.045em; color: #fff; max-width: none; text-wrap: balance; }
+.pf-band h2 b { font-weight: 800; color: var(--brass); }
+.pf-band h2 em { font-family: var(--font-accent); font-style: italic; font-weight: 400; letter-spacing: -0.02em; }
+.pf-lede { margin: 0 0 2rem; max-width: 30rem; color: rgba(255, 255, 255, 0.82); font-size: 1.02rem; line-height: 1.65; }
+.pf-stats { display: grid; grid-template-columns: repeat(3, auto); gap: 0.9rem; justify-content: start; margin-bottom: 2rem; }
+.pf-stats div { padding: 1rem 1.2rem 1.05rem; border-radius: 18px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.pf-stats b { display: block; font-size: clamp(1.5rem, 2.8vw, 2.1rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.pf-stats span { display: block; margin-top: 0.45rem; font-size: 0.74rem; color: rgba(255, 255, 255, 0.68); }
+.pf-cta { display: grid; gap: 0.9rem; justify-items: start; }
+.pf-btn { background: var(--brass); color: var(--ink-warm); border-color: var(--brass); border-radius: 999px; padding: 0.85rem 1.5rem; }
+.pf-btn:hover { background: #fff; border-color: #fff; color: var(--ink-warm); }
+.pf-cta span { max-width: 30rem; font-size: 0.76rem; line-height: 1.55; color: rgba(255, 255, 255, 0.58); }
+.pf-visual { position: relative; padding: 0 0 4.6rem 0; }
+.pf-shot { margin: 0; border-radius: 22px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.16); box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5); transform: rotate(1.2deg); }
+.pf-shot img { display: block; width: 100%; height: auto; }
+.pf-chart { position: absolute; left: -1.4rem; bottom: 0; margin: 0; padding: 0.9rem 1.2rem 1rem; width: 15rem; border-radius: 20px; background: rgba(14, 22, 22, 0.55); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px) saturate(1.2); border: 1px solid rgba(255, 255, 255, 0.22); box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4); }
+.pf-chart figcaption { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); margin-bottom: 0.7rem; }
+.pf-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; height: 6.8rem; align-items: end; }
+.pf-cols > div { display: grid; grid-template-rows: 1fr auto auto; height: 100%; gap: 0.15rem; text-align: center; }
+.pf-cols .b { align-self: end; display: block; width: 100%; background: var(--brass); border-radius: 7px 7px 0 0; min-height: 4px; }
+.pf-cols .b.before { background: rgba(255, 255, 255, 0.35); }
+.pf-cols em { font-style: normal; font-weight: 800; font-size: 0.82rem; margin-top: 0.3rem; }
+.pf-cols small { font-size: 0.62rem; color: rgba(255, 255, 255, 0.65); }
+@media (max-width: 1000px) {
+  .pf-in { grid-template-columns: 1fr; gap: 2.6rem; }
+  .pf-visual { padding-left: 0; padding-bottom: 3.6rem; }
+  .pf-shot { transform: none; }
+  .pf-chart { left: 1rem; bottom: 0; }
+}
+@media (max-width: 640px) {
+  .pf-stats { grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+  .pf-stats div { padding: 0.8rem 0.75rem; border-radius: 14px; }
+  .pf-stats span { font-size: 0.66rem; }
+  .pf-chart { width: 13rem; }
+}
