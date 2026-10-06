@@ -1,0 +1,30 @@
+{
+  "n": 1,
+  "title": "Headline for the day goes here",
+  "dek": "One or two sentences on what happened and who we met. This is also the search description.",
+  "hero_src": "C:/path/to/best-photo-of-the-day.jpg",
+  "hero_alt": "Short description of the photo",
+  "intro": "The opening paragraph: what the day was about, in two or three sentences, from the night's notes.",
+  "sections": [
+    {
+      "h": "What happened",
+      "body": "A few short paragraphs on the day.\n\nSeparate paragraphs with a blank line."
+    },
+    {
+      "h": "What surprised us",
+      "body": "Optional. Add as many sections as the day needs."
+    }
+  ],
+  "clip": { "videoId": "YOUTUBE_VIDEO_ID", "caption": "Clip of the day" },
+  "people": [
+    {
+      "name": "Owner name",
+      "business": "Surf shop",
+      "town": "General Luna",
+      "quote": "One line from the interview, word for word as approved.",
+      "videoId": "YOUTUBE_TESTIMONIAL_VIDEO_ID",
+      "photo_src": "C:/path/to/owner-photo.jpg"
+    }
+  ],
+  "pull_quote": "One line from the day's interviews, shown large."
+}

@@ -2,6 +2,9 @@
 // from data/siargao.json. To publish a day, set "published": true and fill in that
 // day's title, dek, url, image, clips and testimonials. Add testimonials to the list.
 (function () {
+  var SCRIPT = document.currentScript;
+  var ROOT = SCRIPT && SCRIPT.src ? new URL("../", SCRIPT.src).href : "";
+  function abs(u) { return u && !/^(https?:)?\/\//.test(u) ? ROOT + u : u; }
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var WEEK = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
@@ -16,6 +19,8 @@
   function longDate(d) { return WEEK[d.getDay()] + " " + short(d); }
 
   function render(data) {
+    (data.days || []).forEach(function (d) { d.url = abs(d.url); d.image = abs(d.image); });
+    (data.testimonials || []).forEach(function (t) { t.image = abs(t.image); });
     var start = parse(data.start);
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var days = data.days || [];
@@ -103,9 +108,40 @@
     }
   }
 
-  fetch("data/siargao.json", { cache: "no-cache" })
+  // recap pages: day tracker, previous / next links
+  function recap(data) {
+    var track = $("sg-track"), pager = $("sg-pager");
+    var days = data.days || [], n = track ? +track.getAttribute("data-n") : pager ? +pager.getAttribute("data-n") : 0;
+    if (!n) return;
+    if (track) {
+      var h = "";
+      days.forEach(function (d) {
+        var cls = "rc-chip" + (d.n === n ? " cur" : d.published ? " on" : "");
+        h += d.published && d.n !== n ? '<a class="' + cls + '" href="' + esc(d.url) + '">Day ' + d.n + "</a>" : '<span class="' + cls + '"' + (d.n === n ? ' aria-current="page"' : "") + ">Day " + d.n + "</span>";
+      });
+      track.innerHTML = h;
+    }
+    if (pager) {
+      var prev = days[n - 2], next = days[n], h2 = "";
+      h2 += prev && prev.published ? '<a href="' + esc(prev.url) + '"><span>&larr; Day ' + prev.n + "</span>" + esc(prev.title) + "</a>" : '<a href="' + ROOT + 'siargao"><span>&larr; Siargao Fest</span>All ten days</a>';
+      if (next && next.published) h2 += '<a class="r" href="' + esc(next.url) + '"><span>Day ' + next.n + " &rarr;</span>" + esc(next.title) + "</a>";
+      else if (next) h2 += '<span class="r soon"><span>Day ' + next.n + "</span>Lands tomorrow morning</span>";
+      else h2 += '<a class="r" href="' + ROOT + 'siargao#wall"><span>The end &rarr;</span>See every testimonial</a>';
+      pager.innerHTML = h2;
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest(".rc-clip-play");
+    if (!b) return;
+    var f = b.parentNode;
+    f.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(f.getAttribute("data-id")) +
+      '?autoplay=1&playsinline=1&rel=0&modestbranding=1" title="' + esc(f.getAttribute("data-title")) +
+      '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
+  });
+
+  fetch(ROOT + "data/siargao.json", { cache: "no-cache" })
     .then(function (r) { return r.json(); })
-    .then(render)
+    .then(function (data) { recap(data); render(data); })
     .catch(function () {
       // data file missing: the static HTML (11 days to go, empty wall) stays as is
     });
