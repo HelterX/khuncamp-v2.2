@@ -15,7 +15,10 @@
       "body": "Optional. Add as many sections as the day needs."
     }
   ],
-  "clip": { "videoId": "YOUTUBE_VIDEO_ID", "caption": "Clip of the day" },
+  "clip": {
+    "videoId": "YOUTUBE_VIDEO_ID",
+    "caption": "Clip of the day"
+  },
   "people": [
     {
       "name": "Owner name",
@@ -23,7 +26,18 @@
       "town": "General Luna",
       "quote": "One line from the interview, word for word as approved.",
       "videoId": "YOUTUBE_TESTIMONIAL_VIDEO_ID",
-      "photo_src": "C:/path/to/owner-photo.jpg"
+      "photo_src": "C:/path/to/owner-photo.jpg",
+      "tags": [
+        "@theirshop",
+        "#generalluna"
+      ],
+      "website": "https://example.com",
+      "links": [
+        {
+          "label": "Instagram",
+          "url": "https://instagram.com/theirshop"
+        }
+      ]
     }
   ],
   "pull_quote": "One line from the day's interviews, shown large."

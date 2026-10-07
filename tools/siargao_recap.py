@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build one Siargao Fest recap page from a night's notes.
+"""Build one Siargao Nomad Fest recap page from a night's notes.
 
 Usage:
     python tools/siargao_recap.py path/to/day-4.json            # build the page and publish it on the hub
@@ -44,6 +44,24 @@ def need(d, key, where='the day file'):
     if not d.get(key):
         sys.exit('Missing "%s" in %s.' % (key, where))
     return d[key]
+
+
+def safe_url(u):
+    u = str(u or '').strip()
+    if u and not re.match(r'^https?://', u, re.I):
+        sys.exit('Links must start with http:// or https:// (got "%s").' % u)
+    return u
+
+
+def person_extras(pr):
+    """tags (handles or labels) and website / other links for one person."""
+    tags = [str(t).strip() for t in (pr.get('tags') or []) if str(t).strip()]
+    links = []
+    if pr.get('website'):
+        links.append({'label': 'Website', 'url': safe_url(pr['website'])})
+    for l in (pr.get('links') or []):
+        links.append({'label': str(l.get('label') or 'Visit'), 'url': safe_url(l.get('url'))})
+    return tags, links
 
 
 def image_set(src, n, tag, cover):
@@ -128,11 +146,16 @@ def main():
         else:
             ph = imgs['thumb']
         town = pr.get('town', '')
+        tags, links = person_extras(pr)
+        tag_html = ('<ul class="rc-tags">%s</ul>' % ''.join('<li>%s</li>' % esc(t) for t in tags)) if tags else ''
+        link_html = ('<p class="rc-links">%s</p>' % ''.join(
+            '<a href="%s" target="_blank" rel="noopener nofollow">%s &#8599;</a>' % (esc(l['url']), esc(l['label'])) for l in links)) if links else ''
         cards += ('        <li class="rc-person">\n'
                   '          <img src="../%s" alt="%s" loading="lazy" width="640" height="800">\n'
-                  '          <div><b>%s</b><span>%s%s</span><q>%s</q><a href="../siargao#wall">Watch the testimonial &rarr;</a></div>\n'
-                  '        </li>\n') % (ph, esc('%s, %s' % (name, biz)), esc(name), esc(biz), esc(', ' + town) if town else '', esc(q))
-        wall.append({'name': name, 'business': biz, 'town': town, 'day': n, 'quote': q, 'videoId': vid, 'image': ph})
+                  '          <div><b>%s</b><span>%s%s</span><q>%s</q>%s%s<a href="../siargao#wall">Watch the testimonial &rarr;</a></div>\n'
+                  '        </li>\n') % (ph, esc('%s, %s' % (name, biz)), esc(name), esc(biz), esc(', ' + town) if town else '', esc(q), tag_html, link_html)
+        wall.append({'name': name, 'business': biz, 'town': town, 'day': n, 'quote': q, 'videoId': vid, 'image': ph,
+                     'tags': tags, 'links': links})
     people_html = ''
     if cards:
         people_html = ('      <section class="rc-people" aria-labelledby="rc-people-h">\n'
@@ -146,19 +169,19 @@ def main():
     desc = dek if len(dek) <= 160 else dek[:157].rstrip() + '...'
     ld = json.dumps({
         '@context': 'https://schema.org', '@type': 'Article',
-        'headline': '%s (Siargao Fest, Day %d)' % (title, n), 'description': desc,
+        'headline': '%s (Siargao Nomad Fest, Day %d)' % (title, n), 'description': desc,
         'image': 'https://khuncamp.com/' + imgs['og'],
         'author': {'@type': 'Person', 'name': 'Shawn Arrington'},
         'publisher': {'@type': 'Organization', 'name': 'Khun Camp'},
         'datePublished': date.isoformat(),
-        'about': {'@type': 'Event', 'name': 'Siargao Fest', 'startDate': '2026-10-16', 'endDate': '2026-10-25'}
+        'about': {'@type': 'Event', 'name': 'Siargao Nomad Fest', 'startDate': '2026-10-16', 'endDate': '2026-10-25'}
     }, ensure_ascii=False)
 
     tpl = read(p('tools', 'siargao-recap.template.html')).replace('\r\n', '\n')
     rep = {
         '{{N}}': str(n), '{{N2}}': '%02d' % n, '{{TITLE}}': esc(title), '{{DEK}}': esc(dek), '{{DESC}}': esc(desc),
         '{{DATE_LONG}}': date_long, '{{READ}}': str(read_min), '{{CSS_V}}': css_v, '{{LD}}': ld.replace('</', '<\\/'),
-        '{{HERO_ALT}}': esc(day.get('hero_alt', 'Siargao Island, Day %d of Siargao Fest' % n)),
+        '{{HERO_ALT}}': esc(day.get('hero_alt', 'Siargao Island, Day %d of Siargao Nomad Fest' % n)),
         '{{BODY}}': ''.join('        ' + l + '\n' for l in body.rstrip('\n').split('\n')).rstrip('\n'),
         '{{CLIP}}': clip.rstrip('\n'), '{{PEOPLE}}': people_html.rstrip('\n'), '{{PULL}}': pull.rstrip('\n'),
     }
