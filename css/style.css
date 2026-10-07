@@ -1251,7 +1251,7 @@ a.sg-day:hover { transform: translateY(-4px); border-color: var(--brass); }
 
 @media (max-width: 1000px) {
   .sg-strip { grid-template-columns: 1fr; }
-  .sg-days { grid-template-columns: repeat(3, 1fr); }
+  .sg-days:not(.sg-days--home) { grid-template-columns: repeat(2, 1fr); }
   .sg-live { position: static; text-align: left; }
   .sg-three { grid-template-columns: 1fr; gap: 1.5rem; }
 }
