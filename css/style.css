@@ -1528,7 +1528,8 @@ a.rc-chip.on:hover { background: var(--ink-warm); color: #fff; }
 .sg-home-head h2 { margin: 0 0 0.7rem; font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.6vw, 2.75rem); line-height: 1.1; letter-spacing: -0.02em; color: #fff; max-width: none; }
 .sg-home-head h2 strong { font-weight: 800; color: var(--brass); }
 .sg-home-head p { margin: 0; max-width: 34rem; color: rgba(255, 255, 255, 0.72); line-height: 1.6; }
-.sg-days--home { grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); }
+.sg-days--home { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .sg-days--home { grid-template-columns: repeat(2, 1fr); } }
 .sg-home-empty { margin: 0; color: rgba(255, 255, 255, 0.7); }
 @media (max-width: 1000px) { .sg-mosaic { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .sg-mosaic { grid-template-columns: 1fr; } }

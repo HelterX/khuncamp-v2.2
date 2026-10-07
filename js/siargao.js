@@ -132,7 +132,7 @@
     var home = $("sg-home");
     if (home) {
       if (status === "ongoing") {
-        var recent = pub.slice(-5).reverse(), items = "";
+        var recent = pub.slice(-4).reverse(), items = "";
         recent.forEach(function (d) { items += dayCard(d, d.n - 1, status, nextIdx, untilStart); });
         if (!recent.length) items = '<p class="sg-home-empty">Day 1 is on Oct 16. The first recap lands the morning after.</p>';
         home.innerHTML = '<div class="wrap"><div class="sg-home-head"><div>' + badgeHtml(status, start) +
