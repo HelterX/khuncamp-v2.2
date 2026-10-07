@@ -1533,3 +1533,9 @@ a.rc-chip.on:hover { background: var(--ink-warm); color: #fff; }
 @media (max-width: 1000px) { .sg-mosaic { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .sg-mosaic { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .sg-badge--live { animation: none; } }
+
+/* Siargao menu link: red dot while the fest is ongoing */
+.nav-live { display: inline-flex; align-items: center; gap: 0.45rem; }
+.nav-live i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #ff3b3b; box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.6); animation: nav-live-pulse 1.4s ease-out infinite; }
+@keyframes nav-live-pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.6); } 80%, 100% { box-shadow: 0 0 0 7px rgba(255, 59, 59, 0); } }
+@media (prefers-reduced-motion: reduce) { .nav-live i { animation: none; } }

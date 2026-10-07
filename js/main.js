@@ -242,3 +242,40 @@ if (document.readyState === "loading") {
 } else {
   khInit();
 }
+
+
+// ---- Siargao Nomad Fest menu link: shown in the nav only while the fest is ongoing; footer link from the start on ----
+(function () {
+  var offer = document.querySelector('.nav-desktop a[href$="offer"]');
+  if (!offer) return;
+  var prefix = offer.getAttribute("href").replace(/offer$/, "");
+  var script = document.querySelector('script[src*="js/main.js"]');
+  var dataUrl;
+  try { dataUrl = new URL("../data/siargao.json", script.src).href; } catch (e) { return; }
+  fetch(dataUrl, { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
+    var p = function (s) { var a = s.split("-"); return new Date(+a[0], +a[1] - 1, +a[2]); };
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var start = p(d.start), end = p(d.end || d.start); end.setDate(end.getDate() + 1);
+    var status = d.status && d.status !== "auto" ? d.status : today < start ? "upcoming" : today > end ? "archived" : "ongoing";
+    var href = prefix + "siargao";
+    function li(live) {
+      var el = document.createElement("li");
+      el.innerHTML = '<a href="' + href + '"' + (live ? ' class="nav-live"' : "") + ">Siargao" + (live ? '<i aria-hidden="true"></i><span class="sr">Ongoing now</span>' : "") + "</a>";
+      return el;
+    }
+    if (status === "ongoing") {
+      var cta = document.querySelector(".nav-desktop .btn-primary");
+      if (cta && cta.parentNode) cta.parentNode.parentNode.insertBefore(li(true), cta.parentNode);
+      var mob = document.querySelector("#nav-mobile-menu ul");
+      if (mob) mob.appendChild(li(true));
+    }
+    if (status !== "upcoming") {
+      var blog = document.querySelector('.footer-editorial-right a[href$="blog"]');
+      if (blog && blog.parentNode && blog.parentNode.parentNode) {
+        var f = document.createElement("li");
+        f.innerHTML = '<a href="' + href + '">Siargao Nomad Fest</a>';
+        blog.parentNode.parentNode.insertBefore(f, blog.parentNode.nextSibling);
+      }
+    }
+  }).catch(function () {});
+})();
