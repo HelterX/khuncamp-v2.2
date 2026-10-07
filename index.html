@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=112">
+  <link rel="stylesheet" href="css/style.css?v=113">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -660,6 +660,10 @@
         <div class="intake-card">
           <form class="intake-form" action="https://formspree.io/f/xbgrqqbr" method="POST">
             <input type="hidden" name="_next" value="https://khuncamp.com/thank-you">
+            <input type="hidden" name="utm_source" value="">
+            <input type="hidden" name="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" value="">
+            <input type="hidden" name="utm_content" value="">
             <div class="intake-row">
               <div class="field">
                 <label for="h-name">Your name</label>
@@ -714,7 +718,11 @@
           budget: this.budget.value,
           content_volume: this.content_volume.value,
           pain_point: this.pain_point.value,
-          source: window.location.pathname
+          source: window.location.pathname,
+          utm_source: this.utm_source.value,
+          utm_medium: this.utm_medium.value,
+          utm_campaign: this.utm_campaign.value,
+          utm_content: this.utm_content.value
         };
         fetch('/api/lead-notify', {
           method: 'POST',
@@ -780,6 +788,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="js/tracking.js?v=1"></script>
   <script src="js/main.js?v=14"></script>
 </body>
 </html>

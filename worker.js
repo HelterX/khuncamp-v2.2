@@ -1,3 +1,7 @@
+function clip(v) {
+  return String(v || "-").slice(0, 200);
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -17,7 +21,13 @@ export default {
         "*Budget:* " + (data.budget || "") + "\n" +
         "*Content volume:* " + (data.content_volume || "") + "\n" +
         "*Challenge:* " + (data.pain_point || "") + "\n" +
-        "*Source:* " + (data.source || "");
+        "*Page:* " + (data.source || "") + "\n" +
+        (data.utm_source || data.utm_medium || data.utm_campaign || data.utm_content
+          ? ":mega: *Ad source:* " + clip(data.utm_source) + "\n" +
+            "*Ad medium:* " + clip(data.utm_medium) + "\n" +
+            "*Ad campaign:* " + clip(data.utm_campaign) + "\n" +
+            "*Ad content:* " + clip(data.utm_content)
+          : "*Ad source:* none (direct or organic)");
 
       if (env.SLACK_WEBHOOK_URL) {
         try {
