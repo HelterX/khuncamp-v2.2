@@ -2,9 +2,27 @@ function clip(v) {
   return String(v || "-").slice(0, 200);
 }
 
+// Short links for print (business-card QR codes). Each redirects to a real page with UTM tags,
+// so leads from the card show up as "card" in Slack, the form emails and analytics.
+// 302 on purpose: the target can be changed later without browsers caching the old one.
+const SHORT_LINKS = {
+  "/card": { to: "/", utm: { utm_source: "card", utm_medium: "qr", utm_campaign: "business-card" } },
+  "/card/siargao": { to: "/siargao", utm: { utm_source: "card", utm_medium: "qr", utm_campaign: "siargao-nomad-fest" } },
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+
+    if (request.method === "GET" || request.method === "HEAD") {
+      const key = url.pathname.length > 1 ? url.pathname.replace(/\/+$/, "").toLowerCase() : url.pathname;
+      const link = SHORT_LINKS[key];
+      if (link) {
+        const dest = new URL(link.to, url);
+        for (const [k, v] of Object.entries(link.utm)) dest.searchParams.set(k, v);
+        return Response.redirect(dest.toString(), 302);
+      }
+    }
 
     if (request.method === "POST" && url.pathname === "/api/lead-notify") {
       let data;
