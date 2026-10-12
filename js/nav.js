@@ -1,9 +1,10 @@
-// Khun Camp navigation: the glass pill, its tiled mega menus, the top strip and the Siargao link.
+// Khun Camp navigation: the glass pill and its classic mega menus.
 //  - The pill is nearly clear glass over dark sections and flips to light glass over pale ones
 //    (tone is read from whatever is behind it, or from data-nav="dark|light" on a section).
-//  - Hover or focus a menu item for a panel of four tiles. On touch screens the first tap opens the
-//    panel and the second goes to the page. Under 820px the menu is a plain list.
-//  - The top strip shows the live Siargao Nomad Fest status (from data/siargao.json) and scrolls away.
+//  - Hover or focus a menu item for a panel: two link columns and one featured card. On touch
+//    screens the first tap opens the panel and the second goes to the page. Under 820px the menu
+//    is a plain list.
+//  - While Siargao Nomad Fest is ongoing (data/siargao.json) a Siargao item with a live dot is added.
 (function () {
   var nav = document.querySelector("header.nav");
   var desk = nav && nav.querySelector(".nav-desktop");
@@ -12,54 +13,87 @@
 
   var offerLink = desk.querySelector('a[href$="offer"]');
   var prefix = offerLink ? offerLink.getAttribute("href").replace(/offer$/, "") : "";
-  var strip = document.getElementById("nav-strip");
-  var TILES = [
-    { label: "The Offer", href: "offer", tiles: [
-      ["What's included", "Audit, voice guide, pillars and templates", "offer#included"],
-      ["Our process", "Strategy to posting, handled", "offer#process"],
-      ["How it's structured", "The build, then the retainer", "offer#structure"],
-      ["Questions", "Answers before the call", "offer#faq"]] },
-    { label: "Proof", href: "proof", tiles: [
-      ["Case study", "5.6x the views in 28 days", "case-study"],
-      ["Testimonials", "Founders, on the record", "proof#testimonials"],
-      ["By the numbers", "60K subs, 3 years, 17 ANANTA pieces", "proof#numbers"],
-      ["On the record", "Nomad Fest and what people said", "founder#record"]] },
-    { label: "Work", href: "#work", tiles: [
-      ["Shorts", "Played right on the page", "#work"],
-      ["Most watched", "Episodes people keep coming back to", "#most-watched"],
-      ["Brand partnerships", "Game launches and creator campaigns", "#partners"],
-      ["Southeast Asia", "Vietnam, Thailand, Philippines", "#markets"]] },
-    { label: "Founder", href: "founder", tiles: [
-      ["The story", "Army, then a 60,000-subscriber channel", "founder#story"],
-      ["Career timeline", "14 years in digital media", "founder#timeline"],
-      ["Watch and listen", "Podcast and interviews", "founder#watch"],
-      ["Beyond the channel", "Still living for the shot", "founder#life"]] },
-    { label: "Blog", href: "blog", tiles: [
-      ["Hiring an editor won't fix it", "Why the real gap is upstream", "blog/hiring-an-editor-wont-fix-your-content-problem"],
-      ["What is a content operating system?", "And why founders need one", "blog/what-is-a-content-operating-system"],
-      ["How long before content brings clients?", "A realistic timeline", "blog/how-long-before-content-brings-clients"],
-      ["All articles", "See everything", "blog"]] }
+
+  // each menu: two columns of [title, description, link] and one featured card
+  var MENU = [
+    { label: "The Offer", href: "offer", cols: [
+        ["What's included", [
+          ["Brand and audience audit", "Who you talk to and why", "offer#included"],
+          ["Brand voice guide", "Sounds like you, every time", "offer#included"],
+          ["Content pillars and 90-day roadmap", "What to say, mapped ahead", "offer#included"],
+          ["Visual and template system", "One look across platforms", "offer#included"]]],
+        ["How it runs", [
+          ["Strategy", "A plan before anything is filmed", "offer#process"],
+          ["Scripts and filming direction", "The shot list and the words", "offer#process"],
+          ["Editing and production", "Finished, captioned, ready", "offer#process"],
+          ["Posting and community", "On time, replies in your voice", "offer#process"]]]],
+      feat: ["images/photos/process-strategy.webp", "Book a 15-minute call", "We look at your channel first. No pitch until the math works.", "Book a Call", "book?src=nav-offer"] },
+    { label: "Proof", href: "proof", cols: [
+        ["The results", [
+          ["Case study: 5.6x views in 28 days", "One channel, real Studio numbers", "case-study"],
+          ["Testimonials", "Founders, on the record", "proof#testimonials"],
+          ["By the numbers", "60K subs, 3 years, 17 ANANTA pieces", "proof#numbers"]]],
+        ["On the record", [
+          ["Da Nang Nomad Fest", "Videography and interviews", "founder#record"],
+          ["ANANTA creator campaign", "Won the leaderboard payout", "#partners"],
+          ["What the numbers don't say", "One channel, not a guarantee", "case-study"]]]],
+      feat: ["images/case-study/khunshawn-studio-28d.webp", "5.6x the views in 28 days", "91.6K to 516.6K views. About 85% not paid.", "Read the case study", "case-study"] },
+    { label: "Work", href: "#work", cols: [
+        ["Watch", [
+          ["Shorts", "Played right on the page", "#work"],
+          ["Long-form episodes", "Interviews and vlogs on YouTube", "#work"],
+          ["Most watched", "Episodes people keep coming back to", "#most-watched"]]],
+        ["Clients", [
+          ["Brand partnerships", "Game launches and creator campaigns", "#partners"],
+          ["ANANTA", "Official UGC campaign, NetEase", "#partners"],
+          ["Southeast Asia", "Vietnam, Thailand, Philippines", "#markets"]]]],
+      feat: ["images/photos/hero-bts-poster.jpg", "Watch the work, not the pitch", "Seven real shorts. Tap to play.", "See the work", "#work"] },
+    { label: "Founder", href: "founder", cols: [
+        ["Shawn Arrington", [
+          ["The story", "Army, then a 60,000-subscriber channel", "founder#story"],
+          ["Career timeline", "14 years in digital media", "founder#timeline"],
+          ["Watch and listen", "Podcast and interviews", "founder#watch"]]],
+        ["Life and events", [
+          ["Still living for the shot", "Paris, Koh Tao, Da Nang", "founder#life"],
+          ["Da Nang Nomad Fest", "Photos from the fest", "founder#record"],
+          ["Siargao Nomad Fest", "Oct 16 to 25", "siargao"]]]],
+      feat: ["images/photos/danang-nomad-fest-content-creators.webp", "Meet the founder", "Built from zero, still runs it himself.", "Full story", "founder"] },
+    { label: "Blog", href: "blog", cols: [
+        ["Latest", [
+          ["Hiring an editor won't fix it", "Why the real gap is upstream", "blog/hiring-an-editor-wont-fix-your-content-problem"],
+          ["What is a content operating system?", "And why founders need one", "blog/what-is-a-content-operating-system"],
+          ["How long before content brings clients?", "A realistic timeline", "blog/how-long-before-content-brings-clients"]]],
+        ["More", [
+          ["The funnel gap most businesses never see", "Where leads quietly drop off", "blog/the-funnel-gap-most-businesses-never-see"],
+          ["Siargao Nomad Fest recaps", "A new post every fest day", "siargao"],
+          ["All articles", "See everything", "blog"]]]],
+      feat: ["images/photos/blog-system.webp", "Read the playbook", "How a content operating system actually works.", "All articles", "blog"] }
   ];
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function href(p) { return /^(https?:)?\/\//.test(p) ? p : prefix + p; }
 
-  // ---------- menu items, mega panels ----------
+  function linkHtml(it) { return '<a class="nm-link" href="' + esc(href(it[2])) + '"><b>' + esc(it[0]) + "</b><span>" + esc(it[1]) + "</span></a>"; }
+  function colHtml(c) { return '<div class="nm-col"><h4>' + esc(c[0]) + "</h4>" + c[1].map(linkHtml).join("") + "</div>"; }
+  function featHtml(f) {
+    return '<a class="nm-feat" href="' + esc(href(f[4])) + '"><img src="' + esc(href(f[0])) + '" alt="" loading="lazy" width="520" height="293"><div><b>' + esc(f[1]) + "</b><span>" + esc(f[2]) + "</span><em>" + esc(f[3]) + " &rarr;</em></div></a>";
+  }
+  function panelHtml(m) { return '<div class="nm-in">' + colHtml(m.cols[0]) + colHtml(m.cols[1]) + featHtml(m.feat) + "</div>"; }
+
   var megaWrap = document.createElement("div");
   megaWrap.className = "nav-mega";
   megaWrap.setAttribute("aria-hidden", "true");
   nav.appendChild(megaWrap);
   var panels = {};
-
-  function panelHtml(m) {
-    var t = m.tiles.map(function (x, i) {
-      return '<a class="nm-tile" href="' + esc(href(x[2])) + '"><i>0' + (i + 1) + "</i><b>" + esc(x[0]) + "</b><span>" + esc(x[1]) + "</span></a>";
-    }).join("");
-    return '<div class="nm-head"><span>' + esc(m.label) + '</span><a href="' + esc(href(m.href)) + '">View page &rarr;</a></div><div class="nm-grid">' + t + "</div>";
+  function addPanel(id, html) {
+    var p = document.createElement("div");
+    p.className = "nm-panel"; p.setAttribute("data-panel", id); p.innerHTML = html;
+    megaWrap.appendChild(p); panels[id] = p;
   }
-  function buildItems(live, siargao) {
+
+  function buildItems(live, siargaoHtml) {
     var html = "";
-    TILES.forEach(function (m, i) {
+    MENU.forEach(function (m, i) {
       html += '<li data-mega="' + i + '"><a href="' + esc(href(m.href)) + '" class="has-mega" aria-haspopup="true" aria-expanded="false">' + esc(m.label) + "</a></li>";
     });
     if (live) html += '<li data-mega="live"><a href="' + esc(href("siargao")) + '" class="has-mega nav-live" aria-haspopup="true" aria-expanded="false">Siargao<i aria-hidden="true"></i><span class="sr">Ongoing now</span></a></li>';
@@ -68,19 +102,13 @@
     desk.innerHTML = html + ctaLi;
     var mob = nav.querySelector("#nav-mobile-menu ul");
     if (mob) {
-      var mh = TILES.map(function (m) { return '<li><a href="' + esc(href(m.href)) + '">' + esc(m.label) + "</a></li>"; }).join("");
+      var mh = MENU.map(function (m) { return '<li><a href="' + esc(href(m.href)) + '">' + esc(m.label) + "</a></li>"; }).join("");
       if (live) mh += '<li><a href="' + esc(href("siargao")) + '" class="nav-live">Siargao<i aria-hidden="true"></i><span class="sr">Ongoing now</span></a></li>';
       mob.innerHTML = mh;
     }
-    megaWrap.innerHTML = "";
-    panels = {};
-    TILES.forEach(function (m, i) { addPanel(String(i), panelHtml(m)); });
-    if (live && siargao) addPanel("live", siargao);
-  }
-  function addPanel(id, html) {
-    var p = document.createElement("div");
-    p.className = "nm-panel"; p.setAttribute("data-panel", id); p.innerHTML = html;
-    megaWrap.appendChild(p); panels[id] = p;
+    megaWrap.innerHTML = ""; panels = {};
+    MENU.forEach(function (m, i) { addPanel(String(i), panelHtml(m)); });
+    if (live && siargaoHtml) addPanel("live", siargaoHtml);
   }
 
   var openId = null, closeTimer = null;
@@ -117,7 +145,7 @@
   nav.addEventListener("mouseleave", scheduleClose);
   megaWrap.addEventListener("mouseenter", function () { clearTimeout(closeTimer); });
   nav.addEventListener("focusout", function (e) { if (!e.relatedTarget || !nav.contains(e.relatedTarget)) scheduleClose(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && openId !== null) { close(); } });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && openId !== null) close(); });
   document.addEventListener("click", function (e) { if (openId !== null && !nav.contains(e.target)) close(); });
 
   // ---------- tone: light or dark glass, from what is behind the pill ----------
@@ -136,19 +164,13 @@
   var ticking = false;
   function update() {
     ticking = false;
-    var y = window.pageYOffset || 0;
-    nav.classList.toggle("is-scrolled", y > 24);
-    if (nav.classList.contains("nav--overlay")) {
-      var h = strip ? strip.offsetHeight : 0;
-      nav.style.top = Math.max(0, h - y) + "px";
-    }
+    nav.classList.toggle("is-scrolled", (window.pageYOffset || 0) > 24);
     var r = inner.getBoundingClientRect(), x = Math.round(window.innerWidth / 2), cy = Math.round(r.top + r.height / 2);
     var els = document.elementsFromPoint ? document.elementsFromPoint(x, cy) : [];
     var t = null;
     for (var i = 0; i < els.length && !t; i++) {
-      var el = els[i];
-      if (nav.contains(el) || (strip && strip.contains(el))) continue;
-      t = toneOf(el);
+      if (nav.contains(els[i])) continue;
+      t = toneOf(els[i]);
     }
     nav.setAttribute("data-tone", t || "dark");
   }
@@ -157,7 +179,6 @@
   window.addEventListener("resize", schedule);
   window.addEventListener("load", schedule);
 
-  // initial menu (no fest link yet), then fill in the fest status
   buildItems(false);
   schedule();
 
@@ -169,38 +190,24 @@
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var start = p(d.start), end = p(d.end || d.start); end.setDate(end.getDate() + 1);
     var status = d.status && d.status !== "auto" ? d.status : today < start ? "upcoming" : today > end ? "archived" : "ongoing";
-    var days = d.days || [], pub = days.filter(function (x) { return x.published; });
+    var pub = (d.days || []).filter(function (x) { return x.published; });
     var latest = pub.length ? pub[pub.length - 1] : null;
-    var untilStart = Math.round((start - today) / 86400000);
-    var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    // top strip, left side
-    var left = strip && strip.querySelector(".ns-left");
-    if (left) {
-      if (status === "ongoing") {
-        var dayNo = Math.min(days.length || 10, Math.max(1, Math.round((today - start) / 86400000) + 1));
-        left.innerHTML = '<a href="' + esc(href("siargao")) + '"><span class="ns-live">Siargao Nomad Fest</span> Ongoing, day ' + dayNo + " of " + (days.length || 10) + " &rarr;</a>";
-      } else if (status === "upcoming" && untilStart <= 21) {
-        left.innerHTML = '<a href="' + esc(href("siargao")) + '"><span class="ns-soon">Siargao Nomad Fest</span> starts ' + MONTHS[start.getMonth()] + " " + start.getDate() + " &rarr;</a>";
-      }
-    }
-
-    // menu link and panel, only while ongoing
     if (status === "ongoing") {
-      var u = function (x) { return x && x.url ? x.url : null; };
       var base = new URL(prefix || "./", location.href).href;
-      var tile = function (i, t, s, h) { return '<a class="nm-tile" href="' + esc(h) + '"><i>0' + i + "</i><b>" + esc(t) + "</b><span>" + esc(s) + "</span></a>"; };
-      var latestHref = latest && u(latest) ? new URL(u(latest), base).href : href("siargao");
-      var html = '<div class="nm-head"><span>Siargao Nomad Fest</span><a href="' + esc(href("siargao")) + '">View the hub &rarr;</a></div><div class="nm-grid">' +
-        tile(1, "Latest recap", latest ? latest.title : "Day 1 recap lands tomorrow", latestHref) +
-        tile(2, "All ten days", "Every day in one place", href("siargao#days")) +
-        tile(3, "Testimonial wall", "Local owners, on camera", href("siargao#wall")) +
-        tile(4, "About the fest", "Oct 16 to 25, Siargao Island", href("siargao")) + "</div>";
+      var latestHref = latest && latest.url ? new URL(latest.url, base).href : href("siargao");
+      var html = '<div class="nm-in">' +
+        colHtml(["Live now", [
+          [latest ? "Latest recap" : "Day 1 recap", latest ? latest.title : "Lands the morning after day one", latestHref],
+          ["All ten days", "Every day in one place", "siargao#days"],
+          ["Testimonial wall", "Local owners, on camera", "siargao#wall"]]]) +
+        colHtml(["Good to know", [
+          ["Oct 16 to 25", "Siargao Island", "siargao"],
+          ["Archive after the fest", "Recaps stay on the site", "siargao"]]]) +
+        featHtml(["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Live recaps and owner testimonials.", "Follow the fest", "siargao"]) + "</div>";
       buildItems(true, html);
       schedule();
     }
-
-    // footer link from the start of the fest on (stays as the archive link)
     if (status !== "upcoming") {
       var blog = document.querySelector('.footer-editorial-right a[href$="blog"]');
       if (blog && blog.parentNode && blog.parentNode.parentNode) {
