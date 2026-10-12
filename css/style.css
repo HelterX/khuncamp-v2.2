@@ -1590,3 +1590,9 @@ a.rc-chip.on:hover { background: var(--ink-warm); color: #fff; }
 .nm-feat b { font-size: 0.92rem; }
 .nm-feat span { font-size: 0.76rem; line-height: 1.45; color: rgba(255, 255, 255, 0.65); }
 .nm-feat em { margin-top: 0.4rem; font-style: normal; font-size: 0.78rem; font-weight: 800; color: var(--brass); }
+
+/* nav: fully transparent at the top of the page, glass pill appears once you scroll */
+.nav:not(.is-scrolled):not(.mega-open) .nav-inner { background: transparent; border-color: transparent; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.nav:not(.is-scrolled) .brand-name, .nav:not(.is-scrolled) .nav-links a:not(.btn-primary) { text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35); }
+.nav[data-tone="light"]:not(.is-scrolled) .brand-name, .nav[data-tone="light"]:not(.is-scrolled) .nav-links a:not(.btn-primary) { text-shadow: none; }
+.nav.mega-open .nav-inner { background: var(--nbg); border-color: var(--nbd); box-shadow: inset 0 1px 0 var(--nhi), 0 14px 44px rgba(0, 0, 0, 0.26); backdrop-filter: blur(18px) saturate(1.5); -webkit-backdrop-filter: blur(18px) saturate(1.5); }
