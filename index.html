@@ -22,7 +22,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=121">
+  <link rel="stylesheet" href="css/style.css?v=123">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -96,6 +96,7 @@
   </script>
 </head>
 <body class="theme-dark-warm">
+  <div class="nav-strip" id="nav-strip"><span class="ns-left"><a href="offer">Content operating system for founder-led brands</a></span><span class="ns-right"><span>Vietnam &middot; Thailand &middot; Philippines</span><a href="mailto:Shawn@getkhuncamp.com">Shawn@getkhuncamp.com</a></span></div>
 
   <header class="nav nav--overlay">
     <div class="nav-inner">
@@ -410,7 +411,7 @@
 
     <!-- Most watched: real top-viewed videos from the channel (checked 2026-09-18, @StillKhunShawn "Popular" sort) -->
     <section class="theme-light wrap section">
-      <p class="eyebrow-lg">Most watched</p>
+      <p id="most-watched" class="eyebrow-lg">Most watched</p>
       <h2 class="section-title">The episodes people keep coming back to.</h2>
       <p class="intro" style="margin:0.75rem 0 2.5rem; color:#55493d; max-width:40rem;">Real numbers, pulled straight from the channel &mdash; no vanity picks.</p>
       <div class="watched-grid">
@@ -458,7 +459,7 @@
     </section>
 
     <!-- Brand partnerships -->
-    <section class="theme-light studios-section wrap section">
+    <section class="theme-light studios-section wrap section" id="partners">
       <p class="eyebrow-lg">Brand partnerships</p>
       <h2>Studios bring us their launches.</h2>
       <p class="intro">We do not only run this for founders. Game studios hire the same system to put their titles in front of players.</p>
@@ -789,7 +790,8 @@
 
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
   <script src="js/siargao.js?v=5"></script>
+  <script src="js/nav.js?v=1"></script>
   <script src="js/tracking.js?v=1"></script>
-  <script src="js/main.js?v=15"></script>
+  <script src="js/main.js?v=16"></script>
 </body>
 </html>
