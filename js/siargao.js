@@ -197,28 +197,33 @@
   function festPopup(data, status, pub, days) {
     var preview = /[?&]fest_popup=preview/.test(location.search);
     if (!$("sg-home") || $("fest-pop")) return;
-    if (!preview && status !== "ongoing") return;
+    var soon = status === "upcoming";
+    if (!preview && status !== "ongoing" && !soon) return;
+    var K = soon ? "_soon" : "";
     var DAY = 864e5;
     function stamp(k) { try { return +localStorage.getItem(k) || 0; } catch (e) { return 0; } }
     function mark(k) { try { localStorage.setItem(k, String(Date.now())); } catch (e) {} }
-    if (!preview && (Date.now() - stamp("kc_fp_closed") < DAY || Date.now() - stamp("kc_fp_clicked") < 3 * DAY)) return;
+    if (!preview && (Date.now() - stamp("kc_fp_closed" + K) < DAY || Date.now() - stamp("kc_fp_clicked" + K) < 3 * DAY)) return;
 
     var latest = pub.length ? pub[pub.length - 1] : null;
     var photo = latest && latest.image ? latest.image : ROOT + "images/photos/siargao-hero-m.webp";
-    var href = latest && latest.url ? latest.url : ROOT + "siargao";
+    var href = latest && latest.url && !soon ? latest.url : ROOT + "siargao";
     var dots = days.map(function (x) { return '<i class="' + (x.published ? "on" : "") + '"></i>'; }).join("");
-    var kicker = latest ? FEST + " &middot; Day " + pub.length + " of " + days.length : FEST + " &middot; " + short(parse(data.start)) + "&ndash;" + parse(data.end || data.start).getDate();
-    var headline = latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands tomorrow.";
+    var today0 = new Date(); today0.setHours(0, 0, 0, 0);
+    var until = Math.round((parse(data.start) - today0) / DAY);
+    var range = short(parse(data.start)) + "&ndash;" + parse(data.end || data.start).getDate();
+    var kicker = soon ? FEST + " &middot; " + range : (latest ? FEST + " &middot; Day " + pub.length + " of " + days.length : FEST + " &middot; " + range);
+    var headline = soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands tomorrow.");
     var el = document.createElement("aside");
     el.id = "fest-pop"; el.className = "fp"; el.setAttribute("role", "dialog"); el.setAttribute("aria-labelledby", "fp-t");
     el.innerHTML = '<button type="button" class="fp-x" aria-label="Close">&times;</button>' +
-      '<a class="fp-ph" href="' + esc(href) + '" tabindex="-1" aria-hidden="true" style="background-image:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.55)),url(\'' + esc(photo) + '\')"><span class="sg-badge sg-badge--live">Ongoing</span></a>' +
+      '<a class="fp-ph" href="' + esc(href) + '" tabindex="-1" aria-hidden="true" style="background-image:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.55)),url(\'' + esc(photo) + '\')">' + (soon ? '<span class="sg-badge">Starts ' + short(parse(data.start)) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') + '</a>' +
       '<div class="fp-tx"><span class="fp-k">' + kicker + '</span><b id="fp-t">' + esc(headline) + "</b>" +
-      (latest ? '<div class="sgh-dots">' + dots + "</div>" : "") +
-      '<div class="fp-ctas"><a class="btn sg-btn" href="' + esc(href) + '">' + (latest ? "Read it" : "Follow the fest") + ' &rarr;</a><button type="button" class="fp-no">Not now</button></div></div>';
+      (latest && !soon ? '<div class="sgh-dots">' + dots + "</div>" : "") +
+      '<div class="fp-ctas"><a class="btn sg-btn" href="' + esc(href) + '">' + (latest && !soon ? "Read it" : soon ? "See the fest" : "Follow the fest") + ' &rarr;</a><button type="button" class="fp-no">Not now</button></div></div>';
 
     function close(saveIt) {
-      if (saveIt && !preview) mark("kc_fp_closed");
+      if (saveIt && !preview) mark("kc_fp_closed" + K);
       el.classList.remove("on");
       document.removeEventListener("keydown", onKey); document.removeEventListener("click", onDoc, true);
       setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 500);
@@ -230,7 +235,7 @@
     el.addEventListener("click", function (e) {
       var a = e.target.closest("a");
       if (!a) return;
-      if (!preview) mark("kc_fp_clicked");
+      if (!preview) mark("kc_fp_clicked" + K);
       if (window.KC && KC.track) KC.track({ ga: "fest_popup_click", meta: "FestPopupClick" }, { day: pub.length });
     });
 
