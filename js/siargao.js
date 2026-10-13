@@ -128,21 +128,44 @@
       $("sg-days").innerHTML = cards;
     }
 
-    // homepage section: only while the fest is ongoing
+    // homepage section: countdown before the fest, live banner during it, hidden after it
     var home = $("sg-home");
     if (home) {
-      if (status === "ongoing") {
-        var recent = pub.slice(-4).reverse(), items = "";
-        recent.forEach(function (d) { items += dayCard(d, d.n - 1, status, nextIdx, untilStart); });
-        if (!recent.length) items = '<p class="sg-home-empty">Day 1 is on Oct 16. The first recap lands the morning after.</p>';
-        home.innerHTML = '<div class="wrap"><div class="sg-home-head"><div>' + badgeHtml(status, start) +
-          '<h2>' + FEST + ', <strong>live</strong></h2>' +
-          '<p>' + (pub.length ? pub.length + " of " + days.length + " days recapped. " : "") + 'A recap after every fest day and a video testimonial from every local business owner we film.</p></div>' +
-          '<a class="btn sg-btn" href="' + ROOT + 'siargao">Follow the fest &rarr;</a></div>' +
-          '<div class="sg-days sg-days--home">' + items + "</div></div>";
-        home.hidden = false;
-      } else {
+      var opens = data.opens ? new Date(data.opens).getTime() : start.getTime();
+      var counting = status === "upcoming" || (status === "ongoing" && !pub.length && Date.now() < opens);
+      if (status === "archived") {
         home.hidden = true;
+      } else {
+        var cd = function () {
+          var ms = Math.max(0, opens - Date.now()), s = Math.floor(ms / 1000);
+          var p = [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60], L = ["Days", "Hours", "Min", "Sec"];
+          return '<div class="sgh-units" data-opens="' + opens + '">' + p.map(function (v, i) { return '<div class="sgh-u"><b data-u="' + i + '">' + String(v).padStart(2, "0") + "</b><span>" + L[i] + "</span></div>"; }).join("") + "</div>";
+        };
+        var liveBox = function () {
+          if (!pub.length) return '<div class="sgh-live"><b>Live</b><span>First recap lands tomorrow</span></div>';
+          var dots = days.map(function (x) { return '<i class="' + (x.published ? "on" : "") + '"></i>'; }).join("");
+          return '<div class="sgh-live"><b>' + String(pub.length).padStart(2, "0") + "<i> / " + days.length + "</i></b><span>Days recapped</span><div class=\"sgh-dots\">" + dots + "</div></div>";
+        };
+        var recent = pub.slice(-4).reverse(), items = "";
+        recent.forEach(function (x) { items += dayCard(x, x.n - 1, status, nextIdx, untilStart); });
+        home.innerHTML = '<div class="sgh-photo"><div class="wrap sgh-in"><span class="sgh-tag">Siargao Island &middot; ' + short(start) + "&ndash;" + parse(data.end || data.start).getDate() + ", " + start.getFullYear() + "</span>" +
+          '<div class="sgh-grid"><div>' + (counting ? '<span class="sg-badge">Starts ' + short(start) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') +
+          '<h2 class="sgh-title">' + FEST + ", <em>" + (counting ? "starts " + short(start) : "live") + "</em></h2>" +
+          '<p class="sgh-lede">' + (counting ? "A recap after every fest day and a video testimonial from every local business owner we film." : (pub.length ? "Day " + pub.length + " is up. " : "") + "A recap after every fest day and a video testimonial from every owner we film.") + "</p>" +
+          '<div class="sgh-ctas"><a class="btn sg-btn" href="' + ROOT + 'siargao">' + (counting ? "See what's coming" : "Follow the fest") + ' &rarr;</a><a class="sg-btn-ghost" href="' + ROOT + 'book?src=home-fest">Book a Call</a></div></div>' +
+          '<div class="sgh-glass">' + (counting ? cd() : liveBox()) + "</div></div></div></div>" +
+          (items ? '<div class="wrap sgh-recent"><div class="sg-days sg-days--home">' + items + "</div></div>" : "");
+        home.hidden = false;
+        if (counting && !window.__sghTimer) {
+          window.__sghTimer = setInterval(function () {
+            var u = document.querySelector(".sgh-units");
+            if (!u) return;
+            var ms = Math.max(0, +u.getAttribute("data-opens") - Date.now()), s = Math.floor(ms / 1000);
+            var p = [Math.floor(s / 86400), Math.floor(s % 86400 / 3600), Math.floor(s % 3600 / 60), s % 60];
+            [].forEach.call(u.querySelectorAll("[data-u]"), function (el) { el.textContent = String(p[+el.getAttribute("data-u")]).padStart(2, "0"); });
+            if (ms === 0) { clearInterval(window.__sghTimer); window.__sghTimer = null; render(data); }
+          }, 1000);
+        }
       }
     }
 
