@@ -91,19 +91,19 @@
     megaWrap.appendChild(p); panels[id] = p;
   }
 
-  function buildItems(live, siargaoHtml) {
+  function buildItems(live, siargaoHtml, soon) {
     var html = "";
     MENU.forEach(function (m, i) {
       html += '<li data-mega="' + i + '"><a href="' + esc(href(m.href)) + '" class="has-mega" aria-haspopup="true" aria-expanded="false">' + esc(m.label) + "</a></li>";
     });
-    if (live) html += '<li data-mega="live"><a href="' + esc(href("siargao")) + '" class="has-mega nav-live" aria-haspopup="true" aria-expanded="false">Siargao<i aria-hidden="true"></i><span class="sr">Ongoing now</span></a></li>';
+    if (live) html += '<li data-mega="live"><a href="' + esc(href("siargao")) + '" class="has-mega ' + (soon ? "nav-soon-link" : "nav-live") + '" aria-haspopup="true" aria-expanded="false">Siargao' + (soon ? '<em class="nav-soon">Oct 16</em>' : '<i aria-hidden="true"></i><span class="sr">Ongoing now</span>') + "</a></li>";
     var cta = desk.querySelector(".btn-primary");
     var ctaLi = cta ? cta.parentNode.outerHTML : "";
     desk.innerHTML = html + ctaLi;
     var mob = nav.querySelector("#nav-mobile-menu ul");
     if (mob) {
       var mh = MENU.map(function (m) { return '<li><a href="' + esc(href(m.href)) + '">' + esc(m.label) + "</a></li>"; }).join("");
-      if (live) mh += '<li><a href="' + esc(href("siargao")) + '" class="nav-live">Siargao<i aria-hidden="true"></i><span class="sr">Ongoing now</span></a></li>';
+      if (live) mh += '<li><a href="' + esc(href("siargao")) + '" class="' + (soon ? "nav-soon-link" : "nav-live") + '">Siargao' + (soon ? '<em class="nav-soon">Oct 16</em>' : '<i aria-hidden="true"></i><span class="sr">Ongoing now</span>') + "</a></li>";
       mob.innerHTML = mh;
     }
     megaWrap.innerHTML = ""; panels = {};
@@ -206,6 +206,19 @@
           ["Archive after the fest", "Recaps stay on the site", "siargao"]]]) +
         featHtml(["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Live recaps and owner testimonials.", "Follow the fest", "siargao"]) + "</div>";
       buildItems(true, html);
+      schedule();
+    }
+    if (status === "upcoming") {
+      var soonHtml = '<div class="nm-in">' +
+        colHtml(["The fest", [
+          ["Siargao Nomad Fest hub", "Countdown and the day-by-day page", "siargao"],
+          ["A recap for every day", "What happened and who we met", "siargao#days"],
+          ["Testimonial wall", "Local owners, on camera", "siargao#wall"]]]) +
+        colHtml(["Good to know", [
+          ["Oct 16 to 25", "Siargao Island", "siargao"],
+          ["Archive after the fest", "Recaps stay on the site", "siargao"]]]) +
+        featHtml(["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Starts Oct 16. Recaps and owner testimonials from the island.", "See the hub", "siargao"]) + "</div>";
+      buildItems(true, soonHtml, true);
       schedule();
     }
     if (status !== "upcoming") {
