@@ -170,10 +170,13 @@
 
     festPopup(data, status, pub, days);
 
-    // free-photos button: only shown once a link is set in the data file
+    // free-photos button (Tally sign-up, opens in a new tab): shown from photos_from to photos_until, hidden otherwise.
+    // Add ?photos=preview to the address to see it outside those dates.
     var photosUrl = safeUrl(data.photos_url);
+    var inWindow = (!data.photos_from || today >= parse(data.photos_from)) && (!data.photos_until || today <= parse(data.photos_until));
+    var showPhotos = !!photosUrl && (inWindow || /[?&]photos=preview/.test(location.search));
     [].forEach.call(document.querySelectorAll(".js-photos"), function (a) {
-      if (photosUrl) { a.href = photosUrl; a.target = "_blank"; a.rel = "noopener"; a.hidden = false; } else { a.hidden = true; }
+      if (showPhotos) { a.href = photosUrl; a.target = "_blank"; a.rel = "noopener"; if (data.photos_label) a.textContent = data.photos_label; a.hidden = false; } else { a.hidden = true; }
     });
 
     // testimonial wall
