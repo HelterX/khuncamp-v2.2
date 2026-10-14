@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Build one Siargao Nomad Fest recap page from a night's notes.
+"""Build one Siargao Nomad Fest recap page ("Day N") from a night's notes and photos.
 
 Usage:
     python tools/siargao_recap.py path/to/day-4.json            # build the page and publish it on the hub
@@ -64,6 +64,78 @@ def person_extras(pr):
     return tags, links
 
 
+# ---- rules from Shawn's brief ----------------------------------------------------------
+# No prices, no pitch copy, no attendee names or faces, nothing about the crew rotation.
+BANNED = [
+    (r'[$\u20b1\u20ac\u00a3]\s?\d', 'a price'),
+    (r'\b\d[\d,.]*\s?(usd|php|pesos?|dollars?|euros?)\b', 'a price'),
+    (r'\b(prices?|pricing|discounts?|promo code|\d+\s?% off)\b', 'pricing wording'),
+    (r'\b(book a call|book now|buy now|sign up now|limited spots?|special offer)\b', 'pitch copy'),
+    (r'\b(crew rotation|rotation|on duty|off duty|stipend|salary|per diem)\b', 'internal crew or pay details'),
+]
+
+
+def all_text(day):
+    parts = [day.get('title'), day.get('dek'), day.get('intro'), day.get('pull_quote'), (day.get('clip') or {}).get('caption')]
+    for s in day.get('sections') or []:
+        parts += [s.get('h'), s.get('body')]
+    for pr in day.get('people') or []:
+        parts += [pr.get('quote'), pr.get('business')]
+    for ph in day.get('photos') or []:
+        if isinstance(ph, dict):
+            parts += [ph.get('alt'), ph.get('caption')]
+    return [str(x) for x in parts if x]
+
+
+def check_rules(day):
+    chk = day.get('checks') or {}
+    missing = [k for k in ('no_attendee_faces_or_names', 'no_prices_or_pitch') if chk.get(k) is not True]
+    if missing:
+        sys.exit('Cannot publish yet. In the notes file, "checks" must confirm each rule from Shawn\'s brief:\n'
+                 '  "checks": {"no_attendee_faces_or_names": true, "no_prices_or_pitch": true}\n'
+                 'Missing or not true: ' + ', '.join(missing))
+    hits = []
+    for text in all_text(day):
+        for pat, label in BANNED:
+            m = re.search(pat, text, re.I)
+            if m:
+                hits.append('  - %s: "%s" in "%s..."' % (label, m.group(0), text[:50].replace('\n', ' ')))
+    if hits:
+        sys.exit('Cannot publish: the text breaks the site rules (no prices, no pitch copy, nothing about the crew rotation or pay).\n' + '\n'.join(hits))
+
+
+def gallery_images(day, n, hero_default):
+    """Ilya's 3 to 5 best photos for the night. Returns (html, first_photo_src)."""
+    raw = day.get('photos') or []
+    if len(raw) > 5:
+        sys.exit('"photos" has %d items. Use the 3 to 5 best (maximum 5).' % len(raw))
+    if raw and len(raw) < 3:
+        print('note: only %d photo(s). Shawn asked for 3 to 5 of the best items each night.' % len(raw))
+    from PIL import Image
+    figs = ''
+    first = None
+    for i, item in enumerate(raw, 1):
+        item = {'src': item} if isinstance(item, str) else dict(item)
+        src = item.get('src') or ''
+        path = src if os.path.isabs(src) else p(src)
+        if not os.path.exists(path):
+            sys.exit('Photo not found: %s' % src)
+        if first is None:
+            first = src
+        im = Image.open(path).convert('RGB')
+        if im.width > 1200:
+            im = im.resize((1200, int(im.height * 1200 / im.width)))
+        out = 'images/siargao/day-%d-photo-%d.webp' % (n, i)
+        im.save(p(out), 'WEBP', quality=74)
+        alt = item.get('alt') or 'Photo %d from day %d of Siargao Nomad Fest' % (i, n)
+        cap = ('<figcaption>%s</figcaption>' % esc(item['caption'])) if item.get('caption') else ''
+        figs += '          <figure><img src="../%s" alt="%s" width="%d" height="%d" loading="lazy">%s</figure>\n' % (out, esc(alt), im.width, im.height, cap)
+    if not figs:
+        return '', None
+    return ('      <section class="rc-gallery" aria-label="Photos from the day">\n        <h2>From the day</h2>\n'
+            '        <div class="rc-gal rc-gal--%d">\n%s        </div>\n      </section>\n') % (len(raw), figs), first
+
+
 def image_set(src, n, tag, cover):
     """Make web-ready copies of a photo. cover=True also makes the hero, card thumb and share image."""
     from PIL import Image
@@ -106,7 +178,9 @@ def main():
     n = int(need(day, 'n'))
     if not 1 <= n <= 10:
         sys.exit('"n" must be 1 to 10.')
+    check_rules(day)
     title = need(day, 'title').strip()
+    title_full = title if re.match(r'^day\s*\d', title, re.I) else 'Day %d: %s' % (n, title)
     dek = need(day, 'dek').strip()
     date = START + datetime.timedelta(days=n - 1)
     date_long = date.strftime('%a %b ') + str(date.day)
@@ -117,7 +191,8 @@ def main():
     words = len(intro.split()) + sum(len(str(s.get('body', '')).split()) for s in sections)
     read_min = max(1, round(words / 220))
 
-    imgs = image_set(day.get('hero_src') or DEFAULT_HERO, n, 'hero', True)
+    gallery_html, first_photo = gallery_images(day, n, DEFAULT_HERO)
+    imgs = image_set(day.get('hero_src') or first_photo or DEFAULT_HERO, n, 'hero', True)
 
     # body
     body = '<p class="article-intro">%s</p>\n' % esc(intro.strip())
@@ -169,7 +244,7 @@ def main():
     desc = dek if len(dek) <= 160 else dek[:157].rstrip() + '...'
     ld = json.dumps({
         '@context': 'https://schema.org', '@type': 'Article',
-        'headline': '%s (Siargao Nomad Fest, Day %d)' % (title, n), 'description': desc,
+        'headline': '%s (Siargao Nomad Fest)' % title_full, 'description': desc,
         'image': 'https://khuncamp.com/' + imgs['og'],
         'author': {'@type': 'Person', 'name': 'Shawn Arrington'},
         'publisher': {'@type': 'Organization', 'name': 'Khun Camp'},
@@ -179,7 +254,7 @@ def main():
 
     tpl = read(p('tools', 'siargao-recap.template.html')).replace('\r\n', '\n')
     rep = {
-        '{{N}}': str(n), '{{N2}}': '%02d' % n, '{{TITLE}}': esc(title), '{{DEK}}': esc(dek), '{{DESC}}': esc(desc),
+        '{{N}}': str(n), '{{N2}}': '%02d' % n, '{{TITLE}}': esc(title), '{{TITLE_FULL}}': esc(title_full), '{{GALLERY}}': gallery_html.rstrip('\n'), '{{DEK}}': esc(dek), '{{DESC}}': esc(desc),
         '{{DATE_LONG}}': date_long, '{{READ}}': str(read_min), '{{CSS_V}}': css_v, '{{LD}}': ld.replace('</', '<\\/'),
         '{{HERO_ALT}}': esc(day.get('hero_alt', 'Siargao Island, Day %d of Siargao Nomad Fest' % n)),
         '{{BODY}}': ''.join('        ' + l + '\n' for l in body.rstrip('\n').split('\n')).rstrip('\n'),

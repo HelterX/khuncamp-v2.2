@@ -1,8 +1,8 @@
 {
   "n": 1,
-  "title": "Headline for the day goes here",
+  "title": "Headline for the day (the page title becomes \"Day N: headline\")",
   "dek": "One or two sentences on what happened and who we met. This is also the search description.",
-  "hero_src": "C:/path/to/best-photo-of-the-day.jpg",
+  "hero_src": "C:/path/to/best-photo-from-Ilya.jpg",
   "hero_alt": "Short description of the photo",
   "intro": "The opening paragraph: what the day was about, in two or three sentences, from the night's notes.",
   "sections": [
@@ -14,6 +14,15 @@
       "h": "What surprised us",
       "body": "Optional. Add as many sections as the day needs."
     }
+  ],
+  "photos": [
+    {
+      "src": "C:/path/to/ilya-photo-1.jpg",
+      "alt": "What the photo shows",
+      "caption": "Optional caption"
+    },
+    "C:/path/to/ilya-photo-2.jpg",
+    "C:/path/to/ilya-photo-3.jpg"
   ],
   "clip": {
     "videoId": "YOUTUBE_VIDEO_ID",
@@ -37,8 +46,13 @@
           "label": "Instagram",
           "url": "https://instagram.com/theirshop"
         }
-      ]
+      ],
+      "approved_by_owner": true
     }
   ],
-  "pull_quote": "One line from the day's interviews, shown large."
+  "pull_quote": "One line from the day's interviews, shown large.",
+  "checks": {
+    "no_attendee_faces_or_names": true,
+    "no_prices_or_pitch": true
+  }
 }

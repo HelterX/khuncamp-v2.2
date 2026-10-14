@@ -1680,3 +1680,18 @@ a.rc-chip.on:hover { background: var(--ink-warm); color: #fff; }
 .js-photos[hidden] { display: none !important; }
 /* fest pages carry no pitch copy: hide the sticky booking bar there */
 body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { display: none !important; }
+
+/* ---- recap gallery: Ilya's best photos ---- */
+.rc-gallery { margin-top: 2.6rem; }
+.rc-gallery h2 { margin: 0 0 1rem; font-family: var(--font-display); font-size: 1.5rem; color: var(--ink); }
+.rc-gal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.7rem; }
+.rc-gal figure { margin: 0; position: relative; border-radius: 18px; overflow: hidden; background: var(--ink-warm); grid-column: span 2; aspect-ratio: 4 / 3; }
+.rc-gal img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rc-gal figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.4rem 0.9rem 0.7rem; font-size: 0.74rem; color: #fff; background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.7)); }
+.rc-gal--1 figure { grid-column: span 6; aspect-ratio: 16 / 10; }
+.rc-gal--2 figure { grid-column: span 3; }
+.rc-gal--3 figure:first-child, .rc-gal--5 figure:first-child { grid-column: span 6; aspect-ratio: 16 / 9; }
+.rc-gal--3 figure:not(:first-child) { grid-column: span 3; }
+.rc-gal--4 figure { grid-column: span 3; }
+.rc-gal--5 figure:not(:first-child) { grid-column: span 3; }
+@media (max-width: 560px) { .rc-gal figure, .rc-gal--3 figure:not(:first-child), .rc-gal--4 figure, .rc-gal--5 figure:not(:first-child) { grid-column: span 6; } }
