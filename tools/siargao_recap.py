@@ -136,6 +136,21 @@ def gallery_images(day, n, hero_default):
             '        <div class="rc-gal rc-gal--%d">\n%s        </div>\n      </section>\n') % (len(raw), figs), first
 
 
+def owner_gaps(pr):
+    """What is missing before this owner may appear on the site (Shawn: only with the owner's OK)."""
+    ok = pr.get('owner_ok') or {}
+    gaps = []
+    for key, label in (('said_yes', 'the owner said yes'), ('release_signed', 'the release is signed'), ('quote_approved', 'the owner approved the quote')):
+        if ok.get(key) is not True:
+            gaps.append('%s is not confirmed ("%s": true)' % (label, key))
+    if not str(ok.get('how') or '').strip():
+        gaps.append('"how" is missing (for example "release form" or "on-camera consent")')
+    d = str(ok.get('date') or '').strip()
+    if not re.match(r'^\d{4}-\d{2}-\d{2}$', d):
+        gaps.append('"date" is missing or not YYYY-MM-DD')
+    return gaps
+
+
 def image_set(src, n, tag, cover):
     """Make web-ready copies of a photo. cover=True also makes the hero, card thumb and share image."""
     from PIL import Image
@@ -213,7 +228,12 @@ def main():
     people = day.get('people') or []
     cards = ''
     wall = []
+    left_out = []
     for i, pr in enumerate(people, 1):
+        gaps = owner_gaps(pr)
+        if gaps:
+            left_out.append((str(pr.get('name') or 'an owner'), gaps))
+            continue
         name = need(pr, 'name', 'a person'); biz = need(pr, 'business', 'a person'); q = need(pr, 'quote', 'a person')
         vid = need(pr, 'videoId', 'a person (the testimonial video)')
         if pr.get('photo_src'):
@@ -269,6 +289,12 @@ def main():
     page = p('blog', 'siargao-fest-day-%d.html' % n)
     write(page, out)
     print('page   ->', os.path.relpath(page, ROOT))
+    for nm, gaps in left_out:
+        print('LEFT OUT "%s": not on the site yet.' % nm)
+        for gp in gaps:
+            print('    - ' + gp)
+    if left_out:
+        print('    Add them on a later night once everything is confirmed. The rest of the recap is unaffected.')
 
     if a.draft:
         print('draft: hub data and sitemap left unchanged')
@@ -279,7 +305,7 @@ def main():
     data = json.loads(read(dpath))
     d = data['days'][n - 1]
     d.update({'published': True, 'title': title, 'dek': dek, 'url': 'blog/siargao-fest-day-%d' % n, 'image': imgs['thumb'],
-              'clips': 1 if clip else 0, 'testimonials': len(people)})
+              'clips': 1 if clip else 0, 'testimonials': len(wall)})
     data['testimonials'] = [t for t in data.get('testimonials', []) if t.get('day') != n] + wall
     write(dpath, json.dumps(data, indent=2, ensure_ascii=False) + '\n')
     print('hub    -> data/siargao.json (day %d published, %d testimonials)' % (n, len(wall)))

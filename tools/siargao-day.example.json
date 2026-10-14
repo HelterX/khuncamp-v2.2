@@ -35,6 +35,13 @@
       "town": "General Luna",
       "quote": "One line from the interview, word for word as approved.",
       "videoId": "YOUTUBE_TESTIMONIAL_VIDEO_ID",
+      "owner_ok": {
+        "said_yes": true,
+        "release_signed": true,
+        "quote_approved": true,
+        "how": "release form",
+        "date": "2026-10-17"
+      },
       "photo_src": "C:/path/to/owner-photo.jpg",
       "tags": [
         "@theirshop",
@@ -46,8 +53,7 @@
           "label": "Instagram",
           "url": "https://instagram.com/theirshop"
         }
-      ],
-      "approved_by_owner": true
+      ]
     }
   ],
   "pull_quote": "One line from the day's interviews, shown large.",
