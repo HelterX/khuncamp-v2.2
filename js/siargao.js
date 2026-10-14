@@ -27,7 +27,6 @@
   function statusOf(data, today) {
     if (data.status && data.status !== "auto") return data.status;
     var start = parse(data.start), end = parse(data.end || data.start);
-    end.setDate(end.getDate() + 1);
     return today < start ? "upcoming" : today > end ? "archived" : "ongoing";
   }
 
@@ -44,7 +43,7 @@
     var thumb = d.published && d.image ? '<img src="' + esc(d.image) + '" alt="" loading="lazy">' : '<span class="sg-blank"></span>';
     var meta = d.published ?
       (d.clips ? d.clips + " clip" + (d.clips > 1 ? "s" : "") : "") + (d.clips && d.testimonials ? " &middot; " : "") + (d.testimonials ? d.testimonials + " testimonial" + (d.testimonials > 1 ? "s" : "") : "") :
-      "Recap goes live the morning after";
+      (d.highlight || "Recap goes live after the day");
     var body = '<div class="sg-th">' + thumb + '<span class="sg-pill ' + state + '">' + pill + '</span></div><div class="sg-meta"><small>Day ' + d.n + " &middot; " + longDate(dt) +
       "</small><b>" + esc(d.published ? d.title : "Day " + d.n + " recap") + "</b><span>" + meta + "</span></div>";
     return d.published ? '<a class="sg-day ' + state + '" href="' + esc(d.url) + '">' + body + "</a>" : '<div class="sg-day ' + state + '">' + body + "</div>";
@@ -99,7 +98,7 @@
         label.textContent = untilStart === 1 ? "day to go" : "days to go";
       } else {
         count.textContent = "Live";
-        label.textContent = "recap lands tomorrow morning";
+        label.textContent = "first recap lands the day after";
       }
     }
 
@@ -142,7 +141,7 @@
           return '<div class="sgh-units" data-opens="' + opens + '">' + p.map(function (v, i) { return '<div class="sgh-u"><b data-u="' + i + '">' + String(v).padStart(2, "0") + "</b><span>" + L[i] + "</span></div>"; }).join("") + "</div>";
         };
         var liveBox = function () {
-          if (!pub.length) return '<div class="sgh-live"><b>Live</b><span>First recap lands tomorrow</span></div>';
+          if (!pub.length) return '<div class="sgh-live"><b>Live</b><span>First recap lands the day after</span></div>';
           var dots = days.map(function (x) { return '<i class="' + (x.published ? "on" : "") + '"></i>'; }).join("");
           return '<div class="sgh-live"><b>' + String(pub.length).padStart(2, "0") + "<i> / " + days.length + "</i></b><span>Days recapped</span><div class=\"sgh-dots\">" + dots + "</div></div>";
         };
@@ -152,7 +151,7 @@
           '<div class="sgh-grid"><div>' + (counting ? '<span class="sg-badge">Starts ' + short(start) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') +
           '<h2 class="sgh-title">' + FEST + ", <em>" + (counting ? "starts " + short(start) : "live") + "</em></h2>" +
           '<p class="sgh-lede">' + (counting ? "A recap after every fest day and a video testimonial from every local business owner we film." : (pub.length ? "Day " + pub.length + " is up. " : "") + "A recap after every fest day and a video testimonial from every owner we film.") + "</p>" +
-          '<div class="sgh-ctas"><a class="btn sg-btn" href="' + ROOT + 'siargao">' + (counting ? "See what's coming" : "Follow the fest") + ' &rarr;</a><a class="sg-btn-ghost" href="' + ROOT + 'book?src=home-fest">Book a Call</a></div></div>' +
+          '<div class="sgh-ctas"><a class="btn sg-btn" href="' + ROOT + 'siargao">' + (counting ? "See what's coming" : "Follow the fest") + ' &rarr;</a><a class="sg-btn-ghost" href="' + ROOT + 'siargao#talk">Shawn\'s talk</a></div></div>' +
           '<div class="sgh-glass">' + (counting ? cd() : liveBox()) + "</div></div></div></div>" +
           (items ? '<div class="wrap sgh-recent"><div class="sg-days sg-days--home">' + items + "</div></div>" : "");
         home.hidden = false;
@@ -170,6 +169,12 @@
     }
 
     festPopup(data, status, pub, days);
+
+    // free-photos button: only shown once a link is set in the data file
+    var photosUrl = safeUrl(data.photos_url);
+    [].forEach.call(document.querySelectorAll(".js-photos"), function (a) {
+      if (photosUrl) { a.href = photosUrl; a.target = "_blank"; a.rel = "noopener"; a.hidden = false; } else { a.hidden = true; }
+    });
 
     // testimonial wall
     var list = (data.testimonials || []).slice().reverse();
@@ -213,7 +218,7 @@
     var until = Math.round((parse(data.start) - today0) / DAY);
     var range = short(parse(data.start)) + "&ndash;" + parse(data.end || data.start).getDate();
     var kicker = soon ? FEST + " &middot; " + range : (latest ? FEST + " &middot; Day " + pub.length + " of " + days.length : FEST + " &middot; " + range);
-    var headline = soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands tomorrow.");
+    var headline = soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands the day after Day 1.");
     var el = document.createElement("aside");
     el.id = "fest-pop"; el.className = "fp"; el.setAttribute("role", "dialog"); el.setAttribute("aria-labelledby", "fp-t");
     el.innerHTML = '<button type="button" class="fp-x" aria-label="Close">&times;</button>' +
@@ -280,7 +285,7 @@
       var prev = days[n - 2], next = days[n], h2 = "";
       h2 += prev && prev.published ? '<a href="' + esc(prev.url) + '"><span>&larr; Day ' + prev.n + "</span>" + esc(prev.title) + "</a>" : '<a href="' + ROOT + 'siargao"><span>&larr; ' + FEST + "</span>All ten days</a>";
       if (next && next.published) h2 += '<a class="r" href="' + esc(next.url) + '"><span>Day ' + next.n + " &rarr;</span>" + esc(next.title) + "</a>";
-      else if (next) h2 += '<span class="r soon"><span>Day ' + next.n + "</span>Lands tomorrow morning</span>";
+      else if (next) h2 += '<span class="r soon"><span>Day ' + next.n + "</span>Lands the day after</span>";
       else h2 += '<a class="r" href="' + ROOT + 'siargao#wall"><span>The end &rarr;</span>See every testimonial</a>';
       pager.innerHTML = h2;
     }

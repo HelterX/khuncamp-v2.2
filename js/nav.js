@@ -188,7 +188,7 @@
   fetch(dataUrl, { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
     var p = function (s) { var a = s.split("-"); return new Date(+a[0], +a[1] - 1, +a[2]); };
     var today = new Date(); today.setHours(0, 0, 0, 0);
-    var start = p(d.start), end = p(d.end || d.start); end.setDate(end.getDate() + 1);
+    var start = p(d.start), end = p(d.end || d.start); 
     var status = d.status && d.status !== "auto" ? d.status : today < start ? "upcoming" : today > end ? "archived" : "ongoing";
     var pub = (d.days || []).filter(function (x) { return x.published; });
     var latest = pub.length ? pub[pub.length - 1] : null;
