@@ -10,7 +10,7 @@
 (function () {
   var CFG = {
     META_PIXEL_ID: "",   // e.g. "123456789012345"
-    GA4_ID: "",          // e.g. "G-XXXXXXXXXX"
+    GA4_ID: "G-4E4X3M9133", // e.g. "G-XXXXXXXXXX"
     REQUIRE_CONSENT: true
   };
 
@@ -130,7 +130,7 @@
     b.setAttribute("role", "dialog");
     b.setAttribute("aria-label", "Cookie choices");
     b.innerHTML =
-      '<p><b>Cookies for ads and analytics</b>We use Meta and Google tools to see which ads bring us enquiries. They only run if you accept. ' +
+      '<p><b>Cookies for ads and analytics</b>We use ' + tools() + ' to see which ads bring us enquiries. They only run if you accept. ' +
       '<a href="' + base() + 'privacy">Privacy</a></p>' +
       '<div class="kc-consent-actions"><button type="button" data-kc="denied">Decline</button><button type="button" data-kc="granted">Accept</button></div>';
     b.addEventListener("click", function (e) {
@@ -140,6 +140,9 @@
     document.body.appendChild(b);
     var first = b.querySelector("button");
     if (first && DEBUG) log("banner shown");
+  }
+  function tools() {
+    return CFG.META_PIXEL_ID && CFG.GA4_ID ? "Meta and Google tools" : CFG.META_PIXEL_ID ? "Meta tools" : "Google Analytics";
   }
   function base() {
     var s = document.currentScript || document.querySelector('script[src*="tracking.js"]');
