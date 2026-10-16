@@ -30,7 +30,17 @@
     return today < start ? "upcoming" : today > end ? "archived" : "ongoing";
   }
 
-  function badgeHtml(status, start) {
+  // Fest day one, before the official opening time (data.opens): still "ongoing" by the date, but not open yet.
+  function openingLabel(data, status, pubCount) {
+    if (status !== "ongoing" || pubCount || !data.opens) return "";
+    var t = new Date(data.opens).getTime();
+    if (!(Date.now() < t)) return "";
+    var hm = new Date(t).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: "Asia/Manila" }).replace(":00", "").replace(" ", " ");
+    return "Opens today " + hm;
+  }
+
+  function badgeHtml(status, start, opening) {
+    if (opening) return '<span class="sg-badge">' + opening + "</span>";
     if (status === "ongoing") return '<span class="sg-badge sg-badge--live">Ongoing</span>';
     if (status === "archived") return '<span class="sg-badge sg-badge--archive">Archive</span>';
     return '<span class="sg-badge">Starts ' + short(start) + "</span>";
@@ -80,7 +90,7 @@
     var nextIdx = pub.length;
 
     // badge and copy that depends on the state
-    if ($("sg-badge")) $("sg-badge").outerHTML = badgeHtml(status, start).replace("<span ", '<span id="sg-badge" ');
+    if ($("sg-badge")) $("sg-badge").outerHTML = badgeHtml(status, start, openingLabel(data, status, pub.length)).replace("<span ", '<span id="sg-badge" ');
     if (status === "archived") {
       if ($("sg-lede")) $("sg-lede").textContent = "The full story of " + FEST + ": a recap for every fest day and a video testimonial from every local business owner we filmed.";
       if ($("sg-days-note")) $("sg-days-note").textContent = "All the recaps from the fest, one for every day.";
@@ -131,7 +141,8 @@
     var home = $("sg-home");
     if (home) {
       var opens = data.opens ? new Date(data.opens).getTime() : start.getTime();
-      var counting = status === "upcoming" || (status === "ongoing" && !pub.length && Date.now() < opens);
+      var opening = openingLabel(data, status, pub.length);
+      var counting = status === "upcoming" || !!opening;
       if (status === "archived") {
         home.hidden = true;
       } else {
@@ -148,8 +159,8 @@
         var recent = pub.slice(-4).reverse(), items = "";
         recent.forEach(function (x) { items += dayCard(x, x.n - 1, status, nextIdx, untilStart); });
         home.innerHTML = '<div class="sgh-photo"><div class="wrap sgh-in"><span class="sgh-tag">Siargao Island &middot; ' + short(start) + "&ndash;" + parse(data.end || data.start).getDate() + ", " + start.getFullYear() + "</span>" +
-          '<div class="sgh-grid"><div>' + (counting ? '<span class="sg-badge">Starts ' + short(start) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') +
-          '<h2 class="sgh-title">' + FEST + ", <em>" + (counting ? "starts " + short(start) : "live") + "</em></h2>" +
+          '<div class="sgh-grid"><div>' + (counting ? '<span class="sg-badge">' + (opening || "Starts " + short(start)) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') +
+          '<h2 class="sgh-title">' + FEST + ", <em>" + (opening ? "starts today" : counting ? "starts " + short(start) : "live") + "</em></h2>" +
           '<p class="sgh-lede">' + (counting ? "A recap after every fest day and a video testimonial from every local business owner we film." : (pub.length ? "Day " + pub.length + " is up. " : "") + "A recap after every fest day and a video testimonial from every owner we film.") + "</p>" +
           '<div class="sgh-ctas"><a class="btn sg-btn" href="' + ROOT + 'siargao">' + (counting ? "See what's coming" : "Follow the fest") + ' &rarr;</a><a class="sg-btn-ghost" href="' + ROOT + 'siargao#talk">Shawn\'s talk</a></div></div>' +
           '<div class="sgh-glass">' + (counting ? cd() : liveBox()) + "</div></div></div></div>" +
@@ -206,6 +217,7 @@
     var preview = /[?&]fest_popup=preview/.test(location.search);
     if (!$("sg-home") || $("fest-pop")) return;
     var soon = status === "upcoming";
+    var opening = openingLabel(data, status, pub.length);
     if (!preview && status !== "ongoing" && !soon) return;
     var K = soon ? "_soon" : "";
     var DAY = 864e5;
@@ -221,14 +233,14 @@
     var until = Math.round((parse(data.start) - today0) / DAY);
     var range = short(parse(data.start)) + "&ndash;" + parse(data.end || data.start).getDate();
     var kicker = soon ? FEST + " &middot; " + range : (latest ? FEST + " &middot; Day " + pub.length + " of " + days.length : FEST + " &middot; " + range);
-    var headline = soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands the day after Day 1.");
+    var headline = opening ? opening.replace("today ", "today at ") : soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands the day after Day 1.");
     var el = document.createElement("aside");
     el.id = "fest-pop"; el.className = "fp"; el.setAttribute("role", "dialog"); el.setAttribute("aria-labelledby", "fp-t");
     el.innerHTML = '<button type="button" class="fp-x" aria-label="Close">&times;</button>' +
-      '<a class="fp-ph" href="' + esc(href) + '" tabindex="-1" aria-hidden="true" style="background-image:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.55)),url(\'' + esc(photo) + '\')">' + (soon ? '<span class="sg-badge">Starts ' + short(parse(data.start)) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') + '</a>' +
+      '<a class="fp-ph" href="' + esc(href) + '" tabindex="-1" aria-hidden="true" style="background-image:linear-gradient(180deg,rgba(0,0,0,.1),rgba(0,0,0,.55)),url(\'' + esc(photo) + '\')">' + (opening ? '<span class="sg-badge">' + opening + "</span>" : soon ? '<span class="sg-badge">Starts ' + short(parse(data.start)) + "</span>" : '<span class="sg-badge sg-badge--live">Ongoing</span>') + '</a>' +
       '<div class="fp-tx"><span class="fp-k">' + kicker + '</span><b id="fp-t">' + esc(headline) + "</b>" +
       (latest && !soon ? '<div class="sgh-dots">' + dots + "</div>" : "") +
-      '<div class="fp-ctas"><a class="btn sg-btn" href="' + esc(href) + '">' + (latest && !soon ? "Read it" : soon ? "See the fest" : "Follow the fest") + ' &rarr;</a><button type="button" class="fp-no">Not now</button></div></div>';
+      '<div class="fp-ctas"><a class="btn sg-btn" href="' + esc(href) + '">' + (latest && !soon ? "Read it" : soon || opening ? "See the fest" : "Follow the fest") + ' &rarr;</a><button type="button" class="fp-no">Not now</button></div></div>';
 
     function close(saveIt) {
       if (saveIt && !preview) mark("kc_fp_closed" + K);
