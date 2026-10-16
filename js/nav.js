@@ -32,7 +32,7 @@
         ["The results", [
           ["Case study: 5.6x views in 28 days", "One channel, real Studio numbers", "case-study"],
           ["Testimonials", "Founders, on the record", "proof#testimonials"],
-          ["By the numbers", "60K subs, 3 years, 17 ANANTA pieces", "proof#numbers"]]],
+          ["By the numbers", "66K subs, 3 years, 17 ANANTA pieces", "proof#numbers"]]],
         ["On the record", [
           ["Da Nang Nomad Fest", "Videography and interviews", "founder#record"],
           ["ANANTA creator campaign", "Won the leaderboard payout", "#partners"],
@@ -75,8 +75,16 @@
 
   function linkHtml(it) { return '<a class="nm-link" href="' + esc(href(it[2])) + '"><b>' + esc(it[0]) + "</b><span>" + esc(it[1]) + "</span></a>"; }
   function colHtml(c) { return '<div class="nm-col"><h4>' + esc(c[0]) + "</h4>" + c[1].map(linkHtml).join("") + "</div>"; }
+  var FEAT_ALT = {
+    "images/photos/process-strategy.webp": "Laptop showing a monthly content plan calendar",
+    "images/case-study/khunshawn-studio-28d.webp": "YouTube Studio dashboard for the KhunShawn channel showing a 28-day views chart",
+    "images/photos/hero-bts-poster.jpg": "Behind the scenes of a Khun Camp video shoot",
+    "images/photos/danang-nomad-fest-content-creators.webp": "Khun Camp team connecting with content creators at Da Nang Nomad Fest",
+    "images/photos/blog-system.webp": "Whiteboard with sticky notes planning the week by team member",
+    "images/photos/siargao-hero-m.webp": "Siargao Island coast during Siargao Nomad Fest"
+  };
   function featHtml(f) {
-    return '<a class="nm-feat" href="' + esc(href(f[4])) + '"><img src="' + esc(href(f[0])) + '" alt="" loading="lazy" width="520" height="293"><div><b>' + esc(f[1]) + "</b><span>" + esc(f[2]) + "</span><em>" + esc(f[3]) + " &rarr;</em></div></a>";
+    return '<a class="nm-feat" href="' + esc(href(f[4])) + '"><img src="' + esc(href(f[0])) + '" alt="' + esc(FEAT_ALT[f[0]] || "") + '" loading="lazy" width="520" height="293"><div><b>' + esc(f[1]) + "</b><span>" + esc(f[2]) + "</span><em>" + esc(f[3]) + " &rarr;</em></div></a>";
   }
   function panelHtml(m) { return '<div class="nm-in">' + colHtml(m.cols[0]) + colHtml(m.cols[1]) + featHtml(m.feat) + "</div>"; }
 

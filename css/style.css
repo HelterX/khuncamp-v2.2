@@ -1415,6 +1415,13 @@ a.sg-day:hover { transform: translateY(-4px); border-color: var(--brass); }
 .pf-cols .b.before { background: rgba(255, 255, 255, 0.35); }
 .pf-cols em { font-style: normal; font-weight: 800; font-size: 0.82rem; margin-top: 0.3rem; }
 .pf-cols small { font-size: 0.62rem; color: rgba(255, 255, 255, 0.65); }
+.pf-visual--solo { padding: 0; display: flex; align-items: center; }
+.pf-visual--solo .pf-chart { position: static; width: 100%; max-width: 34rem; padding: 1.5rem 1.8rem 1.6rem; margin-left: auto; }
+.pf-visual--solo .pf-cols { height: 17rem; gap: 1.6rem; }
+.pf-visual--solo .pf-cols em { font-size: 1.15rem; }
+.pf-visual--solo .pf-cols small { font-size: 0.74rem; }
+.pf-visual--solo .pf-chart figcaption { font-size: 0.74rem; margin-bottom: 1rem; }
+@media (max-width: 1000px) { .pf-visual--solo .pf-chart { max-width: none; margin-left: 0; } .pf-visual--solo .pf-cols { height: 13rem; } }
 @media (max-width: 1000px) {
   .pf-in { grid-template-columns: 1fr; gap: 2.6rem; }
   .pf-visual { padding-left: 0; padding-bottom: 3.6rem; }
