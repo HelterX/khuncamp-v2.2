@@ -8,11 +8,11 @@
     {
       "n": 1,
       "date": "2026-10-16",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Opening night by the water",
+      "dek": "Siargao Nomad Fest opened on Friday, Oct 16 with an opening party by the water. Our crew was filming from the start.",
+      "url": "blog/siargao-fest-day-1",
+      "image": "images/siargao/day-1-thumb.webp",
       "clips": 0,
       "testimonials": 0,
       "highlight": "Opening Party and Late Night Out"
@@ -20,11 +20,11 @@
     {
       "n": 2,
       "date": "2026-10-17",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Yoga and a Hyrox-style workout",
+      "dek": "Saturday, Oct 17 was the fitness day at Siargao Nomad Fest: a yoga class at a local studio and a Hyrox-style session at a local gym.",
+      "url": "blog/siargao-fest-day-2",
+      "image": "images/siargao/day-2-thumb.webp",
       "clips": 0,
       "testimonials": 0,
       "highlight": "Fitness and Night Connect"
