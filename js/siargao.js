@@ -48,8 +48,10 @@
 
   function dayCard(d, i, status, nextIdx, untilStart) {
     var dt = parse(d.date);
-    var state = d.published ? "pub" : (i === nextIdx && untilStart <= 0 && status !== "archived" ? "today" : "soon");
-    var pill = state === "pub" ? "Published" : state === "today" ? "Tonight" : "Coming";
+    var t0 = new Date(); t0.setHours(0, 0, 0, 0);
+    var past = !d.published && dt < t0 && status !== "upcoming";
+    var state = d.published ? "pub" : (!past && i === nextIdx && untilStart <= 0 && status !== "archived" ? "today" : (!d.published && dt.getTime() === t0.getTime() && status === "ongoing" ? "today" : "soon"));
+    var pill = state === "pub" ? "Published" : state === "today" ? "Tonight" : past ? "Recap coming" : "Coming";
     var thumb = d.published && d.image ? '<img src="' + esc(d.image) + '" alt="" loading="lazy">' : '<span class="sg-blank"></span>';
     var meta = d.published ?
       (d.clips ? d.clips + " clip" + (d.clips > 1 ? "s" : "") : "") + (d.clips && d.testimonials ? " &middot; " : "") + (d.testimonials ? d.testimonials + " testimonial" + (d.testimonials > 1 ? "s" : "") : "") :
@@ -108,7 +110,7 @@
         label.textContent = untilStart === 1 ? "day to go" : "days to go";
       } else {
         count.textContent = "Live";
-        label.textContent = "first recap lands the day after";
+        label.textContent = "first recap coming soon";
       }
     }
 
@@ -152,7 +154,7 @@
           return '<div class="sgh-units" data-opens="' + opens + '">' + p.map(function (v, i) { return '<div class="sgh-u"><b data-u="' + i + '">' + String(v).padStart(2, "0") + "</b><span>" + L[i] + "</span></div>"; }).join("") + "</div>";
         };
         var liveBox = function () {
-          if (!pub.length) return '<div class="sgh-live"><b>Live</b><span>First recap lands the day after</span></div>';
+          if (!pub.length) return '<div class="sgh-live"><b>Live</b><span>First recap coming soon</span></div>';
           var dots = days.map(function (x) { return '<i class="' + (x.published ? "on" : "") + '"></i>'; }).join("");
           return '<div class="sgh-live"><b>' + String(pub.length).padStart(2, "0") + "<i> / " + days.length + "</i></b><span>Days recapped</span><div class=\"sgh-dots\">" + dots + "</div></div>";
         };
@@ -233,7 +235,7 @@
     var until = Math.round((parse(data.start) - today0) / DAY);
     var range = short(parse(data.start)) + "&ndash;" + parse(data.end || data.start).getDate();
     var kicker = soon ? FEST + " &middot; " + range : (latest ? FEST + " &middot; Day " + pub.length + " of " + days.length : FEST + " &middot; " + range);
-    var headline = opening ? opening.replace("today ", "today at ") : soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. First recap lands the day after Day 1.");
+    var headline = opening ? opening.replace("today ", "today at ") : soon ? (until <= 0 ? "Starts today" : until === 1 ? "Starts tomorrow" : "Starts in " + until + " days") : (latest ? "Day " + pub.length + " recap is up" : "The fest is on. The first recap is coming soon.");
     var el = document.createElement("aside");
     el.id = "fest-pop"; el.className = "fp"; el.setAttribute("role", "dialog"); el.setAttribute("aria-labelledby", "fp-t");
     el.innerHTML = '<button type="button" class="fp-x" aria-label="Close">&times;</button>' +
