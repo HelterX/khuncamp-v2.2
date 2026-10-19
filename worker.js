@@ -77,7 +77,13 @@ const handler = {
       }
     }
 
-    return env.ASSETS.fetch(request);
+    const asset = await env.ASSETS.fetch(request);
+    if (asset.status === 404) {
+      // Branded 404 page, still sent with a 404 status.
+      const page = await env.ASSETS.fetch(new Request(new URL("/404.html", url), { headers: request.headers }));
+      if (page.status === 200) return new Response(request.method === "HEAD" ? null : page.body, { status: 404, headers: page.headers });
+    }
+    return asset;
   },
 };
 
