@@ -46,13 +46,15 @@
     return '<span class="sg-badge">Starts ' + short(start) + "</span>";
   }
 
+  var THEMES = ["night", "fit", "sea", "talk", "talk", "talk", "talk", "well", "sea", "party"];
+
   function dayCard(d, i, status, nextIdx, untilStart) {
     var dt = parse(d.date);
     var t0 = new Date(); t0.setHours(0, 0, 0, 0);
     var past = !d.published && dt < t0 && status !== "upcoming";
     var state = d.published ? "pub" : (!past && i === nextIdx && untilStart <= 0 && status !== "archived" ? "today" : (!d.published && dt.getTime() === t0.getTime() && status === "ongoing" ? "today" : "soon"));
     var pill = state === "pub" ? "Published" : state === "today" ? "Tonight" : past ? "Recap coming" : "Coming";
-    var thumb = d.published && d.image ? '<img src="' + esc(d.image) + '" alt="" loading="lazy">' : '<span class="sg-blank"></span>';
+    var thumb = d.published && d.image ? '<img src="' + esc(d.image) + '" alt="" loading="lazy">' : '<span class="sg-blank sg-t-' + (THEMES[d.n - 1] || "talk") + '"><b>' + esc(d.n) + "</b></span>";
     var meta = d.published ?
       (d.clips ? d.clips + " clip" + (d.clips > 1 ? "s" : "") : "") + (d.clips && d.testimonials ? " &middot; " : "") + (d.testimonials ? d.testimonials + " testimonial" + (d.testimonials > 1 ? "s" : "") : "") :
       (d.highlight || "Recap goes live after the day");
@@ -137,6 +139,33 @@
       var cards = "";
       days.forEach(function (d, i) { cards += dayCard(d, i, status, nextIdx, untilStart); });
       $("sg-days").innerHTML = cards;
+    }
+
+    // "Today at the fest" chip in the hero
+    var todayChip = $("sg-today");
+    if (todayChip) {
+      var td = null;
+      days.forEach(function (d) { if (parse(d.date).getTime() === today.getTime()) td = d; });
+      if (td && status === "ongoing") {
+        todayChip.innerHTML = "<i></i><span>Today &middot; Day " + esc(td.n) + "</span><b>" + esc(td.highlight || "") + "</b>";
+        todayChip.hidden = false;
+      } else { todayChip.hidden = true; }
+    }
+
+    // photo mosaic from the published days (newest first)
+    var mo = $("sg-moments"), grid = $("sg-mo-grid");
+    if (mo && grid) {
+      var shots = [];
+      pub.slice().reverse().forEach(function (d) {
+        (d.photos || []).forEach(function (src, k) { shots.push({ src: src, url: d.url, n: d.n, k: k }); });
+      });
+      shots = shots.slice(0, shots.length >= 12 ? 12 : 8);
+      if (shots.length >= 8) {
+        grid.innerHTML = shots.map(function (s) {
+          return '<a class="sg-mo" href="' + esc(ROOT + s.url) + '"><img src="' + esc(ROOT + s.src) + '" alt="Photo from Day ' + esc(s.n) + ' of the festival" loading="lazy"><span>Day ' + esc(s.n) + "</span></a>";
+        }).join("");
+        mo.hidden = false;
+      } else { mo.hidden = true; }
     }
 
     // homepage section: countdown before the fest, live banner during it, hidden after it

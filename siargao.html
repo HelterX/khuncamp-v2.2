@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=139">
+  <link rel="stylesheet" href="css/style.css?v=141">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -115,6 +115,7 @@
           <a class="btn sg-btn-ghost" href="#talk">Shawn's talk</a>
           <a class="btn sg-btn-ghost js-photos" href="#" hidden>Get your free festival photos</a>
         </div>
+        <p class="sg-today" id="sg-today" hidden></p>
       </div>
       <div class="sg-strip wrap">
         <div class="sg-glass sg-latest" id="sg-latest">
@@ -144,11 +145,11 @@
           <h3 class="sg-hl-title">Festival highlights</h3>
           <ol class="sg-hl">
             <li><b>Oct 16</b><span>Opening Party and Late Night Out</span></li>
-            <li><b>Oct 17</b><span>Fitness and Night Connect (games, masterminds, mixers)</span></li>
-            <li><b>Oct 18</b><span>Island Hopping and Run Club</span></li>
-            <li><b>Oct 19&ndash;22</b><span>Conference days at Isola Del Sole (AI, content, business and wellness talks)</span></li>
-            <li><b>Oct 23</b><span>Wellness Day and Pool Party</span></li>
-            <li><b>Oct 24</b><span>Beach day</span></li>
+            <li><b>Oct 17</b><span>Yoga, a Hyrox class, a cooking lesson, pool coworking and Night Connect</span></li>
+            <li><b>Oct 18</b><span>Island Hopping and Run Club, then an evening party</span></li>
+            <li><b>Oct 19&ndash;22</b><span>Conference days at Isola Del Sole: talks on AI, content, business, health and money, with Unconferences on Oct 22</span></li>
+            <li><b>Oct 23</b><span>Wellness Day: beach yoga, reiki, breathwork and ice bath, then a pool party</span></li>
+            <li><b>Oct 24</b><span>Beach day: optional island trips, a paddle tournament, a biohacking night</span></li>
             <li><b>Oct 25</b><span>Fitness and Beach, then the Closing Party</span></li>
           </ol>
         </div>
@@ -158,7 +159,7 @@
     <!-- Shawn's talk -->
     <section class="sg-talk section" id="talk" aria-labelledby="sg-talk-title">
       <div class="wrap sg-talk-grid">
-        <div class="sg-talk-photo"><img src="images/photos/shawn-arrington-khun-camp-founder.webp" alt="Shawn Arrington, founder of Khun Camp" width="420" height="525" loading="lazy"></div>
+        <div class="sg-talk-photo"><img src="images/photos/shawn-arrington-founder-casual.webp" alt="Shawn Arrington, founder of Khun Camp" width="420" height="455" style="object-position:50% 0%" loading="lazy"></div>
         <div>
           <p class="eyebrow-lg">Shawn's talk</p>
           <h2 class="sg-h2" id="sg-talk-title">Augmenting Yourself: <strong>Building AI Systems Around Your Gift</strong></h2>
@@ -182,6 +183,13 @@
           </noscript>
         </div>
       </div>
+    </section>
+
+    <!-- Moments: filled from the published days' photos by js/siargao.js -->
+    <section class="theme-light wrap section sg-moments" id="sg-moments" aria-labelledby="sg-mo-title" hidden>
+      <p class="eyebrow-lg">From the island</p>
+      <h2 class="sg-h2" id="sg-mo-title">Moments from <strong>the fest</strong></h2>
+      <div class="sg-mo-grid" id="sg-mo-grid"></div>
     </section>
 
     <!-- What we publish -->
@@ -281,6 +289,6 @@
   <script src="js/nav.js?v=7"></script>
   <script src="js/tracking.js?v=2"></script>
   <script src="js/main.js?v=16"></script>
-  <script src="js/siargao.js?v=13"></script>
+  <script src="js/siargao.js?v=15"></script>
 </body>
 </html>

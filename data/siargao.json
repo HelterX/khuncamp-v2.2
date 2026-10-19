@@ -15,7 +15,14 @@
       "image": "images/siargao/day-1-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Opening Party and Late Night Out"
+      "highlight": "Opening Party and Late Night Out",
+      "photos": [
+        "images/siargao/day-1-photo-1.webp",
+        "images/siargao/day-1-photo-2.webp",
+        "images/siargao/day-1-photo-3.webp",
+        "images/siargao/day-1-photo-4.webp",
+        "images/siargao/day-1-photo-5.webp"
+      ]
     },
     {
       "n": 2,
@@ -27,7 +34,14 @@
       "image": "images/siargao/day-2-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Fitness and Night Connect"
+      "highlight": "Yoga, a Hyrox class, a cooking lesson, pool coworking and Night Connect",
+      "photos": [
+        "images/siargao/day-2-photo-1.webp",
+        "images/siargao/day-2-photo-2.webp",
+        "images/siargao/day-2-photo-3.webp",
+        "images/siargao/day-2-photo-4.webp",
+        "images/siargao/day-2-photo-5.webp"
+      ]
     },
     {
       "n": 3,
@@ -39,7 +53,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Island Hopping and Run Club"
+      "highlight": "Island Hopping and Run Club, then an evening party"
     },
     {
       "n": 4,
@@ -51,7 +65,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day at Isola Del Sole. Shawn speaks at 10:00"
+      "highlight": "Conference day at Isola Del Sole: talks on AI, building and growing. Shawn speaks at 10:00"
     },
     {
       "n": 5,
@@ -63,7 +77,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day at Isola Del Sole"
+      "highlight": "Conference day: talks on travel, work, health and money, then trivia and a dance social"
     },
     {
       "n": 6,
@@ -75,7 +89,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day at Isola Del Sole"
+      "highlight": "Conference day: content, investing and remote work, then an evening meetup"
     },
     {
       "n": 7,
@@ -87,7 +101,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day at Isola Del Sole"
+      "highlight": "Morning talks, then Unconferences: sessions led by the people in the room"
     },
     {
       "n": 8,
@@ -99,7 +113,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Wellness Day and Pool Party"
+      "highlight": "Wellness Day: beach yoga, reiki, breathwork and ice bath, then a pool party"
     },
     {
       "n": 9,
@@ -111,7 +125,7 @@
       "image": "",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Beach day"
+      "highlight": "Beach day: optional island trips, a paddle tournament, a biohacking night"
     },
     {
       "n": 10,

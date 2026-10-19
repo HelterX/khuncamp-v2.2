@@ -304,8 +304,9 @@ def main():
     dpath = p('data', 'siargao.json')
     data = json.loads(read(dpath))
     d = data['days'][n - 1]
+    photos = ['images/siargao/day-%d-photo-%d.webp' % (n, i) for i in range(1, 6) if os.path.exists(p('images', 'siargao', 'day-%d-photo-%d.webp' % (n, i)))]
     d.update({'published': True, 'title': title, 'dek': dek, 'url': 'blog/siargao-fest-day-%d' % n, 'image': imgs['thumb'],
-              'clips': 1 if clip else 0, 'testimonials': len(wall)})
+              'clips': 1 if clip else 0, 'testimonials': len(wall), 'photos': photos})
     data['testimonials'] = [t for t in data.get('testimonials', []) if t.get('day') != n] + wall
     write(dpath, json.dumps(data, indent=2, ensure_ascii=False) + '\n')
     print('hub    -> data/siargao.json (day %d published, %d testimonials)' % (n, len(wall)))
