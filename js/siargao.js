@@ -54,7 +54,7 @@
     var past = !d.published && dt < t0 && status !== "upcoming";
     var state = d.published ? "pub" : (!past && i === nextIdx && untilStart <= 0 && status !== "archived" ? "today" : (!d.published && dt.getTime() === t0.getTime() && status === "ongoing" ? "today" : "soon"));
     var pill = state === "pub" ? "Published" : state === "today" ? "Tonight" : past ? "Recap coming" : "Coming";
-    var thumb = d.published && d.image ? '<img src="' + esc(d.image) + '" alt="" loading="lazy">' : '<span class="sg-blank sg-t-' + (THEMES[d.n - 1] || "talk") + '"><b>' + esc(d.n) + "</b></span>";
+    var thumb = d.published && d.image ? '<img src="' + esc(d.image) + '" alt="Photo from the Day ' + esc(d.n) + ' recap" loading="lazy">' : '<span class="sg-blank sg-t-' + (THEMES[d.n - 1] || "talk") + '"><b>' + esc(d.n) + "</b></span>";
     var meta = d.published ?
       (d.clips ? d.clips + " clip" + (d.clips > 1 ? "s" : "") : "") + (d.clips && d.testimonials ? " &middot; " : "") + (d.testimonials ? d.testimonials + " testimonial" + (d.testimonials > 1 ? "s" : "") : "") :
       (d.highlight || "Recap goes live after the day");
