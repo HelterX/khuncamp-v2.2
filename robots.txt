@@ -3,3 +3,14 @@ Allow: /
 Disallow: /tools/
 
 Sitemap: https://khuncamp.com/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /

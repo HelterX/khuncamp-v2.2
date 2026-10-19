@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://khuncamp.com/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -78,7 +78,18 @@
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
-  <url><loc>https://khuncamp.com/siargao</loc></url>
+  <url>
+    <loc>https://khuncamp.com/siargao</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://khuncamp.com/events</loc>
+    <lastmod>2026-10-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url><loc>https://khuncamp.com/case-study</loc></url>
   <url><loc>https://khuncamp.com/blog/siargao-fest-day-1</loc></url>
   <url><loc>https://khuncamp.com/blog/siargao-fest-day-2</loc></url>
