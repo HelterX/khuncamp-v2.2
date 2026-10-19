@@ -27,7 +27,7 @@
           ["Scripts and filming direction", "The shot list and the words", "offer#process"],
           ["Editing and production", "Finished, captioned, ready", "offer#process"],
           ["Posting and community", "On time, replies in your voice", "offer#process"]]]],
-      feat: ["images/photos/process-strategy.webp", "Book a 15-minute call", "We look at your channel first. No pitch until the math works.", "Book a Call", "book?src=nav-offer"] },
+      feat: ["images/photos/process-strategy.webp", "Book a 15-minute call", "We look at your channel first. We look at your channel first, then tell you how we'd run it.", "Book a Call", "book?src=nav-offer"] },
     { label: "Proof", href: "proof", cols: [
         ["The results", [
           ["Case study: 5.6x views in 28 days", "One channel, real Studio numbers", "case-study"],
