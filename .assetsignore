@@ -1,0 +1,8 @@
+.git
+.gitignore
+.claude
+.wrangler
+.playwright-mcp
+worker.js
+wrangler.toml
+tools

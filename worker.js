@@ -10,7 +10,7 @@ const SHORT_LINKS = {
   "/card/siargao": { to: "/siargao", utm: { utm_source: "card", utm_medium: "qr", utm_campaign: "siargao-nomad-fest" } },
 };
 
-export default {
+const handler = {
   async fetch(request, env) {
     const url = new URL(request.url);
 
@@ -78,5 +78,33 @@ export default {
     }
 
     return env.ASSETS.fetch(request);
+  },
+};
+
+// Security headers on every response, plus caching for files that rarely change.
+// css/js are loaded with ?v=NN, so a version bump busts the one-year cache.
+function withHeaders(response, url) {
+  const res = new Response(response.body, response);
+  res.headers.set("X-Content-Type-Options", "nosniff");
+  res.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.headers.set("X-Frame-Options", "SAMEORIGIN");
+  res.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  if (response.status === 200 && !res.headers.has("Set-Cookie")) {
+    const p = url.pathname;
+    if ((p.startsWith("/css/") || p.startsWith("/js/")) && url.searchParams.has("v")) {
+      res.headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    } else if (p.startsWith("/images/") || p.startsWith("/videos/") || /^\/(favicon|apple-touch-icon)/.test(p)) {
+      res.headers.set("Cache-Control", "public, max-age=86400");
+    } else if (p.startsWith("/data/")) {
+      res.headers.set("Cache-Control", "no-cache");
+    }
+  }
+  return res;
+}
+
+export default {
+  async fetch(request, env) {
+    const response = await handler.fetch(request, env);
+    return withHeaders(response, new URL(request.url));
   },
 };
