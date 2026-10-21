@@ -46,38 +46,47 @@
     {
       "n": 3,
       "date": "2026-10-18",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Island hopping day",
+      "dek": "Sunday, Oct 18 was island-hopping day at Siargao Nomad Fest: a boat out of General Luna, a white-sand beach and lunch on the sand.",
+      "url": "blog/siargao-fest-day-3",
+      "image": "images/siargao/day-3-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Island Hopping and Run Club, then an evening party"
+      "highlight": "Island Hopping and Run Club, then an evening party",
+      "photos": [
+        "images/siargao/day-3-photo-1.webp",
+        "images/siargao/day-3-photo-2.webp",
+        "images/siargao/day-3-photo-3.webp",
+        "images/siargao/day-3-photo-4.webp",
+        "images/siargao/day-3-photo-5.webp"
+      ]
     },
     {
       "n": 4,
       "date": "2026-10-19",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Conference day at Isola Del Sole",
+      "dek": "Monday, Oct 19 was the first conference day at Siargao Nomad Fest, with talks on AI and building a business. Shawn spoke at 10:00.",
+      "url": "blog/siargao-fest-day-4",
+      "image": "images/siargao/day-4-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day at Isola Del Sole: talks on AI, building and growing. Shawn speaks at 10:00"
+      "highlight": "Conference day at Isola Del Sole: talks on AI, building and growing. Shawn speaks at 10:00",
+      "photos": []
     },
     {
       "n": 5,
       "date": "2026-10-20",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Conference day two: work, health and money",
+      "dek": "Tuesday, Oct 20 was the second conference day at Siargao Nomad Fest, with talks on travel, work-life balance, health and money.",
+      "url": "blog/siargao-fest-day-5",
+      "image": "images/siargao/day-5-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day: talks on travel, work, health and money, then trivia and a dance social"
+      "highlight": "Conference day: talks on travel, work, health and money, then trivia and a dance social",
+      "photos": []
     },
     {
       "n": 6,
