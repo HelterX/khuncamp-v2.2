@@ -15,6 +15,7 @@
 
 /videos/*
   Cache-Control: public, max-age=86400
+  Accept-Ranges: bytes
 
 /data/*
   Cache-Control: no-cache
