@@ -219,7 +219,7 @@ function khInit() {
         '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
     });
 
-    var vcStart = Math.min(3, vcCards.length - 1);
+    var vcStart = 0; // open on the first card (event work comes first)
     vcSetActive(vcStart);
     vcCenter(vcStart, false);
     window.addEventListener("resize", function () { vcCenter(vcActive, false); });

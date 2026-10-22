@@ -48,7 +48,7 @@
           ["ANANTA", "Official UGC campaign, NetEase", "#partners"],
           ["Southeast Asia", "Vietnam, Thailand, Philippines", "#markets"],
           ["Event media", "On-site media team for nomad fests", "events"]]]],
-      feat: ["images/photos/hero-bts-poster.jpg", "Watch the work, not the pitch", "Seven real shorts. Tap to play.", "See the work", "#work"] },
+      feat: ["images/photos/hero-bts-poster.jpg", "Watch the work, not the pitch", "Real shorts. Tap to play.", "See the work", "#work"] },
     { label: "Founder", href: "founder", cols: [
         ["Shawn Arrington", [
           ["The story", "Army, then a 60,000-subscriber channel", "founder#story"],
