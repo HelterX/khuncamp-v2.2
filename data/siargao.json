@@ -91,14 +91,15 @@
     {
       "n": 6,
       "date": "2026-10-21",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Conference day three: content, money and remote work",
+      "dek": "Wednesday, Oct 21 was the third conference day at Siargao Nomad Fest, with talks on content, investing and working across cultures.",
+      "url": "blog/siargao-fest-day-6",
+      "image": "images/siargao/day-6-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Conference day: content, investing and remote work, then an evening meetup"
+      "highlight": "Conference day: content, investing and remote work, then an evening meetup",
+      "photos": []
     },
     {
       "n": 7,
