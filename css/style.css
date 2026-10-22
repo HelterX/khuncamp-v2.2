@@ -1787,3 +1787,15 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
   .xv-item { grid-template-columns: 5rem 1fr auto; }
 }
 @media (prefers-reduced-motion: reduce) { .xv-poster img, .xv-play, .xv-chip { transition: none; } }
+
+/* ---- recap cross-links (internal SEO block) ---- */
+.rc-all { margin-top: 3rem; padding: 1.6rem 1.8rem; border: 1px solid var(--hairline, rgba(0, 0, 0, 0.12)); border-radius: 16px; background: rgba(212, 175, 55, 0.07); }
+.rc-all h2 { font-size: 1.25rem; font-weight: 800; margin: 0 0 0.9rem; }
+.rc-all-list { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.4rem; }
+.rc-all-list a { color: var(--ink-warm, #131110); font-weight: 600; text-decoration: underline; text-decoration-color: rgba(212, 175, 55, 0.7); text-underline-offset: 3px; }
+.rc-all-list a:hover { text-decoration-color: currentColor; }
+.rc-all-list li[aria-current] { color: var(--ink-warm, #131110); }
+.rc-all-list .soon { color: #7a6f60; }
+.rc-all-pn, .rc-all-more { margin: 1rem 0 0; font-size: 0.92rem; display: flex; gap: 0.4rem 0.6rem; flex-wrap: wrap; }
+.rc-all-pn a, .rc-all-more a { font-weight: 700; color: var(--ink-warm, #131110); text-decoration: underline; text-decoration-color: rgba(212, 175, 55, 0.7); text-underline-offset: 3px; }
+.sg-blog-recaps .rc-all-list { margin-top: 1rem; }

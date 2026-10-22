@@ -182,11 +182,118 @@ def image_set(src, n, tag, cover):
     return out
 
 
+# ---- internal linking: every recap links to every other day, the hub, and the events page ----
+SG_RX = re.compile(r'<!--SG-LINKS-->.*?<!--/SG-LINKS-->', re.S)
+WK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+MO = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+
+def day_label(d):
+    dt = datetime.date.fromisoformat(d['date'])
+    return 'Day %d, %s %s %d' % (d['n'], WK[dt.weekday()], MO[dt.month - 1], dt.day)
+
+
+def links_block(data, mode, current=None):
+    days = data['days']
+    if mode == 'recap':
+        pre, hub, ev, home = '', '../siargao', '../events', '../'
+    else:
+        pre, hub, ev, home = 'blog/', 'siargao', 'events', './'
+    if mode == 'recap':
+        lis = ''
+        for d in days:
+            lab = day_label(d)
+            if d.get('published'):
+                title = d.get('title', '')
+                if d['n'] == current:
+                    lis += '          <li aria-current="page"><b>%s: %s</b> (you are here)</li>\n' % (lab, esc(title))
+                else:
+                    lis += '          <li><a href="%ssiargao-fest-day-%d">%s: %s</a></li>\n' % (pre, d['n'], lab, esc(title))
+            else:
+                lis += '          <li class="soon">%s: recap coming</li>\n' % lab
+        pub = [d for d in days if d.get('published')]
+        prev = [d for d in pub if d['n'] < (current or 99)]
+        nxt = [d for d in pub if d['n'] > (current or 0)]
+        pn = ''
+        if prev:
+            q = prev[-1]
+            pn += '<a href="%ssiargao-fest-day-%d">&larr; Previous: %s</a>' % (pre, q['n'], esc(day_label(q) + ': ' + q.get('title', '')))
+        if nxt:
+            q = nxt[0]
+            pn += ('<span> &middot; </span>' if pn else '') + '<a href="%ssiargao-fest-day-%d">Next: %s &rarr;</a>' % (pre, q['n'], esc(day_label(q) + ': ' + q.get('title', '')))
+        return ('<!--SG-LINKS-->\n      <nav class="rc-all" aria-label="All recaps from Nomads in Paradise 2026 in Siargao">\n'
+                '        <h2>All the recaps from Nomads in Paradise 2026</h2>\n        <ol class="rc-all-list">\n%s        </ol>\n'
+                '        <p class="rc-all-pn">%s</p>\n'
+                '        <p class="rc-all-more"><a href="%s">Siargao Nomad Fest hub: all ten days</a> &middot; <a href="%s">Khun Camp, the on-site media team</a> &middot; <a href="%s">Khun Camp home</a></p>\n'
+                '      </nav>\n      <!--/SG-LINKS-->') % (lis, pn, hub, ev, home)
+    if mode == 'events':
+        items = '<div class="item"><h3><a href="%s">Siargao Nomad Fest daily recaps</a></h3><p>The festival hub: every day, one recap.</p></div>\n' % hub
+        for d in days:
+            if d.get('published'):
+                items += '          <div class="item"><h3><a href="%ssiargao-fest-day-%d">%s: %s</a></h3><p>%s</p></div>\n' % (pre, d['n'], day_label(d), esc(d.get('title', '')), esc(d.get('dek', '')))
+        return '<!--SG-LINKS-->' + items.rstrip('\n') + '<!--/SG-LINKS-->'
+    # blog index
+    lis = ''
+    for d in days:
+        if d.get('published'):
+            lis += '          <li><a href="%ssiargao-fest-day-%d">%s: %s</a></li>\n' % (pre, d['n'], day_label(d), esc(d.get('title', '')))
+    return ('<!--SG-LINKS-->\n        <ul class="rc-all-list">\n%s        </ul>\n        <p class="rc-all-more"><a href="%s">Siargao Nomad Fest hub: all ten days</a> &middot; <a href="%s">Event media team</a></p>\n      <!--/SG-LINKS-->') % (lis, hub, ev)
+
+
+def relink_all():
+    data = json.loads(read(p('data', 'siargao.json')))
+    n_done = 0
+    for d in data['days']:
+        if not d.get('published'):
+            continue
+        path = p('blog', 'siargao-fest-day-%d.html' % d['n'])
+        if not os.path.exists(path):
+            continue
+        s = read(path)
+        crlf = '\r\n' in s
+        s = s.replace('\r\n', '\n')
+        if SG_RX.search(s):
+            s = SG_RX.sub(lambda m: links_block(data, 'recap', d['n']), s, count=1)
+            write(path, s.replace('\n', '\r\n') if crlf else s)
+            n_done += 1
+    for fname, mode in (('events.html', 'events'), ('blog.html', 'blog')):
+        path = p(fname)
+        s = read(path)
+        crlf = '\r\n' in s
+        s = s.replace('\r\n', '\n')
+        if SG_RX.search(s):
+            s = SG_RX.sub(lambda m: links_block(data, mode), s, count=1)
+            write(path, s.replace('\n', '\r\n') if crlf else s)
+            n_done += 1
+    # sitemap: fresh lastmod for the hub, the events page and every published recap
+    sm = read(p('sitemap.xml'))
+    nl = '\r\n' if '\r\n' in sm else '\n'
+    sm = sm.replace('\r\n', '\n')
+    today = datetime.date.today().isoformat()
+    urls = ['https://khuncamp.com/siargao', 'https://khuncamp.com/events', 'https://khuncamp.com/blog'] + ['https://khuncamp.com/blog/siargao-fest-day-%d' % d['n'] for d in data['days'] if d.get('published')]
+    for u in urls:
+        m = re.search(r'<url>\s*<loc>%s</loc>(.*?)</url>' % re.escape(u), sm, re.S)
+        if not m:
+            continue
+        inner = m.group(1)
+        if '<lastmod>' in inner:
+            inner2 = re.sub(r'<lastmod>[^<]*</lastmod>', '<lastmod>%s</lastmod>' % today, inner)
+        else:
+            inner2 = '<lastmod>%s</lastmod>' % today + inner
+        sm = sm[:m.start(1)] + inner2 + sm[m.end(1):]
+    write(p('sitemap.xml'), sm.replace('\n', nl))
+    print('relinked %d pages; sitemap dates refreshed' % n_done)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('day_file')
     ap.add_argument('--draft', action='store_true', help='build the page but do not change the hub data')
+    ap.add_argument('--relink', action='store_true', help='only refresh the cross-links and sitemap dates on all pages')
     a = ap.parse_args()
+    if a.relink:
+        relink_all()
+        return
 
     os.makedirs(p('images', 'siargao'), exist_ok=True)
     day = json.loads(read(a.day_file))
@@ -262,20 +369,35 @@ def main():
 
     css_v = re.search(r'style\.css\?v=(\d+)', read(p('index.html'))).group(1)
     desc = dek if len(dek) <= 160 else dek[:157].rstrip() + '...'
+    page_url = 'https://khuncamp.com/blog/siargao-fest-day-%d' % n
+    event = {'@type': 'Event', 'name': 'Nomads in Paradise 2026 (Siargao Nomad Fest)', 'startDate': '2026-10-16', 'endDate': '2026-10-25',
+             'location': {'@type': 'Place', 'name': 'Siargao Island', 'address': {'@type': 'PostalAddress', 'addressCountry': 'PH'}},
+             'organizer': {'@type': 'Organization', 'name': 'Nomads in Paradise'}, 'url': 'https://khuncamp.com/siargao'}
     ld = json.dumps({
         '@context': 'https://schema.org', '@type': 'Article',
-        'headline': '%s (Siargao Nomad Fest)' % title_full, 'description': desc,
-        'image': 'https://khuncamp.com/' + imgs['og'],
+        'headline': '%s (Nomads in Paradise 2026, Siargao)' % title_full, 'description': desc,
+        'image': 'https://khuncamp.com/' + imgs['og'], 'url': page_url, 'mainEntityOfPage': page_url,
         'author': {'@type': 'Person', 'name': 'Shawn Arrington'},
-        'publisher': {'@type': 'Organization', 'name': 'Khun Camp'},
-        'datePublished': date.isoformat(),
-        'about': {'@type': 'Event', 'name': 'Siargao Nomad Fest', 'startDate': '2026-10-16', 'endDate': '2026-10-25'}
+        'publisher': {'@id': 'https://khuncamp.com/#org'},
+        'datePublished': date.isoformat(), 'dateModified': datetime.date.today().isoformat(),
+        'isPartOf': {'@type': 'CreativeWorkSeries', 'name': 'Siargao Nomad Fest 2026 daily recaps', 'url': 'https://khuncamp.com/siargao'},
+        'about': event
     }, ensure_ascii=False)
+    ld2 = json.dumps({
+        '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+        'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Khun Camp', 'item': 'https://khuncamp.com/'},
+            {'@type': 'ListItem', 'position': 2, 'name': 'Siargao Nomad Fest 2026', 'item': 'https://khuncamp.com/siargao'},
+            {'@type': 'ListItem', 'position': 3, 'name': title_full, 'item': page_url}]
+    }, ensure_ascii=False)
+    _data = json.loads(read(p('data', 'siargao.json')))
+    _data['days'][n - 1].setdefault('published', True)
+    links = links_block(_data, 'recap', n)
 
     tpl = read(p('tools', 'siargao-recap.template.html')).replace('\r\n', '\n')
     rep = {
         '{{N}}': str(n), '{{N2}}': '%02d' % n, '{{TITLE}}': esc(title), '{{TITLE_FULL}}': esc(title_full), '{{GALLERY}}': gallery_html.rstrip('\n'), '{{DEK}}': esc(dek), '{{DESC}}': esc(desc),
-        '{{DATE_LONG}}': date_long, '{{READ}}': str(read_min), '{{CSS_V}}': css_v, '{{LD}}': ld.replace('</', '<\\/'),
+        '{{DATE_LONG}}': date_long, '{{READ}}': str(read_min), '{{CSS_V}}': css_v, '{{LD}}': ld.replace('</', '<\\/'), '{{LD2}}': ld2.replace('</', '<\\/'), '{{LINKS}}': links,
         '{{HERO_ALT}}': esc(day.get('hero_alt', 'Siargao Island, Day %d of Siargao Nomad Fest' % n)),
         '{{BODY}}': ''.join('        ' + l + '\n' for l in body.rstrip('\n').split('\n')).rstrip('\n'),
         '{{CLIP}}': clip.rstrip('\n'), '{{PEOPLE}}': people_html.rstrip('\n'), '{{PULL}}': pull.rstrip('\n'),
@@ -309,6 +431,7 @@ def main():
               'clips': 1 if clip else 0, 'testimonials': len(wall), 'photos': photos})
     data['testimonials'] = [t for t in data.get('testimonials', []) if t.get('day') != n] + wall
     write(dpath, json.dumps(data, indent=2, ensure_ascii=False) + '\n')
+    relink_all()
     print('hub    -> data/siargao.json (day %d published, %d testimonials)' % (n, len(wall)))
 
     # sitemap
