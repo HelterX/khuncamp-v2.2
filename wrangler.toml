@@ -6,3 +6,4 @@ main = "worker.js"
 directory = "."
 binding = "ASSETS"
 html_handling = "none"
+run_worker_first = ["/videos/*"]
