@@ -1,6 +1,6 @@
 // Khun Camp ad tracking: Meta Pixel + GA4, UTM capture for the forms, form-conversion and booking-click events.
 //
-// TO TURN ON: paste the two IDs below. While both are empty this file does nothing except
+// TO TURN ON: paste the IDs below (Meta Pixel, GA4, LinkedIn Insight Tag). While both are empty this file does nothing except
 // remember UTM values for the forms: no trackers load and no cookie banner is shown.
 //
 // REQUIRE_CONSENT = true shows an accept / decline banner and loads Meta and Google only after
@@ -11,6 +11,7 @@
   var CFG = {
     META_PIXEL_ID: "",   // e.g. "123456789012345"
     GA4_ID: "G-4E4X3M9133", // e.g. "G-XXXXXXXXXX"
+    LINKEDIN_PARTNER_ID: "", // LinkedIn Insight Tag partner ID, e.g. "1234567"
     REQUIRE_CONSENT: true
   };
 
@@ -107,6 +108,19 @@
       window.fbq("track", "PageView");
       log("Meta Pixel loaded", CFG.META_PIXEL_ID);
     }
+    if (CFG.LINKEDIN_PARTNER_ID) {
+      window._linkedin_partner_id = CFG.LINKEDIN_PARTNER_ID;
+      window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+      window._linkedin_data_partner_ids.push(CFG.LINKEDIN_PARTNER_ID);
+      (function (l) {
+        if (!l) { window.lintrk = function (a, b) { window.lintrk.q.push([a, b]); }; window.lintrk.q = []; }
+        var first = document.getElementsByTagName("script")[0];
+        var b = document.createElement("script");
+        b.async = true; b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+        first.parentNode.insertBefore(b, first);
+      })(window.lintrk);
+      log("LinkedIn Insight Tag loaded", CFG.LINKEDIN_PARTNER_ID);
+    }
     var q = queue; queue = [];
     q.forEach(function (x) { send(x[0], x[1]); });
   }
@@ -142,7 +156,11 @@
     if (first && DEBUG) log("banner shown");
   }
   function tools() {
-    return CFG.META_PIXEL_ID && CFG.GA4_ID ? "Meta and Google tools" : CFG.META_PIXEL_ID ? "Meta tools" : "Google Analytics";
+    var n = [];
+    if (CFG.GA4_ID) n.push("Google Analytics");
+    if (CFG.META_PIXEL_ID) n.push("Meta tools");
+    if (CFG.LINKEDIN_PARTNER_ID) n.push("LinkedIn tools");
+    return n.length > 1 ? n.slice(0, -1).join(", ") + " and " + n[n.length - 1] : (n[0] || "analytics tools");
   }
   function base() {
     var s = document.currentScript || document.querySelector('script[src*="tracking.js"]');
@@ -176,7 +194,7 @@
     }
 
     // let people change their mind
-    if (CFG.REQUIRE_CONSENT && (CFG.META_PIXEL_ID || CFG.GA4_ID)) {
+    if (CFG.REQUIRE_CONSENT && (CFG.META_PIXEL_ID || CFG.GA4_ID || CFG.LINKEDIN_PARTNER_ID)) {
       var legal = document.querySelector(".footer-editorial-legal");
       if (legal) {
         var link = document.createElement("a");
@@ -190,7 +208,7 @@
 
   function start() {
     wire();
-    if (!CFG.META_PIXEL_ID && !CFG.GA4_ID) { log("no IDs set: trackers off"); return; }
+    if (!CFG.META_PIXEL_ID && !CFG.GA4_ID && !CFG.LINKEDIN_PARTNER_ID) { log("no IDs set: trackers off"); return; }
     if (!CFG.REQUIRE_CONSENT) { loadTrackers(); return; }
     var c = get("localStorage", CONSENT_KEY);
     if (c === "granted") loadTrackers();
