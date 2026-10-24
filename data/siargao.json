@@ -104,26 +104,28 @@
     {
       "n": 7,
       "date": "2026-10-22",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "The last conference day, then Unconferences",
+      "dek": "Thursday, Oct 22 was the last conference day at Siargao Nomad Fest, with morning talks and an afternoon of Unconferences.",
+      "url": "blog/siargao-fest-day-7",
+      "image": "images/siargao/day-7-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Morning talks, then Unconferences: sessions led by the people in the room"
+      "highlight": "Morning talks, then Unconferences: sessions led by the people in the room",
+      "photos": []
     },
     {
       "n": 8,
       "date": "2026-10-23",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Wellness Day: sunrise yoga to a pool party",
+      "dek": "Friday, Oct 23 was Wellness Day at Siargao Nomad Fest: sunrise yoga, a beach sports day, an ice bath and a pool party.",
+      "url": "blog/siargao-fest-day-8",
+      "image": "images/siargao/day-8-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Wellness Day: beach yoga, reiki, breathwork and ice bath, then a pool party"
+      "highlight": "Wellness Day: beach yoga, reiki, breathwork and ice bath, then a pool party",
+      "photos": []
     },
     {
       "n": 9,
