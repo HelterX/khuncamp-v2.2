@@ -112,7 +112,11 @@
       "clips": 0,
       "testimonials": 0,
       "highlight": "Morning talks, then Unconferences: sessions led by the people in the room",
-      "photos": []
+      "photos": [
+        "images/siargao/day-7-photo-1.webp",
+        "images/siargao/day-7-photo-2.webp",
+        "images/siargao/day-7-photo-3.webp"
+      ]
     },
     {
       "n": 8,
@@ -130,14 +134,15 @@
     {
       "n": 9,
       "date": "2026-10-24",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Beach day: island trips, a tournament and a foam party",
+      "dek": "Saturday, Oct 24 was the beach day at Siargao Nomad Fest: optional island trips, a morning tournament, a biohacking night and a foam party.",
+      "url": "blog/siargao-fest-day-9",
+      "image": "images/siargao/day-9-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Beach day: optional island trips, a paddle tournament, a biohacking night"
+      "highlight": "Beach day: optional island trips, a paddle tournament, a biohacking night",
+      "photos": []
     },
     {
       "n": 10,
