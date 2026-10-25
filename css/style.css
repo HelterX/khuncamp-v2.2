@@ -1799,3 +1799,26 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .rc-all-pn, .rc-all-more { margin: 1rem 0 0; font-size: 0.92rem; display: flex; gap: 0.4rem 0.6rem; flex-wrap: wrap; }
 .rc-all-pn a, .rc-all-more a { font-weight: 700; color: var(--ink-warm, #131110); text-decoration: underline; text-decoration-color: rgba(212, 175, 55, 0.7); text-underline-offset: 3px; }
 .sg-blog-recaps .rc-all-list { margin-top: 1rem; }
+
+/* ---- Siargao "From the island": vertical clip row ---- */
+.sg-reels { padding-top: 4rem; padding-bottom: 4rem; }
+.sg-reels[hidden] { display: none; }
+.sg-reels-sub { color: #5c5246; max-width: 42rem; line-height: 1.55; margin: 0.6rem 0 0; }
+.sg-reel-row { display: flex; gap: 1rem; margin-top: 2rem; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.8rem; -webkit-overflow-scrolling: touch; }
+.sg-reel-card { flex: 0 0 calc((100% - 4rem) / 5); min-width: 11.5rem; scroll-snap-align: start; }
+.sg-reel { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.sg-reel-v { position: relative; display: block; aspect-ratio: 9 / 16; border-radius: 18px; overflow: hidden; background: #1a1816 center / cover no-repeat; box-shadow: 0 18px 40px rgba(19, 17, 16, 0.18); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.sg-reel:hover .sg-reel-v, .sg-reel:focus-visible .sg-reel-v { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(19, 17, 16, 0.26); }
+.sg-reel:focus-visible { outline: 3px solid var(--brass, #d4af37); outline-offset: 4px; border-radius: 18px; }
+.sg-reel-v::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0) 32%, rgba(0, 0, 0, 0.5)); }
+.sg-reel-tag { position: absolute; z-index: 2; left: 0.7rem; top: 0.7rem; padding: 0.3rem 0.6rem; border-radius: 6px; background: rgba(10, 10, 10, 0.58); color: #fff; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.sg-reel-play { position: absolute; z-index: 2; left: 50%; top: 50%; width: 3.6rem; height: 3.6rem; margin: -1.8rem 0 0 -1.8rem; border-radius: 50%; background: var(--brass, #d4af37); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35); transition: transform 0.25s ease; }
+.sg-reel-play::after { content: ""; position: absolute; left: 50%; top: 50%; margin: -0.6rem 0 0 -0.35rem; border-left: 1.05rem solid #131110; border-top: 0.62rem solid transparent; border-bottom: 0.62rem solid transparent; }
+.sg-reel:hover .sg-reel-play { transform: scale(1.1); }
+.sg-reel-dur { position: absolute; z-index: 2; right: 0.6rem; bottom: 0.6rem; padding: 0.2rem 0.6rem; border-radius: 999px; background: rgba(0, 0, 0, 0.62); color: #fff; font-size: 0.78rem; font-weight: 700; }
+.sg-reel-cap { margin: 0.8rem 0 0; }
+.sg-reel-cap b { display: block; font-size: 0.95rem; }
+.sg-reel-cap small { color: #6a5f4f; font-size: 0.82rem; }
+.xv-lb-v .xv-lb-in { width: auto; aspect-ratio: 9 / 16; height: min(88vh, 860px); max-width: 100%; }
+@media (max-width: 700px) { .sg-reel-card { flex-basis: 62%; } .sg-reels { padding-top: 3rem; padding-bottom: 3rem; } }
+@media (prefers-reduced-motion: reduce) { .sg-reel-v, .sg-reel-play { transition: none; } }

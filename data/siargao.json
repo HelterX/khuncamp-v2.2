@@ -162,5 +162,47 @@
   "official_name": "Nomads in Paradise 2026",
   "photos_label": "Get your free festival photos",
   "photos_from": "2026-10-16",
-  "photos_until": "2026-10-31"
+  "photos_until": "2026-10-31",
+  "reels": [
+    {
+      "src": "videos/siargao/island-1.webm",
+      "poster": "images/siargao/reel-1.webp",
+      "title": "Landing on the island",
+      "sub": "Island hopping day",
+      "day": 3,
+      "dur": "0:07"
+    },
+    {
+      "src": "videos/siargao/island-2.webm",
+      "poster": "images/siargao/reel-2.webp",
+      "title": "Over the reef",
+      "sub": "Island hopping day",
+      "day": 3,
+      "dur": "0:09"
+    },
+    {
+      "src": "videos/siargao/island-3.webm",
+      "poster": "images/siargao/reel-3.webp",
+      "title": "Fresh coconut",
+      "sub": "Island hopping day",
+      "day": 3,
+      "dur": "0:09"
+    },
+    {
+      "src": "videos/siargao/island-4.webm",
+      "poster": "images/siargao/reel-4.webp",
+      "title": "Shells on the rocks",
+      "sub": "Island hopping day",
+      "day": 3,
+      "dur": "0:07"
+    },
+    {
+      "src": "videos/siargao/island-5.webm",
+      "poster": "images/siargao/reel-5.webp",
+      "title": "Clear water",
+      "sub": "Island hopping day",
+      "day": 3,
+      "dur": "0:08"
+    }
+  ]
 }

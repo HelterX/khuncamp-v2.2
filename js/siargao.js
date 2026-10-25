@@ -81,6 +81,78 @@
       (linkHtml ? '<p class="sg-t-links">' + linkHtml + "</p>" : "") + "</div></article>";
   }
 
+  // ---- "From the island": vertical clips from data.reels (self-hosted WebM) plus owner testimonials (YouTube) ----
+  var reelLb = null, reelLast = null;
+  function reelClose() {
+    if (!reelLb) return;
+    var v = reelLb.querySelector("video");
+    if (v) { v.pause(); v.removeAttribute("src"); v.load(); }
+    if (reelLb.parentNode) reelLb.parentNode.removeChild(reelLb);
+    reelLb = null;
+    document.removeEventListener("keydown", reelKey);
+    document.documentElement.classList.remove("xv-lock");
+    if (reelLast) { try { reelLast.focus(); } catch (e) {} }
+  }
+  function reelKey(e) { if (e.key === "Escape") reelClose(); }
+  function reelOpen(btn) {
+    reelClose();
+    reelLast = btn;
+    var title = btn.getAttribute("data-title") || "Siargao clip";
+    reelLb = document.createElement("div");
+    reelLb.className = "xv-lb xv-lb-v"; reelLb.setAttribute("role", "dialog"); reelLb.setAttribute("aria-modal", "true"); reelLb.setAttribute("aria-label", title);
+    var inner = document.createElement("div"); inner.className = "xv-lb-in";
+    var x = document.createElement("button"); x.type = "button"; x.className = "xv-x"; x.setAttribute("aria-label", "Close video"); x.innerHTML = "&times;";
+    x.addEventListener("click", reelClose);
+    inner.appendChild(x);
+    if (btn.getAttribute("data-kind") === "yt") {
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(btn.getAttribute("data-id")) + "?autoplay=1&playsinline=1&rel=0&modestbranding=1";
+      f.title = title; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
+      f.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0";
+      inner.appendChild(f);
+    } else {
+      var v = document.createElement("video");
+      v.controls = true; v.autoplay = true; v.loop = true; v.playsInline = true; v.preload = "auto";
+      v.poster = btn.getAttribute("data-poster") || ""; v.src = btn.getAttribute("data-src");
+      v.setAttribute("aria-label", title);
+      inner.appendChild(v);
+    }
+    reelLb.appendChild(inner);
+    reelLb.addEventListener("click", function (e) { if (e.target === reelLb) reelClose(); });
+    document.body.appendChild(reelLb);
+    document.documentElement.classList.add("xv-lock");
+    document.addEventListener("keydown", reelKey);
+    x.focus();
+    try { if (window.KC && KC.track) KC.track({ ga: "siargao_reel_play", meta: "SiargaoReelPlay" }, { clip: title }); } catch (e) {}
+  }
+  function renderReels(data) {
+    var sec = $("reels"), row = $("sg-reel-row");
+    if (!sec || !row) return;
+    var webm = false;
+    try { webm = !!document.createElement("video").canPlayType('video/webm; codecs="vp9"'); } catch (e) {}
+    var items = [];
+    (data.testimonials || []).slice().reverse().forEach(function (t) {
+      if (t.videoId) items.push({ kind: "yt", id: t.videoId, poster: t.image, title: t.name + (t.business ? ", " + t.business : ""), tag: "Day " + t.day + " \u00b7 Owner", sub: "In their own words", dur: "" });
+    });
+    if (webm) (data.reels || []).forEach(function (r) {
+      items.push({ kind: "clip", src: r.src, poster: r.poster, title: r.title, tag: "Day " + r.day, sub: r.sub || "", dur: r.dur || "" });
+    });
+    if (!items.length) { sec.hidden = true; return; }
+    row.innerHTML = items.map(function (it) {
+      return '<div class="sg-reel-card"><button type="button" class="sg-reel" data-kind="' + it.kind + '" data-title="' + esc(it.title) + '"' +
+        (it.kind === "yt" ? ' data-id="' + esc(it.id) + '"' : ' data-src="' + esc(abs(it.src)) + '" data-poster="' + esc(abs(it.poster)) + '"') +
+        ' aria-label="Play: ' + esc(it.title) + '"><span class="sg-reel-v" style="background-image:url(\'' + esc(abs(it.poster) || "") + '\')">' +
+        '<span class="sg-reel-tag">' + esc(it.tag) + '</span><span class="sg-reel-play" aria-hidden="true"></span>' +
+        (it.dur ? '<span class="sg-reel-dur">' + esc(it.dur) + "</span>" : "") + '</span></button>' +
+        '<p class="sg-reel-cap"><b>' + esc(it.title) + "</b>" + (it.sub ? "<small>" + esc(it.sub) + "</small>" : "") + "</p></div>";
+    }).join("");
+    sec.hidden = false;
+    if (!row.__bound) {
+      row.__bound = true;
+      row.addEventListener("click", function (e) { var b = e.target.closest(".sg-reel"); if (b) reelOpen(b); });
+    }
+  }
+
   function render(data) {
     (data.days || []).forEach(function (d) { d.url = abs(d.url); d.image = abs(d.image); });
     (data.testimonials || []).forEach(function (t) { t.image = abs(t.image); });
@@ -220,6 +292,8 @@
     [].forEach.call(document.querySelectorAll(".js-photos"), function (a) {
       if (showPhotos) { a.href = photosUrl; a.target = "_blank"; a.rel = "noopener"; if (data.photos_label) a.textContent = data.photos_label; a.hidden = false; } else { a.hidden = true; }
     });
+
+    renderReels(data);
 
     // testimonial wall
     var list = (data.testimonials || []).slice().reverse();
