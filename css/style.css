@@ -1844,3 +1844,5 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .sg-iv-grid { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1.2rem; }
 .sg-film-card.is-sm .sg-film-cap b { font-size: 0.95rem; }
 @media (prefers-reduced-motion: reduce) { .sg-film-v { transition: none; } }
+.xv-lb-d .xv-x { left: 0.7rem; right: auto; }
+.sg-films .sg-h2 { max-width: none; }

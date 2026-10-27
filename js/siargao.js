@@ -99,14 +99,14 @@
     reelLast = btn;
     var title = btn.getAttribute("data-title") || "Siargao clip";
     reelLb = document.createElement("div");
-    reelLb.className = btn.getAttribute("data-wide") ? "xv-lb" : "xv-lb xv-lb-v"; reelLb.setAttribute("role", "dialog"); reelLb.setAttribute("aria-modal", "true"); reelLb.setAttribute("aria-label", title);
+    reelLb.className = btn.getAttribute("data-wide") ? "xv-lb" + (btn.getAttribute("data-kind") === "drive" ? " xv-lb-d" : "") : "xv-lb xv-lb-v"; reelLb.setAttribute("role", "dialog"); reelLb.setAttribute("aria-modal", "true"); reelLb.setAttribute("aria-label", title);
     var inner = document.createElement("div"); inner.className = "xv-lb-in";
     var x = document.createElement("button"); x.type = "button"; x.className = "xv-x"; x.setAttribute("aria-label", "Close video"); x.innerHTML = "&times;";
     x.addEventListener("click", reelClose);
     inner.appendChild(x);
-    if (btn.getAttribute("data-kind") === "yt") {
+    if (btn.getAttribute("data-kind") === "yt" || btn.getAttribute("data-kind") === "drive") {
       var f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(btn.getAttribute("data-id")) + "?autoplay=1&playsinline=1&rel=0&modestbranding=1";
+      f.src = btn.getAttribute("data-kind") === "drive" ? "https://drive.google.com/file/d/" + encodeURIComponent(btn.getAttribute("data-id")) + "/preview" : "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(btn.getAttribute("data-id")) + "?autoplay=1&playsinline=1&rel=0&modestbranding=1";
       f.title = title; f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen = true;
       f.style.cssText = "position:absolute;inset:0;width:100%;height:100%;border:0";
       inner.appendChild(f);
@@ -161,8 +161,8 @@
     img.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
   }
   function filmCard(f, small) {
-    return '<div class="sg-film-card' + (small ? " is-sm" : "") + '"><button type="button" class="sg-film" data-kind="yt" data-wide="1" data-id="' + esc(f.videoId) + '" data-title="' + esc(f.title) + '" aria-label="Play: ' + esc(f.title) + '">' +
-      '<span class="sg-film-v" data-yt="' + esc(f.videoId) + '"><span class="sg-reel-play" aria-hidden="true"></span>' +
+    return '<div class="sg-film-card' + (small ? " is-sm" : "") + '"><button type="button" class="sg-film" data-kind="' + (f.videoId ? "yt" : "drive") + '" data-wide="1" data-id="' + esc(f.videoId || f.driveId) + '" data-title="' + esc(f.title) + '" aria-label="Play: ' + esc(f.title) + '">' +
+      '<span class="sg-film-v"' + (f.videoId && !f.poster ? ' data-yt="' + esc(f.videoId) + '"' : "") + (f.poster ? ' style="background-image:url(&quot;' + esc(abs(f.poster)) + '&quot;)"' : "") + '><span class="sg-reel-play" aria-hidden="true"></span>' +
       (f.dur ? '<span class="sg-reel-dur">' + esc(f.dur) + "</span>" : "") + '</span></button>' +
       '<p class="sg-film-cap"><b>' + esc(f.title) + "</b>" + (f.sub ? "<small>" + esc(f.sub) + "</small>" : "") + "</p>" +
       (!small && f.desc ? '<p class="sg-film-desc">' + esc(f.desc) + "</p>" : "") + "</div>";
@@ -170,26 +170,26 @@
   function renderFilms(data) {
     var sec = $("films"), grid = $("sg-film-grid");
     if (!sec || !grid) return;
-    var films = (data.films || []).filter(function (f) { return f.videoId; });
-    var ivs = (data.interviews || []).filter(function (f) { return f.videoId; });
+    var films = (data.films || []).filter(function (f) { return f.videoId || f.driveId; });
+    var ivs = (data.interviews || []).filter(function (f) { return f.videoId || f.driveId; });
     if (!films.length && !ivs.length) { sec.hidden = true; return; }
     grid.innerHTML = films.map(function (f) { return filmCard(f, false); }).join("");
     grid.hidden = !films.length;
     var ivBox = $("sg-iv"), ivGrid = $("sg-iv-grid");
     if (ivBox && ivGrid) {
       ivGrid.innerHTML = ivs.map(function (f) {
-        return filmCard({ videoId: f.videoId, title: f.speaker || f.title, sub: f.title && f.speaker ? f.title : "", dur: f.dur }, true);
+        return filmCard({ videoId: f.videoId, driveId: f.driveId, poster: f.poster, title: f.speaker || f.title, sub: f.title && f.speaker ? f.title : "", dur: f.dur }, true);
       }).join("");
       ivBox.hidden = !ivs.length;
     }
     sec.hidden = false;
-    Array.prototype.forEach.call(sec.querySelectorAll(".sg-film-v"), function (el) { ytThumb(el.getAttribute("data-yt"), el); });
+    Array.prototype.forEach.call(sec.querySelectorAll(".sg-film-v[data-yt]"), function (el) { ytThumb(el.getAttribute("data-yt"), el); });
     if (!sec.__bound) {
       sec.__bound = true;
       sec.addEventListener("click", function (e) { var b = e.target.closest(".sg-film"); if (b) reelOpen(b); });
     }
     // VideoObject schema for every listed video (the page text above describes each one)
-    var all = films.concat(ivs.map(function (f) { return { videoId: f.videoId, title: (f.speaker ? f.speaker + ": " : "") + f.title, desc: f.desc || "Interview from Nomads in Paradise 2026 in Siargao.", iso: f.iso, date: f.date }; }));
+    var all = films.filter(function (f) { return f.videoId; }).concat(ivs.filter(function (f) { return f.videoId; }).map(function (f) { return { videoId: f.videoId, title: (f.speaker ? f.speaker + ": " : "") + f.title, desc: f.desc || "Interview from Nomads in Paradise 2026 in Siargao.", iso: f.iso, date: f.date }; }));
     var ld = all.map(function (f) {
       var o = { "@type": "VideoObject", name: f.title, description: f.desc || f.title,
         thumbnailUrl: "https://i.ytimg.com/vi/" + f.videoId + "/maxresdefault.jpg", uploadDate: f.date || "2026-10-26",

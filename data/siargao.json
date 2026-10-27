@@ -172,7 +172,9 @@
       "iso": "PT4M30S",
       "date": "2026-10-26",
       "desc": "The Nomads in Paradise 2026 Island Adventure film, shot and edited by the Khun Camp on-site media team.",
-      "videoId": ""
+      "videoId": "",
+      "driveId": "10aCQN98OudFiSwUTiqb4ZMPw5PkDcHfr",
+      "poster": "images/siargao/day-3-hero.webp"
     },
     {
       "id": "business",
@@ -181,7 +183,9 @@
       "iso": "PT4M16S",
       "date": "2026-10-26",
       "desc": "The business side of nomad life, from Nomads in Paradise 2026 in Siargao.",
-      "videoId": ""
+      "videoId": "",
+      "driveId": "194sl67Hoq1v1eptni1ovMWEHVRAYxOS1",
+      "poster": "images/siargao/day-1-hero.webp"
     },
     {
       "id": "voices",
@@ -190,7 +194,20 @@
       "iso": "PT5M7S",
       "date": "2026-10-26",
       "desc": "Testimonials from the Nomads in Paradise 2026 community in Siargao.",
-      "videoId": ""
+      "videoId": "",
+      "driveId": "1EtEuh1--CgvoDR3IspTiFSZXR9FrYsoi",
+      "poster": "images/siargao/day-9-hero.webp"
+    },
+    {
+      "id": "conference",
+      "title": "The Conference Film",
+      "dur": "",
+      "iso": "",
+      "date": "2026-10-27",
+      "desc": "The Nomads in Paradise 2026 conference days in Siargao, filmed by the Khun Camp on-site media team.",
+      "videoId": "",
+      "driveId": "",
+      "poster": "images/siargao/day-7-hero.webp"
     }
   ],
   "interviews": [],
