@@ -147,14 +147,15 @@
     {
       "n": 10,
       "date": "2026-10-25",
-      "published": false,
-      "title": "",
-      "dek": "",
-      "url": "",
-      "image": "",
+      "published": true,
+      "title": "Closing day: one last island trip and the Closing Party",
+      "dek": "Sunday, Oct 25 was the final day of Nomads in Paradise 2026 in Siargao, with optional island trips and the Closing Party.",
+      "url": "blog/siargao-fest-day-10",
+      "image": "images/siargao/day-10-thumb.webp",
       "clips": 0,
       "testimonials": 0,
-      "highlight": "Fitness and Beach, then the Closing Party"
+      "highlight": "Fitness and Beach, then the Closing Party",
+      "photos": []
     }
   ],
   "testimonials": [],
