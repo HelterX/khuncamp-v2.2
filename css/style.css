@@ -1115,20 +1115,28 @@ h2.section-title { font-family: var(--font-display); font-size: 1.9rem; font-wei
 .vc-section .vc-title { font-family: var(--font-display); font-weight: 300; font-size: clamp(1.9rem, 3.6vw, 2.75rem); line-height: 1.12; letter-spacing: -0.01em; margin: 0.6rem 0 1rem; color: var(--ink-warm); }
 .vc-title strong { font-weight: 800; }
 .vc-intro { margin: 0 auto; max-width: 36rem; color: var(--ink-dim); font-size: 1rem; line-height: 1.65; }
-.vc-viewport { position: relative; margin: 0 calc(-1 * var(--page-m)); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
-.vc-track { position: relative; display: flex; align-items: center; gap: 1.25rem; padding: 3rem calc(50% - var(--vc-w) / 2) 4rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; cursor: grab; }
-.vc-track::-webkit-scrollbar { display: none; }
-.vc-track.is-dragging { cursor: grabbing; scroll-snap-type: none; }
-.vc-card { position: relative; flex: none; width: var(--vc-w); aspect-ratio: 9 / 16; scroll-snap-align: center; border-radius: 24px; overflow: hidden; background: var(--ink-warm); transform: scale(0.82); opacity: 0.5; transition: transform 0.45s ease, opacity 0.45s ease, box-shadow 0.45s ease; }
-.vc-card.is-active { transform: scale(1); opacity: 1; box-shadow: 0 16px 32px rgba(19, 17, 16, 0.25); }
+.vc-viewport { position: relative; margin: 0 calc(-1 * var(--page-m)); outline: none; }
+.vc-viewport:focus-visible { box-shadow: 0 0 0 2px var(--brass); border-radius: 16px; }
+.vc-track { position: relative; height: calc(var(--vc-w) * 16 / 9 + 6rem); perspective: 1400px; touch-action: pan-y; cursor: grab; overflow: hidden; }
+.vc-card { position: absolute; left: 50%; top: 3rem; width: var(--vc-w); aspect-ratio: 9 / 16; margin-left: calc(var(--vc-w) / -2); border-radius: 24px; overflow: hidden; background: var(--ink-warm); transform-style: preserve-3d; transition: transform 0.55s cubic-bezier(0.22, 0.8, 0.26, 1), opacity 0.45s ease, box-shadow 0.45s ease, filter 0.45s ease; will-change: transform; box-shadow: 0 10px 24px rgba(19, 17, 16, 0.18); }
+.vc-card[data-o="0"] { z-index: 5; transform: translateX(0) scale(1); box-shadow: 0 0 0 2px var(--brass), 0 28px 48px rgba(19, 17, 16, 0.32); }
+.vc-card[data-o="-1"] { z-index: 4; transform: translateX(calc(var(--vc-w) * -0.86)) rotateY(36deg) scale(0.88); filter: brightness(0.82); }
+.vc-card[data-o="1"] { z-index: 4; transform: translateX(calc(var(--vc-w) * 0.86)) rotateY(-36deg) scale(0.88); filter: brightness(0.82); }
+.vc-card[data-o="-2"] { z-index: 3; transform: translateX(calc(var(--vc-w) * -1.48)) rotateY(46deg) scale(0.76); filter: brightness(0.66); opacity: 0.7; }
+.vc-card[data-o="2"] { z-index: 3; transform: translateX(calc(var(--vc-w) * 1.48)) rotateY(-46deg) scale(0.76); filter: brightness(0.66); opacity: 0.7; }
+.vc-card[data-o="x"] { z-index: 1; transform: translateX(0) scale(0.6); opacity: 0; pointer-events: none; }
 .vc-link, .vc-card iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
 .vc-link img { width: 100%; height: 100%; object-fit: cover; display: block; -webkit-user-drag: none; user-select: none; }
 .vc-play { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 3.1rem; height: 2.2rem; border-radius: 0.6rem; background: #e21f1f; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); transition: transform 0.2s ease; }
 .vc-card.is-active .vc-link:hover .vc-play { transform: translate(-50%, -50%) scale(1.08); }
-.vc-arrow { position: absolute; z-index: 2; top: 50%; transform: translateY(-50%); width: 3rem; height: 3rem; border-radius: 50%; border: 0; background: var(--ink-warm); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(19, 17, 16, 0.25); transition: background 0.2s ease, transform 0.2s ease; }
+.vc-arrow { position: absolute; z-index: 8; top: 50%; transform: translateY(-50%); width: 3rem; height: 3rem; border-radius: 50%; border: 0; background: var(--ink-warm); color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(19, 17, 16, 0.25); transition: background 0.2s ease, transform 0.2s ease; }
 .vc-arrow:hover { background: var(--brass-deep); transform: translateY(-50%) scale(1.06); }
 .vc-prev { left: 3rem; }
 .vc-next { right: 3rem; }
+.vc-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0.9rem auto 0; max-width: 24rem; }
+.vc-count { font: 600 0.8rem var(--font-mono); letter-spacing: 0.14em; color: var(--brass-deep); }
+.vc-bar { flex: 1; height: 2px; background: rgba(19, 17, 16, 0.14); border-radius: 2px; overflow: hidden; }
+.vc-bar i { display: block; height: 100%; width: 0; background: var(--brass); transition: width 0.45s ease; }
 .vc-caption { text-align: center; margin: 0.25rem 0 0; min-height: 3rem; }
 .vc-caption b { display: block; font: 600 0.75rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--brass-deep); margin-bottom: 0.3rem; }
 .vc-caption span { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--ink-warm); }
@@ -1139,6 +1147,11 @@ h2.section-title { font-family: var(--font-display); font-size: 1.9rem; font-wei
   .vc-prev { left: 0.75rem; }
   .vc-next { right: 0.75rem; }
   .vc-card { border-radius: 18px; }
+  .vc-section { --vc-w: 54vw; }
+  .vc-card[data-o="-1"] { transform: translateX(calc(var(--vc-w) * -0.78)) rotateY(36deg) scale(0.84); }
+  .vc-card[data-o="1"] { transform: translateX(calc(var(--vc-w) * 0.78)) rotateY(-36deg) scale(0.84); }
+  .vc-card[data-o="-2"], .vc-card[data-o="2"] { opacity: 0; pointer-events: none; }
+  .vc-prev, .vc-next { top: calc(var(--vc-w) * 8 / 9 + 3rem); }
 }
 @media (min-width: 761px) and (max-width: 1099px) { .vc-section { --vc-w: clamp(15rem, 26vw, 19rem); } }
 @media (prefers-reduced-motion: reduce) { .vc-card { transition: none; } }

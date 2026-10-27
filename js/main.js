@@ -144,65 +144,69 @@ function khInit() {
     }, { once: true });
   }
 
-  // ---- YouTube shorts carousel: centre-snap, arrows, drag, play in place ----
+  // ---- YouTube shorts carousel: fanned deck, endless loop, arrows, swipe, keys, play in place ----
   var vcTrack = document.querySelector(".vc-track");
   if (vcTrack) {
     var vcCards = [].slice.call(vcTrack.querySelectorAll(".vc-card"));
     var vcCap = document.querySelector(".vc-caption");
-    var vcActive = -1, vcTick = false;
+    var vcCount = document.querySelector(".vc-count");
+    var vcBar = document.querySelector(".vc-bar i");
+    var vcN = vcCards.length, vcActive = 0, vcMoved = false;
 
     var vcStop = function (card) {
       if (card && card._vcHtml) { card.innerHTML = card._vcHtml; card._vcHtml = null; }
     };
-    var vcSetActive = function (i) {
-      if (i === vcActive) return;
-      if (vcActive > -1) vcStop(vcCards[vcActive]);
-      vcActive = i;
-      vcCards.forEach(function (el, k) { el.classList.toggle("is-active", k === i); });
-      if (vcCap) {
-        vcCap.querySelector("b").textContent = vcCards[i].getAttribute("data-tag");
-        vcCap.querySelector("span").textContent = vcCards[i].getAttribute("data-title");
-      }
-    };
-    var vcNearest = function () {
-      var mid = vcTrack.scrollLeft + vcTrack.clientWidth / 2, best = 0, dist = Infinity;
-      vcCards.forEach(function (el, i) {
-        var d = Math.abs(el.offsetLeft + el.offsetWidth / 2 - mid);
-        if (d < dist) { dist = d; best = i; }
+    var vcPaint = function () {
+      vcCards.forEach(function (el, k) {
+        var o = ((k - vcActive) % vcN + vcN) % vcN;
+        if (o > vcN / 2) o -= vcN;                  // signed distance from the centre card, wrapping around
+        if (vcN % 2 === 0 && o === vcN / 2) o = -o; // keep the deck symmetric when the count is even
+        el.setAttribute("data-o", Math.abs(o) > 2 ? "x" : String(o));
+        el.classList.toggle("is-active", o === 0);
+        el.setAttribute("aria-hidden", Math.abs(o) > 2 ? "true" : "false");
+        var l = el.querySelector(".vc-link");
+        if (l) l.tabIndex = o === 0 ? 0 : -1;
       });
-      return best;
+      if (vcCap) {
+        vcCap.querySelector("b").textContent = vcCards[vcActive].getAttribute("data-tag");
+        vcCap.querySelector("span").textContent = vcCards[vcActive].getAttribute("data-title");
+      }
+      if (vcCount) vcCount.textContent = String(vcActive + 1).padStart(2, "0") + " / " + String(vcN).padStart(2, "0");
+      if (vcBar) vcBar.style.width = ((vcActive + 1) / vcN * 100) + "%";
     };
-    var vcCenter = function (i, smooth) {
-      i = Math.max(0, Math.min(vcCards.length - 1, i));
-      var el = vcCards[i];
-      vcTrack.scrollTo({ left: el.offsetLeft + el.offsetWidth / 2 - vcTrack.clientWidth / 2, behavior: smooth ? "smooth" : "auto" });
+    var vcGo = function (i) {
+      i = ((i % vcN) + vcN) % vcN;
+      if (i === vcActive) return;
+      vcStop(vcCards[vcActive]);
+      vcActive = i;
+      vcPaint();
     };
 
-    vcTrack.addEventListener("scroll", function () {
-      if (vcTick) return;
-      vcTick = true;
-      requestAnimationFrame(function () { vcTick = false; vcSetActive(vcNearest()); });
-    }, { passive: true });
+    document.querySelector(".vc-prev").addEventListener("click", function () { vcGo(vcActive - 1); });
+    document.querySelector(".vc-next").addEventListener("click", function () { vcGo(vcActive + 1); });
 
-    document.querySelector(".vc-prev").addEventListener("click", function () { vcCenter(vcActive - 1, true); });
-    document.querySelector(".vc-next").addEventListener("click", function () { vcCenter(vcActive + 1, true); });
-
-    // mouse drag (touch uses native scrolling)
-    var vcDown = false, vcMoved = false, vcStartX = 0, vcStartLeft = 0;
+    // swipe or drag (mouse and touch), then settle on the next card
+    var vcDown = false, vcX0 = 0, vcY0 = 0;
     vcTrack.addEventListener("pointerdown", function (e) {
-      if (e.pointerType !== "mouse" || e.button !== 0) return;
-      vcDown = true; vcMoved = false; vcStartX = e.clientX; vcStartLeft = vcTrack.scrollLeft;
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      vcDown = true; vcMoved = false; vcX0 = e.clientX; vcY0 = e.clientY;
     });
-    window.addEventListener("pointermove", function (e) {
-      if (!vcDown) return;
-      var dx = e.clientX - vcStartX;
-      if (!vcMoved && Math.abs(dx) > 6) { vcMoved = true; vcTrack.classList.add("is-dragging"); }
-      if (vcMoved) vcTrack.scrollLeft = vcStartLeft - dx;
-    });
-    window.addEventListener("pointerup", function () {
+    window.addEventListener("pointerup", function (e) {
       if (!vcDown) return;
       vcDown = false;
-      if (vcMoved) { vcTrack.classList.remove("is-dragging"); vcCenter(vcNearest(), true); }
+      var dx = e.clientX - vcX0, dy = e.clientY - vcY0;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { vcMoved = true; vcGo(vcActive + (dx < 0 ? 1 : -1)); }
+    });
+    vcTrack.addEventListener("pointercancel", function () { vcDown = false; });
+
+    // keyboard: arrows move the deck while it has focus
+    var vcView = vcTrack.parentNode;
+    vcView.setAttribute("tabindex", "0");
+    vcView.setAttribute("role", "region");
+    vcView.setAttribute("aria-label", "Video carousel, use the left and right arrow keys");
+    vcView.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowLeft") { vcGo(vcActive - 1); e.preventDefault(); }
+      else if (e.key === "ArrowRight") { vcGo(vcActive + 1); e.preventDefault(); }
     });
 
     // click: bring a side card to the centre, play the centred one in place
@@ -212,17 +216,14 @@ function khInit() {
       e.preventDefault();
       if (vcMoved) { vcMoved = false; return; }
       var card = link.parentNode, i = vcCards.indexOf(card);
-      if (i !== vcActive) { vcCenter(i, true); return; }
+      if (i !== vcActive) { vcGo(i); return; }
       card._vcHtml = card.innerHTML;
       card.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + card.getAttribute("data-id") +
         '?autoplay=1&playsinline=1&rel=0&modestbranding=1" title="' + card.getAttribute("data-title").replace(/"/g, "&quot;") +
         '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
     });
 
-    var vcStart = 0; // open on the first card (event work comes first)
-    vcSetActive(vcStart);
-    vcCenter(vcStart, false);
-    window.addEventListener("resize", function () { vcCenter(vcActive, false); });
+    vcPaint(); // opens on the first card, with the last cards fanned on its left
   }
 
   // ---- Southeast Asia dropdown: close on outside click or Escape ----
