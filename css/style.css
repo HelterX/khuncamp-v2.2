@@ -1847,3 +1847,16 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .xv-lb-d .xv-x { left: 0.7rem; right: auto; }
 .sg-films .sg-h2 { max-width: none; }
 @media (min-width: 700px) { .sg-film-grid:not(.sg-iv-grid):has(> .sg-film-card:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---- Adventure film feature card (homepage + /events) ---- */
+.nf { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 2rem; align-items: center; padding: 1.4rem; border-radius: 22px; background: #131110; color: #fff; box-shadow: 0 24px 56px rgba(19, 17, 16, 0.28); }
+.nf[hidden] { display: none; }
+.nf .sg-film { width: 100%; }
+.nf-eyebrow { margin: 0 0 0.6rem; color: var(--brass, #d4af37); font-size: 0.8rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.nf-txt h3 { margin: 0 0 0.7rem; color: #fff; font-family: var(--font-display, inherit); font-size: 1.7rem; line-height: 1.15; }
+.nf-txt p { color: rgba(255, 255, 255, 0.78); line-height: 1.55; }
+.nf-links { display: flex; flex-wrap: wrap; gap: 0.75rem 1.2rem; align-items: center; margin: 1.4rem 0 0; }
+.nf-links .btn-ghost { color: #fff; }
+@media (max-width: 800px) { .nf { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem; } .nf-txt h3 { font-size: 1.4rem; } }
+.nf .nf-btn { background: var(--brass, #d4af37); color: #131110; border-color: var(--brass, #d4af37); cursor: pointer; font-weight: 700; }
+.nf .nf-btn:hover { background: #fff; border-color: #fff; color: #131110; }

@@ -205,7 +205,30 @@
     document.head.appendChild(s);
   }
 
+  // ---- Feature card for the Adventure film on the homepage and /events (reads the same films data) ----
+  function renderFeature(data) {
+    var box = $("nip-film");
+    if (!box) return;
+    var f = null;
+    (data.films || []).forEach(function (x) { if (x.id === "adventure" && (x.videoId || x.driveId)) f = x; });
+    if (!f) { box.hidden = true; return; }
+    box.innerHTML = '<button type="button" class="sg-film nf-play" data-kind="' + (f.videoId ? "yt" : "drive") + '" data-wide="1" data-id="' + esc(f.videoId || f.driveId) + '" data-title="' + esc(f.title) + '" aria-label="Play: ' + esc(f.title) + '">' +
+      '<span class="sg-film-v"' + (f.poster ? ' style="background-image:url(&quot;' + esc(abs(f.poster)) + '&quot;)"' : "") + '><span class="sg-reel-play" aria-hidden="true"></span>' +
+      (f.dur ? '<span class="sg-reel-dur">' + esc(f.dur) + "</span>" : "") + "</span></button>" +
+      '<div class="nf-txt"><p class="nf-eyebrow">Film \u00b7 Nomads in Paradise 2026</p><h3>' + esc(f.title) + "</h3><p>" + esc(f.desc || "") + "</p>" +
+      '<p class="nf-links"><button type="button" class="btn btn-primary nf-btn" data-nf="1">Watch the film</button> <a class="btn-ghost" href="' + ROOT + 'siargao#films">All the festival films &rarr;</a></p></div>';
+    box.hidden = false;
+    if (!box.__bound) {
+      box.__bound = true;
+      box.addEventListener("click", function (e) {
+        var b = e.target.closest(".nf-play") || (e.target.closest("[data-nf]") && box.querySelector(".nf-play"));
+        if (b) reelOpen(b);
+      });
+    }
+  }
+
   function render(data) {
+    renderFeature(data);
     (data.days || []).forEach(function (d) { d.url = abs(d.url); d.image = abs(d.image); });
     (data.testimonials || []).forEach(function (t) { t.image = abs(t.image); });
     var start = parse(data.start);
