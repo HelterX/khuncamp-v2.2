@@ -1905,3 +1905,33 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
   .vc-stage::before, .vc-stage::after { animation: none; }
   .vc-io .vc-stage .vc-head, .vc-io .vc-stage .vc-viewport, .vc-io .vc-stage .vc-caption, .vc-io .vc-stage .vc-meta { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---- Premium type colours (used by the stage system) ---- */
+:root { --ivory: #f7edd3; --ivory-dim: rgba(240, 228, 200, 0.8); --brass-soft: #e6c35c; --espresso: #2b2014; --espresso-dim: #5b4c39; --sand-page: #f8ecc9; }
+
+/* ---- Generic fade-up for stage panels: children rise in once when the panel scrolls into view ---- */
+.fx-io [data-fx] > * { opacity: 0; transform: translateY(20px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 0.8, 0.26, 1); }
+.fx-io [data-fx].is-in > * { opacity: 1; transform: none; }
+.fx-io [data-fx].is-in > *:nth-child(2) { transition-delay: 0.16s; }
+.fx-io [data-fx].is-in > *:nth-child(3) { transition-delay: 0.3s; }
+@media (prefers-reduced-motion: reduce) { .fx-io [data-fx] > * { opacity: 1; transform: none; transition: none; } }
+
+/* ---- "How the package works": cream page, rounded deep-ocean panel ---- */
+.xv-band { background: var(--sand-page); padding: 4.5rem 0; }
+.xv-band .xv-panel { position: relative; isolation: isolate; overflow: hidden; border-radius: 28px; padding: 3.4rem 3.6rem; background: radial-gradient(ellipse at 72% 40%, #1c4a4a 0%, #0c2626 72%); box-shadow: 0 32px 64px rgba(12, 38, 38, 0.32); }
+.xv-band .xv-panel::before, .xv-band .xv-panel::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.xv-band .xv-panel::before { left: -12%; right: -12%; bottom: 0; height: 48%; background: repeating-linear-gradient(177deg, transparent 0 26px, rgba(90, 200, 192, 0.11) 26px 28px, transparent 28px 54px); -webkit-mask-image: linear-gradient(180deg, transparent, #000 75%); mask-image: linear-gradient(180deg, transparent, #000 75%); animation: vc-ripple 22s ease-in-out infinite alternate; }
+.xv-band .xv-panel::after { inset: 0; background: radial-gradient(ellipse 28% 36% at 14% 82%, rgba(90, 200, 192, 0.18), transparent 70%), radial-gradient(ellipse 24% 32% at 90% 14%, rgba(212, 175, 55, 0.12), transparent 70%); animation: vc-glow 26s ease-in-out infinite alternate; }
+.xv-band .eyebrow-lg { color: var(--brass-soft); }
+.xv-band h2 { color: var(--ivory); }
+.xv-band h2 em { color: var(--brass-soft); }
+.xv-band-text p:not(.eyebrow-lg) { color: var(--ivory-dim); }
+@media (max-width: 760px) { .xv-band { padding: 2.6rem 0; } .xv-band .xv-panel { border-radius: 20px; padding: 1.8rem 1.3rem; } }
+@media (prefers-reduced-motion: reduce) { .xv-band .xv-panel::before, .xv-band .xv-panel::after { animation: none; } }
+
+/* ---- "Who this is for": soft ivory page, rounded glass card, espresso type ---- */
+.pillars-bg-section { background: #fdf7e6; }
+.pillars-card-frame { border-radius: 28px; border: 1px solid rgba(184, 154, 114, 0.5); background: rgba(255, 255, 255, 0.74); box-shadow: 0 36px 70px rgba(91, 70, 30, 0.14); }
+.pillars-card-frame h2, .pillars-card-frame h3, .pillars-card-frame h4 { color: var(--espresso); }
+.pillars-card-frame p, .pillars-card-frame li { color: var(--espresso-dim); }
+.pillars-card-frame .eyebrow-lg { color: var(--brass-deep); }

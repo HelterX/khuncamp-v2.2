@@ -236,6 +236,16 @@ function khInit() {
     }
   }
 
+  // ---- stage panels: fade their children up once, when they scroll into view ----
+  var fxEls = [].slice.call(document.querySelectorAll("[data-fx]"));
+  if (fxEls.length && "IntersectionObserver" in window) {
+    document.documentElement.classList.add("fx-io");
+    var fxIo = new IntersectionObserver(function (en) {
+      en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("is-in"); fxIo.unobserve(x.target); } });
+    }, { threshold: 0.15 });
+    fxEls.forEach(function (el) { fxIo.observe(el); });
+  }
+
   // ---- Southeast Asia dropdown: close on outside click or Escape ----
   var seaMore = document.querySelector(".sea-more");
   if (seaMore) {
