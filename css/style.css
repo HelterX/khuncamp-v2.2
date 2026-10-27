@@ -1873,3 +1873,35 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 @media (max-width: 800px) { .nf { grid-template-columns: 1fr; gap: 1.2rem; padding: 1rem; } .nf-txt h3 { font-size: 1.4rem; } }
 .nf .nf-btn { background: var(--brass, #d4af37); color: #131110; border-color: var(--brass, #d4af37); cursor: pointer; font-weight: 700; }
 .nf .nf-btn:hover { background: #fff; border-color: #fff; color: #131110; }
+
+/* ---- Homepage videos: deep-ocean stage (dark teal like the Siargao water, brass type, slow light ripples) ---- */
+.vc-section { padding-top: 0; }
+.vc-stage { position: relative; isolation: isolate; overflow: hidden; margin: 0 calc(-1 * var(--page-m)); padding: 5rem var(--page-m) 3.2rem; background: radial-gradient(ellipse at 50% 28%, #1c4a4a 0%, #0c2626 66%); }
+.vc-stage::before, .vc-stage::after { content: ""; position: absolute; z-index: -1; pointer-events: none; }
+.vc-stage::before { left: -12%; right: -12%; bottom: 0; height: 52%; background: repeating-linear-gradient(177deg, transparent 0 26px, rgba(90, 200, 192, 0.11) 26px 28px, transparent 28px 54px); -webkit-mask-image: linear-gradient(180deg, transparent, #000 75%); mask-image: linear-gradient(180deg, transparent, #000 75%); animation: vc-ripple 22s ease-in-out infinite alternate; }
+.vc-stage::after { inset: 0; background: radial-gradient(ellipse 26% 34% at 18% 78%, rgba(90, 200, 192, 0.18), transparent 70%), radial-gradient(ellipse 22% 30% at 82% 70%, rgba(212, 175, 55, 0.10), transparent 70%); animation: vc-glow 26s ease-in-out infinite alternate; }
+@keyframes vc-ripple { from { transform: translateX(-4%); } to { transform: translateX(4%) translateY(-14px); } }
+@keyframes vc-glow { from { transform: translateX(-3%); opacity: 0.7; } to { transform: translateX(3%); opacity: 1; } }
+.vc-stage .eyebrow-lg { color: var(--brass); }
+.vc-stage .vc-title { color: #fff; }
+.vc-stage .vc-title strong { color: var(--brass); }
+.vc-stage .vc-intro { color: rgba(255, 255, 255, 0.74); }
+.vc-stage .vc-caption b { color: var(--brass); }
+.vc-stage .vc-caption span { color: #fff; }
+.vc-stage .vc-count { color: var(--brass); }
+.vc-stage .vc-bar { background: rgba(255, 255, 255, 0.18); }
+.vc-stage .vc-arrow { background: var(--brass); color: #131110; }
+.vc-stage .vc-arrow:hover { background: #fff; }
+.vc-stage .vc-viewport:focus-visible { box-shadow: 0 0 0 2px var(--brass); }
+.vc-stage .vc-card[data-o="-1"], .vc-stage .vc-card[data-o="1"] { filter: brightness(0.78); }
+.vc-stage .vc-card { box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4); }
+.vc-stage .vc-card[data-o="0"] { box-shadow: 0 0 0 2px var(--brass), 0 26px 50px rgba(0, 0, 0, 0.55); }
+.vc-io .vc-stage .vc-head, .vc-io .vc-stage .vc-viewport, .vc-io .vc-stage .vc-caption, .vc-io .vc-stage .vc-meta { opacity: 0; transform: translateY(18px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22, 0.8, 0.26, 1); }
+.vc-stage.is-in .vc-head, .vc-stage.is-in .vc-viewport, .vc-stage.is-in .vc-caption, .vc-stage.is-in .vc-meta { opacity: 1; transform: none; }
+.vc-stage.is-in .vc-viewport { transition-delay: 0.15s; }
+.vc-section .vc-note { margin: 2.6rem 0 1.6rem; }
+@media (max-width: 760px) { .vc-stage { margin: 0 -1.5rem; padding: 3.6rem 1.5rem 2.6rem; } }
+@media (prefers-reduced-motion: reduce) {
+  .vc-stage::before, .vc-stage::after { animation: none; }
+  .vc-io .vc-stage .vc-head, .vc-io .vc-stage .vc-viewport, .vc-io .vc-stage .vc-caption, .vc-io .vc-stage .vc-meta { opacity: 1; transform: none; transition: none; }
+}

@@ -224,6 +224,16 @@ function khInit() {
     });
 
     vcPaint(); // opens on the first card, with the last cards fanned on its left
+
+    // fade the stage in once, when it scrolls into view (content is visible without it if observers are missing)
+    var vcStage = document.querySelector(".vc-stage");
+    if (vcStage && "IntersectionObserver" in window) {
+      document.documentElement.classList.add("vc-io");
+      var vcIo = new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { vcStage.classList.add("is-in"); vcIo.disconnect(); }
+      }, { threshold: 0.18 });
+      vcIo.observe(vcStage);
+    }
   }
 
   // ---- Southeast Asia dropdown: close on outside click or Escape ----
