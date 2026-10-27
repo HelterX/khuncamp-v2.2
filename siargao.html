@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=143">
+  <link rel="stylesheet" href="css/style.css?v=144">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -187,6 +187,21 @@
       </div>
     </section>
 
+    <!-- Films + speaker interviews (YouTube embeds). Hidden until data/siargao.json has a videoId; filled by js/siargao.js -->
+    <section class="section sg-films" id="films" aria-labelledby="sg-films-title" hidden>
+      <div class="wrap">
+        <p class="eyebrow-lg">The films</p>
+        <h2 class="sg-h2" id="sg-films-title">Nomads in Paradise 2026, <strong>on film</strong></h2>
+        <p class="sg-reels-sub">Cut and finished by the Khun Camp on-site media team. Tap a film to watch it right here.</p>
+        <div class="sg-film-grid" id="sg-film-grid"></div>
+        <div id="sg-iv" hidden>
+          <h3 class="sg-iv-h">The interviews</h3>
+          <p class="sg-reels-sub">One conversation per speaker, captioned.</p>
+          <div class="sg-film-grid sg-iv-grid" id="sg-iv-grid"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- From the island: vertical clips (our own footage) + owner testimonials once cleared; filled by js/siargao.js -->
     <section class="theme-light wrap section sg-reels" id="reels" aria-labelledby="sg-reels-title" hidden>
       <p class="eyebrow-lg">From the island</p>
@@ -299,6 +314,6 @@
   <script src="js/nav.js?v=8"></script>
   <script src="js/tracking.js?v=3"></script>
   <script src="js/main.js?v=17"></script>
-  <script src="js/siargao.js?v=17"></script>
+  <script src="js/siargao.js?v=18"></script>
 </body>
 </html>

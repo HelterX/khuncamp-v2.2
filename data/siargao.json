@@ -163,6 +163,36 @@
   "photos_label": "Get your free festival photos",
   "photos_from": "2026-10-16",
   "photos_until": "2026-10-31",
+  "films": [
+    {
+      "id": "adventure",
+      "title": "The Island Adventure",
+      "dur": "4:30",
+      "iso": "PT4M30S",
+      "date": "2026-10-26",
+      "desc": "The Nomads in Paradise 2026 Island Adventure film, shot and edited by the Khun Camp on-site media team.",
+      "videoId": ""
+    },
+    {
+      "id": "business",
+      "title": "The Business of Nomading",
+      "dur": "4:16",
+      "iso": "PT4M16S",
+      "date": "2026-10-26",
+      "desc": "The business side of nomad life, from Nomads in Paradise 2026 in Siargao.",
+      "videoId": ""
+    },
+    {
+      "id": "voices",
+      "title": "Voices of NIP",
+      "dur": "5:07",
+      "iso": "PT5M7S",
+      "date": "2026-10-26",
+      "desc": "Testimonials from the Nomads in Paradise 2026 community in Siargao.",
+      "videoId": ""
+    }
+  ],
+  "interviews": [],
   "reels": [
     {
       "src": "videos/siargao/island-1.webm",

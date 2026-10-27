@@ -99,7 +99,7 @@
     reelLast = btn;
     var title = btn.getAttribute("data-title") || "Siargao clip";
     reelLb = document.createElement("div");
-    reelLb.className = "xv-lb xv-lb-v"; reelLb.setAttribute("role", "dialog"); reelLb.setAttribute("aria-modal", "true"); reelLb.setAttribute("aria-label", title);
+    reelLb.className = btn.getAttribute("data-wide") ? "xv-lb" : "xv-lb xv-lb-v"; reelLb.setAttribute("role", "dialog"); reelLb.setAttribute("aria-modal", "true"); reelLb.setAttribute("aria-label", title);
     var inner = document.createElement("div"); inner.className = "xv-lb-in";
     var x = document.createElement("button"); x.type = "button"; x.className = "xv-x"; x.setAttribute("aria-label", "Close video"); x.innerHTML = "&times;";
     x.addEventListener("click", reelClose);
@@ -151,6 +151,58 @@
       row.__bound = true;
       row.addEventListener("click", function (e) { var b = e.target.closest(".sg-reel"); if (b) reelOpen(b); });
     }
+  }
+
+  // ---- Films + speaker interviews: YouTube embeds, listed only once they have a videoId ----
+  function ytThumb(id, el) {
+    var img = new Image();
+    img.onload = function () { el.style.backgroundImage = "url('" + img.src + "')"; };
+    img.onerror = function () { el.style.backgroundImage = "url('https://i.ytimg.com/vi/" + id + "/mqdefault.jpg')"; };
+    img.src = "https://i.ytimg.com/vi/" + id + "/maxresdefault.jpg";
+  }
+  function filmCard(f, small) {
+    return '<div class="sg-film-card' + (small ? " is-sm" : "") + '"><button type="button" class="sg-film" data-kind="yt" data-wide="1" data-id="' + esc(f.videoId) + '" data-title="' + esc(f.title) + '" aria-label="Play: ' + esc(f.title) + '">' +
+      '<span class="sg-film-v" data-yt="' + esc(f.videoId) + '"><span class="sg-reel-play" aria-hidden="true"></span>' +
+      (f.dur ? '<span class="sg-reel-dur">' + esc(f.dur) + "</span>" : "") + '</span></button>' +
+      '<p class="sg-film-cap"><b>' + esc(f.title) + "</b>" + (f.sub ? "<small>" + esc(f.sub) + "</small>" : "") + "</p>" +
+      (!small && f.desc ? '<p class="sg-film-desc">' + esc(f.desc) + "</p>" : "") + "</div>";
+  }
+  function renderFilms(data) {
+    var sec = $("films"), grid = $("sg-film-grid");
+    if (!sec || !grid) return;
+    var films = (data.films || []).filter(function (f) { return f.videoId; });
+    var ivs = (data.interviews || []).filter(function (f) { return f.videoId; });
+    if (!films.length && !ivs.length) { sec.hidden = true; return; }
+    grid.innerHTML = films.map(function (f) { return filmCard(f, false); }).join("");
+    grid.hidden = !films.length;
+    var ivBox = $("sg-iv"), ivGrid = $("sg-iv-grid");
+    if (ivBox && ivGrid) {
+      ivGrid.innerHTML = ivs.map(function (f) {
+        return filmCard({ videoId: f.videoId, title: f.speaker || f.title, sub: f.title && f.speaker ? f.title : "", dur: f.dur }, true);
+      }).join("");
+      ivBox.hidden = !ivs.length;
+    }
+    sec.hidden = false;
+    Array.prototype.forEach.call(sec.querySelectorAll(".sg-film-v"), function (el) { ytThumb(el.getAttribute("data-yt"), el); });
+    if (!sec.__bound) {
+      sec.__bound = true;
+      sec.addEventListener("click", function (e) { var b = e.target.closest(".sg-film"); if (b) reelOpen(b); });
+    }
+    // VideoObject schema for every listed video (the page text above describes each one)
+    var all = films.concat(ivs.map(function (f) { return { videoId: f.videoId, title: (f.speaker ? f.speaker + ": " : "") + f.title, desc: f.desc || "Interview from Nomads in Paradise 2026 in Siargao.", iso: f.iso, date: f.date }; }));
+    var ld = all.map(function (f) {
+      var o = { "@type": "VideoObject", name: f.title, description: f.desc || f.title,
+        thumbnailUrl: "https://i.ytimg.com/vi/" + f.videoId + "/maxresdefault.jpg", uploadDate: f.date || "2026-10-26",
+        embedUrl: "https://www.youtube-nocookie.com/embed/" + f.videoId, contentUrl: "https://www.youtube.com/watch?v=" + f.videoId,
+        publisher: { "@type": "Organization", name: "Khun Camp", url: "https://khuncamp.com/" } };
+      if (f.iso) o.duration = f.iso;
+      return o;
+    });
+    var old = document.getElementById("sg-films-ld");
+    if (old) old.parentNode.removeChild(old);
+    var s = document.createElement("script"); s.type = "application/ld+json"; s.id = "sg-films-ld";
+    s.text = JSON.stringify({ "@context": "https://schema.org", "@graph": ld });
+    document.head.appendChild(s);
   }
 
   function render(data) {
@@ -293,6 +345,7 @@
       if (showPhotos) { a.href = photosUrl; a.target = "_blank"; a.rel = "noopener"; if (data.photos_label) a.textContent = data.photos_label; a.hidden = false; } else { a.hidden = true; }
     });
 
+    renderFilms(data);
     renderReels(data);
 
     // testimonial wall

@@ -1822,3 +1822,25 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .xv-lb-v .xv-lb-in { width: auto; aspect-ratio: 9 / 16; height: min(88vh, 860px); max-width: 100%; }
 @media (max-width: 700px) { .sg-reel-card { flex-basis: 62%; } .sg-reels { padding-top: 3rem; padding-bottom: 3rem; } }
 @media (prefers-reduced-motion: reduce) { .sg-reel-v, .sg-reel-play { transition: none; } }
+
+/* ---- Siargao films + interviews (YouTube) ---- */
+.sg-films { background: #131110; padding-top: 4.5rem; padding-bottom: 4.5rem; }
+.sg-films[hidden], .sg-films [hidden] { display: none; }
+.sg-films .sg-h2 { color: #fff; }
+.sg-films .sg-reels-sub { color: rgba(255, 255, 255, 0.72); }
+.sg-film-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.6rem; margin-top: 2rem; }
+.sg-film-grid:has(> .sg-film-card:only-child) { grid-template-columns: minmax(0, 52rem); }
+.sg-film { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.sg-film-v { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 16px; overflow: hidden; background: #1a1816 center / cover no-repeat; box-shadow: 0 20px 44px rgba(0, 0, 0, 0.45); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.sg-film-v::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.5)); }
+.sg-film:hover .sg-film-v, .sg-film:focus-visible .sg-film-v { transform: translateY(-4px); box-shadow: 0 28px 56px rgba(0, 0, 0, 0.55); }
+.sg-film:focus-visible { outline: 3px solid var(--brass, #d4af37); outline-offset: 4px; border-radius: 16px; }
+.sg-film:hover .sg-reel-play { transform: scale(1.1); }
+.sg-film-cap { margin: 0.9rem 0 0; color: #fff; }
+.sg-film-cap b { display: block; font-size: 1.05rem; }
+.sg-film-cap small { color: rgba(255, 255, 255, 0.65); font-size: 0.85rem; }
+.sg-film-desc { margin: 0.4rem 0 0; color: rgba(255, 255, 255, 0.72); font-size: 0.92rem; line-height: 1.5; }
+.sg-iv-h { margin: 3.2rem 0 0; color: #fff; font-size: 1.5rem; }
+.sg-iv-grid { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: 1.2rem; }
+.sg-film-card.is-sm .sg-film-cap b { font-size: 0.95rem; }
+@media (prefers-reduced-motion: reduce) { .sg-film-v { transition: none; } }
