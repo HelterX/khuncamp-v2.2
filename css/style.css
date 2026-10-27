@@ -1935,3 +1935,9 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .pillars-card-frame h2, .pillars-card-frame h3, .pillars-card-frame h4 { color: var(--espresso); }
 .pillars-card-frame p, .pillars-card-frame li { color: var(--espresso-dim); }
 .pillars-card-frame .eyebrow-lg { color: var(--brass-deep); }
+/* five films: three across, then two wider underneath */
+@media (min-width: 900px) {
+  .sg-film-grid:not(.sg-iv-grid):has(> .sg-film-card:nth-child(5):last-child) { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .sg-film-grid:not(.sg-iv-grid):has(> .sg-film-card:nth-child(5):last-child) > .sg-film-card { grid-column: span 2; }
+  .sg-film-grid:not(.sg-iv-grid):has(> .sg-film-card:nth-child(5):last-child) > .sg-film-card:nth-child(n+4) { grid-column: span 3; }
+}
