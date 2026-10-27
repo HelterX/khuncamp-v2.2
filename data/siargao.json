@@ -201,13 +201,13 @@
     {
       "id": "conference",
       "title": "The Conference Film",
-      "dur": "",
-      "iso": "",
+      "dur": "2:41",
+      "iso": "PT2M41S",
       "date": "2026-10-27",
-      "desc": "The Nomads in Paradise 2026 conference days in Siargao, filmed by the Khun Camp on-site media team.",
+      "desc": "The stage talks from the Nomads in Paradise 2026 conference days in Siargao, filmed by the Khun Camp on-site media team.",
       "videoId": "",
-      "driveId": "",
-      "poster": "images/siargao/day-7-hero.webp"
+      "driveId": "1sZts9HdpTPvg6oq9jYGXrnwNX_3RqDo1",
+      "poster": "images/siargao/day-5-hero.webp"
     }
   ],
   "interviews": [],
