@@ -2112,3 +2112,47 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .events-sec { background: var(--sand-page); }
 .events-sec .eyebrow-lg { color: var(--brass-deep); }
 .events-sec .section-title { color: var(--espresso); }
+
+/* ---- Footer (all pages): midnight stage, brass hairline, ivory type ---- */
+.footer { position: relative; isolation: isolate; overflow: hidden; border-top: 0; background: radial-gradient(ellipse at 12% 0%, #17302f 0%, #0a1111 64%); --ink: var(--ivory); --ink-dim: var(--ivory-dim); --ink-faint: rgba(240, 228, 200, 0.62); --hairline: rgba(230, 195, 92, 0.22); color: var(--ivory); }
+.footer::before { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(ellipse 34% 40% at 92% 100%, rgba(212, 175, 55, 0.14), transparent 70%); }
+.footer::after { content: ""; position: absolute; z-index: 1; top: 0; left: 0; right: 0; height: 1px; pointer-events: none; background: linear-gradient(90deg, transparent, var(--brass-soft), transparent); opacity: 0.7; }
+.footer .eyebrow { color: var(--brass-soft); }
+.footer .text-gold { color: var(--brass-soft); }
+.footer-mark span { color: var(--ivory-dim); }
+.footer-editorial-right a:hover, .footer-editorial-legal a:hover { color: var(--brass-soft); }
+.footer-social-plain a { border-radius: 8px; box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35); }
+
+/* ---- /offer: explainer band as a midnight stage ---- */
+.xv-sec { background: radial-gradient(ellipse at 84% 6%, #17302f 0%, #0a1111 64%); }
+.xv-sec::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 34% 40% at 6% 92%, rgba(212, 175, 55, 0.13), transparent 70%); }
+.xv-sec > .wrap { position: relative; z-index: 1; }
+.xv-sec h2 em { color: var(--brass-soft); }
+.xv-sec .eyebrow-lg { color: var(--brass-soft); }
+
+/* ---- /offer: "What's included" as an ivory page with glass cards ---- */
+.inc-sec { background: #fdf7e6; border: 0; }
+.inc-sec .corner-tick { display: none; }
+.inc-sec .eyebrow-lg { color: var(--brass-deep); }
+.inc-sec .section-title { color: var(--espresso); }
+.inc-sec .item { border: 1px solid rgba(201, 162, 39, 0.3); border-radius: 22px; padding: 1.6rem 1.7rem; background: rgba(255, 255, 255, 0.62); box-shadow: 0 14px 30px rgba(91, 76, 57, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.inc-sec .item:hover { transform: translateY(-3px); box-shadow: 0 22px 40px rgba(91, 76, 57, 0.15); }
+.inc-sec .item h3 { color: var(--espresso); }
+.inc-sec .item p { color: var(--espresso-dim); max-width: none; }
+.fx-io [data-fx].is-in > .item:hover { transform: translateY(-3px); }
+.fx-io [data-fx] > *:nth-child(n+5) { transition-delay: 0.42s; }
+@media (prefers-reduced-motion: reduce) { .inc-sec .item { transition: none; } }
+
+/* ---- /offer: "The build, then the retainer" as a deep-ocean stage ---- */
+.struct-sec { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(ellipse at 50% 24%, #1c4a4a 0%, #0c2626 68%); }
+.struct-sec::before, .struct-sec::after { content: ""; position: absolute; z-index: -1; left: 0; right: 0; pointer-events: none; }
+.struct-sec::before { bottom: 0; height: 46%; background: repeating-linear-gradient(177deg, transparent 0 26px, rgba(90, 200, 192, 0.11) 26px 28px, transparent 28px 54px); -webkit-mask-image: linear-gradient(180deg, transparent, #000 75%); mask-image: linear-gradient(180deg, transparent, #000 75%); animation: sea-drift 14s linear infinite; }
+.struct-sec::after { top: 0; bottom: 0; background: radial-gradient(ellipse 30% 36% at 10% 20%, rgba(90, 200, 192, 0.15), transparent 70%), radial-gradient(ellipse 26% 32% at 92% 80%, rgba(212, 175, 55, 0.12), transparent 70%); }
+.struct-sec .eyebrow-lg { color: var(--brass-soft); }
+.struct-sec .section-title { color: var(--ivory); }
+.struct-sec .card { background: #fdf7e6; border: 0; border-radius: 24px; padding: 2rem 2.1rem; box-shadow: 0 28px 56px rgba(0, 0, 0, 0.34); }
+.struct-sec .card blockquote { color: var(--espresso-dim); }
+.struct-sec .card blockquote strong { color: var(--espresso) !important; }
+.struct-sec .card .stars { color: var(--brass-deep) !important; }
+.struct-note { margin: 1.5rem 0 0; max-width: 60ch; font-size: 0.85rem; color: var(--ivory-dim); }
+@media (prefers-reduced-motion: reduce) { .struct-sec::before { animation: none; } }
