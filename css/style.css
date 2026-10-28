@@ -2054,3 +2054,61 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .sea-more summary { border-color: rgba(240, 228, 200, 0.5); color: var(--ivory); }
 .sea-more summary:hover { background: rgba(255, 255, 255, 0.08); }
 @media (prefers-reduced-motion: reduce) { .sea-section::before { animation: none; } }
+
+/* ---- Founder teaser: midnight stage, brass-ringed portrait, slow glow ---- */
+.founder-wrap { background: radial-gradient(ellipse at 14% 42%, rgba(212, 175, 55, 0.17) 0%, transparent 56%), radial-gradient(ellipse at 88% 86%, #17302f 0%, transparent 62%), #0a0d0d; --ink-dim: var(--ivory-dim); }
+.founder-wrap::before { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(ellipse 30% 40% at 78% 18%, rgba(230, 195, 92, 0.1), transparent 70%); animation: vc-glow 26s ease-in-out infinite alternate; }
+.founder-badge-photo { border: 2px solid var(--brass-soft); box-shadow: 0 0 0 8px rgba(230, 195, 92, 0.1), 0 40px 80px rgba(0, 0, 0, 0.5); }
+.founder-wrap .eyebrow-lg { color: var(--brass-soft); }
+.founder-wrap h2 { color: var(--ivory); }
+.founder-wrap .founder-badge-text p { color: var(--ivory-dim); }
+.founder-wrap .founder .more { color: var(--brass-soft); }
+@media (prefers-reduced-motion: reduce) { .founder-wrap::before { animation: none; } }
+
+/* ---- Testimonials: cream page, ivory frame, rounded photos ---- */
+.testimonials-light { background: var(--sand-page); }
+.testimonials-light .eyebrow-lg { color: var(--brass-deep); }
+.testimonials-light .section-title { color: var(--espresso); }
+.testimonials-frame { background: #fdf7e6; border: 1px solid rgba(201, 162, 39, 0.35); border-radius: 28px; box-shadow: 0 28px 56px rgba(91, 76, 57, 0.16); }
+.testimonials-quote-mark { color: rgba(201, 162, 39, 0.14); }
+.photo-strip-item { border: 1.5px solid rgba(201, 162, 39, 0.4); border-radius: 20px; }
+.testimonials-dot { border-color: var(--espresso-dim); }
+.testimonials-list-item { border-bottom-color: rgba(91, 76, 57, 0.16); border-radius: 16px; }
+.testimonials-list-item blockquote { color: var(--espresso); }
+.testimonials-list-item .who b { color: var(--espresso); }
+.testimonials-list-item .who span { color: var(--espresso-dim); }
+
+/* ---- FAQ + contact: one midnight stage, frosted help card, ivory form card ---- */
+.faq-section--sand, .contact-sec { position: relative; isolation: isolate; background: #0b1414; }
+.faq-section--sand::before, .contact-sec::before { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; }
+.faq-section--sand::before { background: radial-gradient(ellipse 40% 34% at 10% 6%, rgba(90, 200, 192, 0.13), transparent 70%), radial-gradient(ellipse 30% 30% at 92% 40%, rgba(212, 175, 55, 0.1), transparent 70%); }
+.contact-sec::before { background: radial-gradient(ellipse 36% 34% at 90% 96%, rgba(212, 175, 55, 0.13), transparent 70%), radial-gradient(ellipse 30% 30% at 6% 30%, rgba(90, 200, 192, 0.09), transparent 70%); }
+.faq-section--sand .eyebrow-lg, .contact-sec .eyebrow-lg { color: var(--brass-soft); }
+.faq-title, .contact-sec h2 { color: var(--ivory); }
+.faq-title strong { color: var(--brass-soft); }
+.faq-section--sand .faq-help { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(230, 195, 92, 0.25); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.faq-help h3 { color: var(--ivory); }
+.faq-help p { color: var(--ivory-dim); }
+.faq-help .btn-primary { background: var(--brass); border-color: var(--brass); color: var(--ink-warm); border-radius: 999px; }
+.faq-help .btn-primary:hover { background: var(--ivory); border-color: var(--ivory); }
+.faq-mail { color: var(--ivory); border-bottom-color: var(--brass-soft); }
+.faq-mail:hover { color: var(--brass-soft); }
+.faq-list, .faq-item { border-color: rgba(230, 195, 92, 0.25); }
+.faq-q { color: var(--ivory); }
+.faq-item summary:hover .faq-q { color: var(--brass-soft); }
+.faq-item[open] .faq-icon { background: var(--ivory); }
+.faq-item[open] .faq-icon::before, .faq-item[open] .faq-icon::after { background: var(--espresso); }
+.faq-item p { color: var(--ivory-dim); }
+.contact-sec .intake-split-text .intro { color: var(--ivory-dim); }
+.contact-sec .intake-trust-item { border-top-color: rgba(230, 195, 92, 0.22); }
+.contact-sec .intake-trust-item p { color: var(--ivory-dim); }
+.contact-sec .intake-trust-item b { background: var(--brass); color: var(--espresso); }
+.contact-sec .intake-card { background: #fdf7e6; border: 0; border-radius: 24px; box-shadow: 0 32px 64px rgba(0, 0, 0, 0.4); }
+.contact-sec .intake-card label { color: var(--espresso-dim); }
+.contact-sec .intake-card input, .contact-sec .intake-card select, .contact-sec .intake-card textarea { background: #fff; border-radius: 10px; border-color: rgba(91, 76, 57, 0.2); color: var(--espresso); }
+.contact-sec .intake-card .btn-solid { border-radius: 999px; }
+
+/* ---- Event media: cream page ---- */
+.events-sec { background: var(--sand-page); }
+.events-sec .eyebrow-lg { color: var(--brass-deep); }
+.events-sec .section-title { color: var(--espresso); }
