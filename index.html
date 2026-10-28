@@ -22,7 +22,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=153">
+  <link rel="stylesheet" href="css/style.css?v=154">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -455,15 +455,15 @@
 
     <!-- Proof band: KhunShawn case study teaser (numbers match /case-study; no revenue claims) -->
     <section class="pf-band section" aria-labelledby="pf-title">
-      <div class="wrap pf-in">
+      <div class="wrap pf-in" data-fx>
         <div class="pf-copy">
           <p class="eyebrow-lg">Proof &middot; KhunShawn YouTube channel</p>
-          <h2 id="pf-title"><b>6.8x</b> the views in <em>28 days</em></h2>
+          <h2 id="pf-title"><b data-count="6.8x">6.8x</b> the views in <em>28 days</em></h2>
           <p class="pf-lede">One gaming reaction channel went from 91.6K to 626.3K views in 28 days. 85% of the viewers were new to the channel.</p>
           <div class="pf-stats">
-            <div><b>6.8x</b><span>views per 28 days</span></div>
-            <div><b>27x</b><span>subscribers gained</span></div>
-            <div><b>10.2K</b><span>watch hours</span></div>
+            <div><b data-count="6.8x">6.8x</b><span>views per 28 days</span></div>
+            <div><b data-count="27x">27x</b><span>subscribers gained</span></div>
+            <div><b data-count="10.2K">10.2K</b><span>watch hours</span></div>
           </div>
           <div class="pf-cta">
             <a class="btn pf-btn" href="case-study">Read the case study &rarr;</a>
@@ -474,8 +474,8 @@
           <figure class="pf-chart" role="img" aria-label="Views per 28 days: 91.6 thousand before, 626.3 thousand after.">
             <figcaption>Views per 28 days</figcaption>
             <div class="pf-cols">
-              <div><span class="b before" style="height:14.6%"></span><em>91.6K</em><small>Before</small></div>
-              <div><span class="b" style="height:100%"></span><em>626.3K</em><small>After</small></div>
+              <div><span class="b before" style="height:14.6%"></span><em data-count="91.6K">91.6K</em><small>Before</small></div>
+              <div><span class="b" style="height:100%"></span><em data-count="626.3K">626.3K</em><small>After</small></div>
             </div>
           </figure>
         </div>
@@ -484,13 +484,15 @@
 
     <!-- Explainer: why founder-led content works -->
     <section class="xv-founder" aria-labelledby="xv-f-t">
-      <div class="wrap xv-founder-in">
+      <div class="wrap">
+      <div class="xv-panel xv-founder-in" data-fx>
         <div class="xv-band-text">
           <p class="eyebrow-lg">Why it works</p>
           <h2 id="xv-f-t">Buyers hire <em>people.</em></h2>
           <p>Everyone sounds the same. The founder's voice is the difference, and it is the part we protect while we handle the production.</p>
         </div>
         <figure class="xv" data-src="videos/explainers/why-founder-led-content-works.mp4" data-slug="why-founder-led-content-works" data-title="Why founder-led content works"><button type="button" class="xv-poster" aria-label="Play: Why founder-led content works (0:21, sound on)"><img src="images/explainers/why-founder-led-content-works.webp" alt="Animated explainer: Why founder-led content works" width="1280" height="720" loading="lazy"><span class="xv-play" aria-hidden="true"></span><span class="xv-dur">0:21 &middot; sound on</span></button><noscript><a href="videos/explainers/why-founder-led-content-works.mp4">Watch: Why founder-led content works</a></noscript></figure>
+      </div>
       </div>
     </section>
 
@@ -1043,6 +1045,6 @@
   <script src="js/nav.js?v=8"></script>
   <script src="js/tracking.js?v=3"></script>
   <script src="js/explainers.js?v=1"></script>
-  <script src="js/main.js?v=20"></script>
+  <script src="js/main.js?v=21"></script>
 </body>
 </html>

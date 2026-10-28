@@ -240,8 +240,32 @@ function khInit() {
   var fxEls = [].slice.call(document.querySelectorAll("[data-fx]"));
   if (fxEls.length && "IntersectionObserver" in window) {
     document.documentElement.classList.add("fx-io");
+    var fxReduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var fxNum = function (el) {
+      var m = /^([\d.]+)(.*)$/.exec(el.getAttribute("data-count") || "");
+      return m ? { to: parseFloat(m[1]), dec: (m[1].split(".")[1] || "").length, suf: m[2] } : null;
+    };
+    var fxSet = function (el, n, v) { el.textContent = v.toFixed(n.dec) + n.suf; };
+    var fxCount = function (box) {
+      [].slice.call(box.querySelectorAll("[data-count]")).forEach(function (el) {
+        var n = fxNum(el); if (!n) return;
+        var t0 = null;
+        var step = function (t) {
+          if (t0 === null) t0 = t;
+          var p = Math.min((t - t0) / 1400, 1), e = 1 - Math.pow(1 - p, 3);
+          fxSet(el, n, n.to * e);
+          if (p < 1) requestAnimationFrame(step); else el.textContent = el.getAttribute("data-count");
+        };
+        requestAnimationFrame(step);
+      });
+    };
+    if (!fxReduce) fxEls.forEach(function (box) {
+      [].slice.call(box.querySelectorAll("[data-count]")).forEach(function (el) { var n = fxNum(el); if (n) fxSet(el, n, 0); });
+    });
     var fxIo = new IntersectionObserver(function (en) {
-      en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add("is-in"); fxIo.unobserve(x.target); } });
+      en.forEach(function (x) {
+        if (x.isIntersecting) { x.target.classList.add("is-in"); if (!fxReduce) fxCount(x.target); fxIo.unobserve(x.target); }
+      });
     }, { threshold: 0.15 });
     fxEls.forEach(function (el) { fxIo.observe(el); });
   }

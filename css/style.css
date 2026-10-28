@@ -1941,3 +1941,36 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
   .sg-film-grid:not(.sg-iv-grid):has(> .sg-film-card:nth-child(5):last-child) > .sg-film-card { grid-column: span 2; }
   .sg-film-grid:not(.sg-iv-grid):has(> .sg-film-card:nth-child(5):last-child) > .sg-film-card:nth-child(n+4) { grid-column: span 3; }
 }
+
+/* ---- Proof band: midnight stage (deep teal-black, slow brass light sweep, numbers count up, bars grow) ---- */
+.pf-band { background: radial-gradient(ellipse at 84% 8%, #17302f 0%, #0a1111 62%); }
+.pf-band::after { content: ""; position: absolute; inset: 0; z-index: 0; pointer-events: none; background: linear-gradient(105deg, transparent 36%, rgba(230, 195, 92, 0.075) 50%, transparent 64%); animation: pf-sweep 20s ease-in-out infinite alternate; }
+@keyframes pf-sweep { from { transform: translateX(-26%); } to { transform: translateX(26%); } }
+.pf-in { z-index: 1; }
+.pf-band h2 { color: var(--ivory); }
+.pf-band h2 b { color: var(--brass-soft); }
+.pf-band h2 em { color: var(--ivory); }
+.pf-copy .eyebrow-lg { color: var(--brass-soft); }
+.pf-lede { color: var(--ivory-dim); }
+.pf-stats b { color: var(--ivory); }
+.pf-stats span, .pf-cols small { color: rgba(240, 228, 200, 0.7); }
+.pf-cols em { color: var(--ivory); }
+.pf-cta span { color: rgba(240, 228, 200, 0.62); }
+.pf-cols .b { background: var(--brass-soft); }
+.fx-io [data-fx] .pf-cols .b { transform: scaleY(0); transform-origin: bottom; transition: transform 1.2s cubic-bezier(0.22, 0.8, 0.26, 1) 0.45s; }
+.fx-io [data-fx].is-in .pf-cols .b { transform: none; }
+@media (prefers-reduced-motion: reduce) { .pf-band::after { animation: none; } .fx-io [data-fx] .pf-cols .b { transform: none; transition: none; } }
+
+/* ---- "Buyers hire people": cream page, rounded night panel with a brass glow ---- */
+.xv-founder { background: var(--sand-page); padding: 4.5rem 0; }
+.xv-founder .xv-panel { position: relative; isolation: isolate; overflow: hidden; border-radius: 28px; padding: 3.4rem 3.6rem; background: radial-gradient(ellipse at 16% 42%, rgba(212, 175, 55, 0.2) 0%, transparent 62%), #141210; box-shadow: 0 32px 64px rgba(19, 17, 16, 0.34); }
+.xv-founder .xv-panel::before, .xv-founder .xv-panel::after { content: ""; position: absolute; pointer-events: none; }
+.xv-founder .xv-panel::before { z-index: -1; inset: 0; background: radial-gradient(ellipse 30% 40% at 88% 86%, rgba(212, 175, 55, 0.14), transparent 70%), radial-gradient(ellipse 26% 34% at 50% 6%, rgba(90, 200, 192, 0.09), transparent 70%); animation: vc-glow 26s ease-in-out infinite alternate; }
+.xv-founder .xv-panel::after { z-index: 0; inset: 0; border-radius: inherit; border: 1px solid rgba(230, 195, 92, 0.22); }
+.xv-founder .xv-panel > * { position: relative; z-index: 1; }
+.xv-founder .eyebrow-lg { color: var(--brass-soft); }
+.xv-founder h2 { color: var(--ivory); }
+.xv-founder h2 em { color: var(--brass-soft); }
+.xv-founder .xv-band-text p:not(.eyebrow-lg) { color: var(--ivory-dim); }
+@media (max-width: 760px) { .xv-founder { padding: 2.6rem 0; } .xv-founder .xv-panel { border-radius: 20px; padding: 1.8rem 1.3rem; } }
+@media (prefers-reduced-motion: reduce) { .xv-founder .xv-panel::before { animation: none; } }
