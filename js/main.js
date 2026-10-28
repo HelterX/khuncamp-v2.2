@@ -242,10 +242,10 @@ function khInit() {
     document.documentElement.classList.add("fx-io");
     var fxReduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var fxNum = function (el) {
-      var m = /^([\d.]+)(.*)$/.exec(el.getAttribute("data-count") || "");
-      return m ? { to: parseFloat(m[1]), dec: (m[1].split(".")[1] || "").length, suf: m[2] } : null;
+      var m = /^([\d.,]+)(.*)$/.exec(el.getAttribute("data-count") || "");
+      return m ? { to: parseFloat(m[1].replace(/,/g, "")), dec: (m[1].split(".")[1] || "").length, com: m[1].indexOf(",") > -1, suf: m[2] } : null;
     };
-    var fxSet = function (el, n, v) { el.textContent = v.toFixed(n.dec) + n.suf; };
+    var fxSet = function (el, n, v) { el.textContent = (n.com ? Number(v.toFixed(n.dec)).toLocaleString("en-US", { minimumFractionDigits: n.dec, maximumFractionDigits: n.dec }) : v.toFixed(n.dec)) + n.suf; };
     var fxCount = function (box) {
       [].slice.call(box.querySelectorAll("[data-count]")).forEach(function (el) {
         var n = fxNum(el); if (!n) return;

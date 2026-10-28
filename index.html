@@ -22,7 +22,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=156">
+  <link rel="stylesheet" href="css/style.css?v=157">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -649,11 +649,11 @@
     </section>
 
     <!-- Most watched: real top-viewed videos from the channel (checked 2026-10-22, @StillKhunShawn) -->
-    <section class="theme-light wrap section">
+    <section class="theme-light wrap section watched-sec">
       <p id="most-watched" class="eyebrow-lg">Most watched</p>
       <h2 class="section-title">The episodes people keep coming back to.</h2>
       <p class="intro" style="margin:0.75rem 0 2.5rem; color:#55493d; max-width:40rem;">Our biggest episodes, plus the festival work.</p>
-      <div class="watched-grid">
+      <div class="watched-grid" data-fx>
         <a class="watched-card" href="https://youtu.be/gcKfxzyYDAI" target="_blank" rel="noopener">
           <div class="watched-thumb"><img src="https://i.ytimg.com/vi/gcKfxzyYDAI/hqdefault.jpg" alt="YouTube video thumbnail: This Quiet Day Changed My Business | Choosing the Right Team (EP 14)" loading="lazy"><span class="watched-play">▶</span></div>
           <h4>This Quiet Day Changed My Business | Choosing the Right Team (EP 14)</h4>
@@ -702,7 +702,7 @@
       <p class="eyebrow-lg">Brand partnerships</p>
       <h2>Studios bring us their launches.</h2>
       <p class="intro">We do not only run this for founders. Game studios hire the same system to put their titles in front of players.</p>
-      <div class="campaign-list">
+      <div class="campaign-list" data-fx>
         <div class="campaign-card">
           <div class="campaign-card-head">
             <p class="campaign-tag">Sponsored partnership</p>
@@ -711,8 +711,8 @@
           <p class="campaign-desc">Khun Camp ran the official UGC creator campaign for ANANTA's global launch, NetEase's open-world title launching January 2027.</p>
           <div class="campaign-stats">
             <div class="campaign-stat"><b>✓ Won</b><span>Leaderboard payout, confirmed by the ANANTA creator team</span></div>
-            <div class="campaign-stat"><b>17</b><span>Pieces of branded content</span></div>
-            <div class="campaign-stat"><b>12,700+</b><span>Combined views in under 3 weeks</span></div>
+            <div class="campaign-stat"><b data-count="17">17</b><span>Pieces of branded content</span></div>
+            <div class="campaign-stat"><b data-count="12,700+">12,700+</b><span>Combined views in under 3 weeks</span></div>
           </div>
           <a href="https://www.youtube.com/watch?v=aDjsmAOU-1o" class="campaign-proof" target="_blank" rel="noopener">Watch the top performer →</a>
         </div>
@@ -726,7 +726,7 @@
     </section>
 
     <!-- Southeast Asia markets -->
-    <section class="theme-light wrap section sea-section" id="markets" aria-labelledby="sea-title">
+    <section class="theme-light wrap section sea-section" id="markets" aria-labelledby="sea-title" data-fx>
       <div class="sea-head">
         <p class="eyebrow-lg center">Built in Southeast Asia</p>
         <h2 class="sea-title" id="sea-title">Content for founders across <strong>Southeast Asia</strong></h2>
@@ -1045,6 +1045,6 @@
   <script src="js/nav.js?v=8"></script>
   <script src="js/tracking.js?v=3"></script>
   <script src="js/explainers.js?v=1"></script>
-  <script src="js/main.js?v=21"></script>
+  <script src="js/main.js?v=22"></script>
 </body>
 </html>
