@@ -30,14 +30,14 @@
       feat: ["images/photos/process-strategy.webp", "Book a 15-minute call", "We look at your channel first. No pitch until the math works.", "Book a Call", "book?src=nav-offer"] },
     { label: "Proof", href: "proof", cols: [
         ["The results", [
-          ["Case study: 5.6x views in 28 days", "One channel, real Studio numbers", "case-study"],
+          ["Case study: 9.1x views in 28 days", "One channel, real Studio numbers", "case-study"],
           ["Testimonials", "Founders, on the record", "proof#testimonials"],
-          ["By the numbers", "66K subs, 3 years, 17 ANANTA pieces", "proof#numbers"]]],
+          ["By the numbers", "68K subs, 3 years, 17 ANANTA pieces", "proof#numbers"]]],
         ["On the record", [
           ["Da Nang Nomad Fest", "Videography and interviews", "founder#record"],
           ["ANANTA creator campaign", "Won the leaderboard payout", "#partners"],
           ["What the numbers don't say", "One channel, not a guarantee", "case-study"]]]],
-      feat: ["images/case-study/khunshawn-studio-28d.webp", "5.6x the views in 28 days", "91.6K to 516.6K views. About 85% not paid.", "Read the case study", "case-study"] },
+      feat: ["images/case-study/khunshawn-studio-28d-oct28.webp", "9.1x the views in 28 days", "91.6K to 831.5K views. 1.4M in 90 days.", "Read the case study", "case-study"] },
     { label: "Work", href: "#work", cols: [
         ["Watch", [
           ["Shorts", "Played right on the page", "#work"],
@@ -78,7 +78,7 @@
   function colHtml(c) { return '<div class="nm-col"><h4>' + esc(c[0]) + "</h4>" + c[1].map(linkHtml).join("") + "</div>"; }
   var FEAT_ALT = {
     "images/photos/process-strategy.webp": "Laptop showing a monthly content plan calendar",
-    "images/case-study/khunshawn-studio-28d.webp": "YouTube Studio dashboard for the KhunShawn channel showing a 28-day views chart",
+    "images/case-study/khunshawn-studio-28d-oct28.webp": "YouTube Studio dashboard for the KhunShawn channel showing a 28-day views chart",
     "images/photos/hero-bts-poster.jpg": "Behind the scenes of a Khun Camp video shoot",
     "images/photos/danang-nomad-fest-content-creators.webp": "Khun Camp team connecting with content creators at Da Nang Nomad Fest",
     "images/photos/blog-system.webp": "Whiteboard with sticky notes planning the week by team member",

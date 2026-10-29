@@ -2156,3 +2156,4 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .struct-sec .card .stars { color: var(--brass-deep) !important; }
 .struct-note { margin: 1.5rem 0 0; max-width: 60ch; font-size: 0.85rem; color: var(--ivory-dim); }
 @media (prefers-reduced-motion: reduce) { .struct-sec::before { animation: none; } }
+.cs-shots figure:first-child { grid-column: 1 / -1; }
