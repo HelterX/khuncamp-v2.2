@@ -28,3 +28,5 @@ pnpm-debug.log*
 
 # private analytics screenshots, never published
 studio-screens/
+
+social-assets/

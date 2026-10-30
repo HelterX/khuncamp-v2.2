@@ -7,3 +7,5 @@ worker.js
 wrangler.toml
 tools
 studio-screens
+
+social-assets/
