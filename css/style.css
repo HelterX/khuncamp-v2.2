@@ -2226,3 +2226,44 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
   .pk-about-grid, .pk-cards { grid-template-columns: 1fr; }
   .pk-swatches { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ---- /siargao: stage rhythm for the plain sections ---- */
+.sg-fest--ivory { background: #fdf7e6; }
+.sg-reels--ocean { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(ellipse at 50% 22%, #1c4a4a 0%, #0c2626 70%); }
+.sg-reels--ocean::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(ellipse 30% 36% at 8% 18%, rgba(90, 200, 192, 0.15), transparent 70%), radial-gradient(ellipse 26% 32% at 94% 84%, rgba(212, 175, 55, 0.12), transparent 70%); }
+.sg-reels--ocean .eyebrow-lg { color: var(--brass-soft); }
+.sg-reels--ocean .sg-h2 { color: var(--ivory); }
+.sg-reels--ocean .sg-h2 strong { color: var(--brass-soft); }
+.sg-reels--ocean .sg-reels-sub { color: var(--ivory-dim); }
+.sg-reels--ocean .sg-reel-cap b { color: var(--ivory); }
+.sg-reels--ocean .sg-reel-cap small { color: rgba(240, 228, 200, 0.7); }
+.sg-reels--ocean .sg-reel-v { box-shadow: 0 22px 46px rgba(0, 0, 0, 0.4); }
+.sg-moments--ivory { background: #fdf7e6; }
+.sg-three-sec { position: relative; isolation: isolate; background: radial-gradient(ellipse at 84% 6%, #17302f 0%, #0a1111 64%); }
+.sg-three-sec .eyebrow-lg { color: var(--brass-soft); }
+.sg-three-sec .sg-head h2 { color: var(--ivory); }
+.sg-three-sec .sg-head h2 strong { color: var(--brass-soft); }
+.sg-three-sec .sg-three article { border-top: 2px solid var(--brass-soft); }
+.sg-three-sec .sg-three h3 { color: var(--ivory); }
+.sg-three-sec .sg-three p { color: var(--ivory-dim); }
+
+/* ---- /events: stage rhythm ---- */
+.ev-night { position: relative; isolation: isolate; overflow: hidden; background: radial-gradient(ellipse at 84% 6%, #17302f 0%, #0a1111 64%); }
+.ev-night::after { content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(ellipse 34% 40% at 6% 92%, rgba(212, 175, 55, 0.13), transparent 70%); }
+.ev-night .eyebrow-lg { color: var(--brass-soft); }
+.ev-night .section-title { color: var(--ivory); }
+.ev-night .card { background: #fdf7e6; border: 0; border-radius: 24px; box-shadow: 0 28px 56px rgba(0, 0, 0, 0.34); }
+.ev-night .card blockquote { color: var(--espresso-dim); }
+.ev-night .card blockquote strong { color: var(--espresso) !important; }
+.ev-film { background: var(--sand-page); }
+.ev-film .eyebrow-lg { color: var(--brass-deep); }
+.ev-film .section-title { color: var(--espresso); }
+.ev-ocean { border: 0; }
+.ev-ocean > .wrap > p:not(.eyebrow-lg) { color: var(--ivory-dim) !important; }
+.ev-ocean .item { background: #fdf7e6; border: 0; border-radius: 22px; padding: 1.5rem 1.7rem; box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.ev-ocean .item:hover { transform: translateY(-3px); }
+.ev-ocean .item h3, .ev-ocean .item h3 a { color: var(--espresso); }
+.ev-ocean .item h3 a:hover { color: var(--brass-deep); }
+.ev-ocean .item p { color: var(--espresso-dim); max-width: none; }
+#organizers.cta-brass h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+@media (prefers-reduced-motion: reduce) { .ev-ocean .item { transition: none; } }

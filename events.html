@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=162">
+  <link rel="stylesheet" href="css/style.css?v=163">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -142,7 +142,7 @@
       </div>
     </section>
 
-    <section class="section-alt">
+    <section class="section-alt inc-sec">
       <div class="wrap section corner-frame">
         <span class="corner-tick ct-tl" aria-hidden="true"></span>
         <span class="corner-tick ct-tr" aria-hidden="true"></span>
@@ -150,7 +150,7 @@
         <span class="corner-tick ct-br" aria-hidden="true"></span>
         <p id="deliver" class="eyebrow-lg">What we deliver</p>
         <h2 class="section-title">Everything an event needs to be seen after it ends</h2>
-        <div class="grid-2" style="margin-top:2.5rem;">
+        <div class="grid-2" style="margin-top:2.5rem;" data-fx>
           <div class="item"><h3>Daily recap video</h3><p>A short video of each day, so the people who could not be there still feel it.</p></div>
           <div class="item"><h3>Founder interviews</h3><p>Short on-camera conversations with the founders and business owners at the event.</p></div>
           <div class="item"><h3>Speaker and attendee photos</h3><p>Photos from the talks and the floor, handed to the organizers and the people in them.</p></div>
@@ -160,28 +160,30 @@
       </div>
     </section>
 
-    <section class="wrap section">
+    <section class="ev-night">
+      <div class="wrap section">
       <p id="how" class="eyebrow-lg">How it works</p>
       <h2 class="section-title">On site, uploaded the same night</h2>
-      <div style="margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1.25rem; align-items:stretch;">
+      <div style="margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(15rem,1fr)); gap:1.25rem; align-items:stretch;" data-fx>
         <div class="card"><blockquote style="font-style:normal;"><strong style="display:block; color:var(--ink); font-family:var(--font-display); font-size:1.15rem; margin-bottom:0.6rem;">1. On-site crew</strong>Our crew is at the event, filming as it happens.</blockquote></div>
         <div class="card"><blockquote style="font-style:normal;"><strong style="display:block; color:var(--ink); font-family:var(--font-display); font-size:1.15rem; margin-bottom:0.6rem;">2. Same-night upload</strong>Footage goes into a shared folder the same night.</blockquote></div>
         <div class="card"><blockquote style="font-style:normal;"><strong style="display:block; color:var(--ink); font-family:var(--font-display); font-size:1.15rem; margin-bottom:0.6rem;">3. First edits in 48 hours</strong>The first edits go out within 48 hours.</blockquote></div>
       </div>
+      </div>
     </section>
 
-    <section class="wrap section">
+    <section class="wrap section ev-film">
       <p class="eyebrow-lg">The film</p>
       <h2 class="section-title">What we make on site</h2>
       <div class="nf" style="margin-top:1.5rem" id="nip-film" hidden></div>
     </section>
 
-    <section class="section-alt">
+    <section class="section-alt struct-sec ev-ocean">
       <div class="wrap section">
         <p id="proof" class="eyebrow-lg">Proof</p>
         <h2 class="section-title">See it running now</h2>
         <p style="color:var(--ink-dim); max-width:46rem; margin-top:1rem;">We are on site at Siargao Nomad Fest, Oct 16 to 25, 2026. Here is the work so far.</p>
-        <div class="grid-2" style="margin-top:2rem;">
+        <div class="grid-2" style="margin-top:2rem;" data-fx>
           <!--SG-LINKS--><div class="item"><h3><a href="siargao">Siargao Nomad Fest daily recaps</a></h3><p>The festival hub: every day, one recap.</p></div>
           <div class="item"><h3><a href="blog/siargao-fest-day-1">Day 1, Fri Oct 16: Opening night by the water</a></h3><p>Siargao Nomad Fest opened on Friday, Oct 16 with an opening party by the water. Our crew was filming from the start.</p></div>
           <div class="item"><h3><a href="blog/siargao-fest-day-2">Day 2, Sat Oct 17: Yoga and a Hyrox-style workout</a></h3><p>Saturday, Oct 17 was the fitness day at Siargao Nomad Fest: a yoga class at a local studio and a Hyrox-style session at a local gym.</p></div>
@@ -197,11 +199,10 @@
       </div>
     </section>
 
-    <section class="wrap section">
-      <p id="organizers" class="eyebrow-lg">For organizers</p>
-      <h2 class="section-title">Book us for your event</h2>
-      <p style="color:var(--ink-dim); max-width:46rem; margin:1rem 0 1.75rem;">Running a nomad festival or a founder event? Tell us the event and the dates and we will come back with how we would cover it.</p>
-      <a href="contact?src=events" class="btn btn-primary">Book us for your event</a>
+    <section class="wrap section cta-brass" id="organizers" data-fx>
+      <h2>Book us for your event</h2>
+      <p>Running a nomad festival or a founder event? Tell us the event and the dates and we will come back with how we would cover it.</p>
+      <a href="contact?src=events" class="btn-dark">Book us for your event &rarr;</a>
     </section>
 
     <section class="section-alt">
@@ -214,8 +215,8 @@
       </div>
     </section>
 
-    <section class="theme-light wrap section faq-section" id="faq" aria-labelledby="faq-title">
-      <div class="faq-split">
+    <section class="theme-light wrap section faq-section faq-section--sand" id="faq" aria-labelledby="faq-title">
+      <div class="faq-split" data-fx>
         <div class="faq-side">
           <p class="eyebrow-lg">Questions</p>
           <h2 class="faq-title" id="faq-title">Event media, <strong>answered</strong></h2>
