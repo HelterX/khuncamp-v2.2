@@ -2267,3 +2267,15 @@ body:has(#festival) .sticky-book-bar, body:has(.rc-hero) .sticky-book-bar { disp
 .ev-ocean .item p { color: var(--espresso-dim); max-width: none; }
 #organizers.cta-brass h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
 @media (prefers-reduced-motion: reduce) { .ev-ocean .item { transition: none; } }
+
+/* ---- /proof: stats as ivory glass cards ---- */
+.pr-stats-sec { background: #fdf7e6; }
+.pr-stats-sec .eyebrow-lg { color: var(--brass-deep); }
+.pr-stats-sec .section-title { color: var(--espresso); }
+.pr-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 2rem; }
+.pr-stat { padding: 1.8rem 1.5rem 1.6rem; border-radius: 22px; background: rgba(255, 255, 255, 0.62); border: 1px solid rgba(201, 162, 39, 0.3); box-shadow: 0 14px 30px rgba(91, 76, 57, 0.08); }
+.pr-stat b { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(2.2rem, 3.6vw, 3rem); line-height: 1; letter-spacing: -0.03em; color: var(--brass-deep); font-variant-numeric: tabular-nums; }
+.pr-stat p { margin: 0.9rem 0 0; font-size: 0.88rem; line-height: 1.6; color: var(--espresso-dim); }
+.pr-src { margin: 1.5rem 0 0; font-size: 0.78rem; color: var(--espresso-dim); }
+@media (max-width: 900px) { .pr-stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .pr-stats { grid-template-columns: 1fr; } }
