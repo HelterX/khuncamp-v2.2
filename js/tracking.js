@@ -9,7 +9,7 @@
 // Debug: open any page with ?kc_debug=1 to log every tracking call to the browser console.
 (function () {
   var CFG = {
-    META_PIXEL_ID: "",   // e.g. "123456789012345"
+    META_PIXEL_ID: "1347423914024009",
     GA4_ID: "G-4E4X3M9133", // e.g. "G-XXXXXXXXXX"
     LINKEDIN_PARTNER_ID: "", // LinkedIn Insight Tag partner ID, e.g. "1234567"
     REQUIRE_CONSENT: true
