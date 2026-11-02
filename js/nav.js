@@ -11,64 +11,50 @@
   var inner = nav && nav.querySelector(".nav-inner");
   if (!nav || !desk || !inner) return;
 
-  var offerLink = desk.querySelector('a[href$="offer"]');
-  var prefix = offerLink ? offerLink.getAttribute("href").replace(/offer$/, "") : "";
+  var offerLink = desk.querySelector('a[href$="brands"]');
+  var prefix = offerLink ? offerLink.getAttribute("href").replace(/brands$/, "") : "";
 
   // each menu: two columns of [title, description, link] and one featured card
   var MENU = [
-    { label: "The Offer", href: "offer", cols: [
-        ["What's included", [
-          ["Brand and audience audit", "Who you talk to and why", "offer#included"],
-          ["Brand voice guide", "Sounds like you, every time", "offer#included"],
-          ["Content pillars and 90-day roadmap", "What to say, mapped ahead", "offer#included"],
-          ["Visual and template system", "One look across platforms", "offer#included"]]],
-        ["How it runs", [
-          ["Strategy", "A plan before anything is filmed", "offer#process"],
-          ["Scripts and filming direction", "The shot list and the words", "offer#process"],
-          ["Editing and production", "Finished, captioned, ready", "offer#process"],
-          ["Posting and community", "On time, replies in your voice", "offer#process"]]]],
-      feat: ["images/photos/process-strategy.webp", "Book a 15-minute call", "We look at your channel first. No pitch until the math works.", "Book a Call", "book?src=nav-offer"] },
-    { label: "Proof", href: "proof", cols: [
-        ["The results", [
-          ["Case study: 9.1x views in 28 days", "One channel, real Studio numbers", "case-study"],
-          ["Testimonials", "Founders, on the record", "proof#testimonials"],
-          ["By the numbers", "68K subs, 3 years, 17 ANANTA pieces", "proof#numbers"]]],
-        ["On the record", [
-          ["Da Nang Nomad Fest", "Videography and interviews", "founder#record"],
-          ["ANANTA creator campaign", "Won the leaderboard payout", "#partners"],
-          ["What the numbers don't say", "One channel, not a guarantee", "case-study"]]]],
-      feat: ["images/case-study/khunshawn-studio-28d-oct28.webp", "9.1x the views in 28 days", "91.6K to 831.5K views. 1.4M in 90 days.", "Read the case study", "case-study"] },
-    { label: "Work", href: "#work", cols: [
+    { label: "Brands", href: "brands", cols: [
+        ["Partner with me", [
+          ["Integrated ads", "In videos and YouTube Live streams", "brands#offers"],
+          ["Event coverage", "Films, interviews and clips", "brands#offers"],
+          ["Speaking", "Travel and hotel covered", "brands#offers"]]],
+        ["The proof", [
+          ["Numbers and audience", "Straight from YouTube Analytics", "brands#numbers"],
+          ["Case study: 9.1x views in 28 days", "Real Studio numbers", "case-study"],
+          ["Press kit", "Logos, photos and bio", "press"]]]],
+      feat: ["images/photos/khun-camp-podcast-recording-studio.webp", "Work with me", "Integrations, event coverage and speaking.", "Open the media kit", "brands"] },
+    { label: "Events", href: "events", cols: [
+        ["In 2026", [
+          ["Nomads in Paradise, Siargao", "Ten days, five films, interviews", "siargao"],
+          ["Da Nang Nomad Fest", "Videography and interviews", "events#da-nang"],
+          ["Event media", "How an event gets covered", "events"]]],
         ["Watch", [
-          ["Shorts", "Played right on the page", "#work"],
-          ["Long-form episodes", "Interviews and vlogs on YouTube", "#work"],
-          ["Most watched", "Episodes people keep coming back to", "#most-watched"]]],
-        ["Clients", [
-          ["Brand partnerships", "Game launches and creator campaigns", "#partners"],
-          ["ANANTA", "Official UGC campaign, NetEase", "#partners"],
-          ["Southeast Asia", "Vietnam, Thailand, Philippines", "#markets"],
-          ["Event media", "On-site media team for nomad fests", "events"]]]],
-      feat: ["images/photos/hero-bts-poster.jpg", "Watch the work, not the pitch", "Real shorts. Tap to play.", "See the work", "#work"] },
-    { label: "Founder", href: "founder", cols: [
-        ["Shawn Arrington", [
-          ["The story", "Army, then a 60,000-subscriber channel", "founder#story"],
-          ["Career timeline", "14 years in digital media", "founder#timeline"],
+          ["The films", "From Siargao", "siargao#films"],
+          ["Daily recaps", "One recap for every fest day", "siargao#days"],
+          ["Speaker interviews", "Conversations from the fest", "siargao#films"]]]],
+      feat: ["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Ten days on the island, day by day.", "See the recaps", "siargao"] },
+    { label: "Books", href: "books", cols: [
+        ["By Rashaan Arrington", [
+          ["Energy Chimera", "Kindle, $2.99", "books"],
+          ["Broadcast Yourself", "Kindle, $2.99", "books"],
+          ["Innerstanding: A Way Of Life", "Kindle, $2.99", "books"]]],
+        ["Find them", [
+          ["All books", "The Books page", "books"],
+          ["Amazon author page", "Every title in one place", "https://www.amazon.com/stores/Rashaan-Arrington/author/B0GTC3CNVD"]]]],
+      feat: ["images/photos/shawn-founder-rooftop-smile.webp", "Three Kindle books", "By Rashaan Arrington, $2.99 each.", "See the books", "books"] },
+    { label: "About", href: "founder", cols: [
+        ["The story", [
+          ["The nomad and the filmmaker", "Army, then a channel from zero", "founder#story"],
+          ["Timeline", "How it got here", "founder#timeline"],
           ["Watch and listen", "Podcast and interviews", "founder#watch"]]],
-        ["Life and events", [
-          ["Still living for the shot", "Paris, Koh Tao, Da Nang", "founder#life"],
-          ["Da Nang Nomad Fest", "Photos from the fest", "founder#record"],
-          ["Siargao Nomad Fest", "Oct 16 to 25", "siargao"]]]],
-      feat: ["images/photos/danang-nomad-fest-content-creators.webp", "Meet the founder", "Built from zero, still runs it himself.", "Full story", "founder"] },
-    { label: "Blog", href: "blog", cols: [
-        ["Latest", [
-          ["Hiring an editor won't fix it", "Why the real gap is upstream", "blog/hiring-an-editor-wont-fix-your-content-problem"],
-          ["What is a content operating system?", "And why founders need one", "blog/what-is-a-content-operating-system"],
-          ["How long before content brings clients?", "A realistic timeline", "blog/how-long-before-content-brings-clients"]]],
-        ["More", [
-          ["The funnel gap most businesses never see", "Where leads quietly drop off", "blog/the-funnel-gap-most-businesses-never-see"],
-          ["Siargao Nomad Fest recaps", "A new post every fest day", "siargao"],
-          ["All articles", "See everything", "blog"]]]],
-      feat: ["images/photos/blog-system.webp", "Read the playbook", "How a content operating system actually works.", "All articles", "blog"] }
+        ["Find me", [
+          ["KhunShawn on YouTube", "Gaming and reactions", "https://www.youtube.com/@KhunShawn"],
+          ["KhunVlogs on YouTube", "Travel and events", "https://www.youtube.com/@StillKhunShawn"],
+          ["Blog", "Notes and event recaps", "blog"]]]],
+      feat: ["images/photos/danang-nomad-fest-content-creators.webp", "Meet KhunShawn", "Gamer, nomad, event filmmaker, author.", "Full story", "founder"] }
   ];
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
@@ -82,7 +68,9 @@
     "images/photos/hero-bts-poster.jpg": "Behind the scenes of a Khun Camp video shoot",
     "images/photos/danang-nomad-fest-content-creators.webp": "Khun Camp team connecting with content creators at Da Nang Nomad Fest",
     "images/photos/blog-system.webp": "Whiteboard with sticky notes planning the week by team member",
-    "images/photos/siargao-hero-m.webp": "Siargao Island coast during Siargao Nomad Fest"
+    "images/photos/siargao-hero-m.webp": "Siargao Island coast during Siargao Nomad Fest",
+    "images/photos/khun-camp-podcast-recording-studio.webp": "Behind the scenes of a podcast recording with studio lights and cameras",
+    "images/photos/shawn-founder-rooftop-smile.webp": "Rashaan Arrington smiling on a rooftop"
   };
   function featHtml(f) {
     return '<a class="nm-feat" href="' + esc(href(f[4])) + '"><img src="' + esc(href(f[0])) + '" alt="' + esc(FEAT_ALT[f[0]] || "") + '" loading="lazy" width="520" height="293"><div><b>' + esc(f[1]) + "</b><span>" + esc(f[2]) + "</span><em>" + esc(f[3]) + " &rarr;</em></div></a>";
@@ -158,7 +146,7 @@
   document.addEventListener("click", function (e) { if (openId !== null && !nav.contains(e.target)) close(); });
 
   // ---------- tone: light or dark glass, from what is behind the pill ----------
-  var DARK = ".video-hero, .pf-band, .cs-hero, .cs-dark, .sg-hero, .sg-dark, .rc-hero, .founder-wrap, .footer, .cta-dark";
+  var DARK = ".video-hero, .hub-hero, .hub-night, .br-hero, .bk-hero, .pf-band, .cs-hero, .cs-dark, .sg-hero, .sg-dark, .rc-hero, .founder-wrap, .footer, .cta-dark";
   function lum(c) { return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255; }
   function rgba(s) { var m = /rgba?\(([^)]+)\)/.exec(s); if (!m) return null; var p = m[1].split(",").map(parseFloat); return [p[0], p[1], p[2], p.length > 3 ? p[3] : 1]; }
   function toneOf(el) {

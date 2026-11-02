@@ -1,5 +1,5 @@
-function clip(v) {
-  return String(v || "-").slice(0, 200);
+function clip(v, n) {
+  return String(v || "-").slice(0, n || 200);
 }
 
 // Short links for print (business-card QR codes). Each redirects to a real page with UTM tags,
@@ -62,13 +62,20 @@ const handler = {
         return new Response("Bad request", { status: 400 });
       }
 
+      const lines = [
+        ["Type", data.inquiry_type],
+        ["Name", data.name],
+        ["Email", data.email],
+        ["Company", data.company],
+        ["Interest", data.interest],
+        ["Message", data.message],
+        ["Budget", data.budget],
+        ["Content volume", data.content_volume],
+        ["Challenge", data.pain_point],
+      ].filter(function (l) { return l[1]; }).map(function (l) { return "*" + l[0] + ":* " + clip(l[1], 1500); });
       const text =
         ":inbox_tray: *New website lead*\n" +
-        "*Name:* " + (data.name || "") + "\n" +
-        "*Email:* " + (data.email || "") + "\n" +
-        "*Budget:* " + (data.budget || "") + "\n" +
-        "*Content volume:* " + (data.content_volume || "") + "\n" +
-        "*Challenge:* " + (data.pain_point || "") + "\n" +
+        lines.join("\n") + "\n" +
         "*Page:* " + (data.source || "") + "\n" +
         (data.utm_source || data.utm_medium || data.utm_campaign || data.utm_content
           ? ":mega: *Ad source:* " + clip(data.utm_source) + "\n" +

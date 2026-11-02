@@ -183,7 +183,7 @@
       var url;
       try { url = new URL(a.getAttribute("href"), location.href); } catch (err) { return; }
       if (url.origin !== location.origin) return;
-      if (!/\/book(\.html)?\/?$/.test(url.pathname)) return;
+      if (!/\/(book|brands)(\.html)?\/?$/.test(url.pathname)) return;
       track(EVENTS.book, { src: url.searchParams.get("src") || "none", page: location.pathname });
     }, true);
 
