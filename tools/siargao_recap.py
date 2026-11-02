@@ -377,7 +377,7 @@ def main():
         '@context': 'https://schema.org', '@type': 'Article',
         'headline': '%s (Nomads in Paradise 2026, Siargao)' % title_full, 'description': desc,
         'image': 'https://khuncamp.com/' + imgs['og'], 'url': page_url, 'mainEntityOfPage': page_url,
-        'author': {'@type': 'Person', 'name': 'Shawn Arrington'},
+        'author': {'@type': 'Person', 'name': 'KhunShawn (Rashaan Arrington)'},
         'publisher': {'@id': 'https://khuncamp.com/#org'},
         'datePublished': date.isoformat(), 'dateModified': datetime.date.today().isoformat(),
         'isPartOf': {'@type': 'CreativeWorkSeries', 'name': 'Siargao Nomad Fest 2026 daily recaps', 'url': 'https://khuncamp.com/siargao'},
