@@ -1,0 +1,22 @@
+{
+  "_how_to_update": "Edit the numbers below about once a month from YouTube Studio, set as_of to the last day of the 28 and 90 day window, and commit. Use plain numbers (831500, not 831.5K). Use null for anything not known yet. Never add revenue. An automated feed can overwrite this file later in the same shape.",
+  "updated_at": "2026-11-02",
+  "channels": {
+    "khunshawn": {
+      "as_of": "2026-10-27",
+      "subscribers_total": 68000,
+      "periods": {
+        "28d": { "views": 831500, "watch_hours": 35900 },
+        "90d": { "views": 1400000, "watch_hours": null }
+      }
+    },
+    "khunvlogs": {
+      "as_of": "2026-10-27",
+      "subscribers_total": 2500,
+      "periods": {
+        "28d": { "views": null, "watch_hours": null },
+        "90d": { "views": null, "watch_hours": null }
+      }
+    }
+  }
+}
