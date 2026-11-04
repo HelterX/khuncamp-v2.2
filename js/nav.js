@@ -169,7 +169,7 @@
       if (nav.contains(els[i])) continue;
       t = toneOf(els[i]);
     }
-    nav.setAttribute("data-tone", t || "dark");
+    nav.setAttribute("data-tone", t || (document.body.classList.contains("theme-light") ? "light" : "dark"));
   }
   function schedule() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   window.addEventListener("scroll", schedule, { passive: true });
