@@ -236,7 +236,8 @@ def links_block(data, mode, current=None):
     lis = ''
     for d in days:
         if d.get('published'):
-            lis += '          <li><a href="%ssiargao-fest-day-%d">%s: %s</a></li>\n' % (pre, d['n'], day_label(d), esc(d.get('title', '')))
+            dt = datetime.date.fromisoformat(d['date'])
+            lis += '          <li><a href="%ssiargao-fest-day-%d"><b class="rc-n">%d</b><span class="rc-d">%s %s %d</span><span class="rc-t">%s</span></a></li>\n' % (pre, d['n'], d['n'], WK[dt.weekday()], MO[dt.month - 1], dt.day, esc(d.get('title', '')))
     return ('<!--SG-LINKS-->\n        <ul class="rc-all-list">\n%s        </ul>\n        <p class="rc-all-more"><a href="%s">Siargao Nomad Fest hub: all ten days</a> &middot; <a href="%s">Event media team</a></p>\n      <!--/SG-LINKS-->') % (lis, hub, ev)
 
 

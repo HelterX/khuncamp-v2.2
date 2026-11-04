@@ -2450,3 +2450,26 @@ a.bk-cover:hover, .bk-card:hover .bk-cover { transform: translateY(-5px) rotate(
 .br-tbl tbody th { font-size: 1.05rem; }
 .br-tbl td { font-variant-numeric: tabular-nums; font-weight: 700; }
 .br-tbl td:last-child { font-weight: 400; color: var(--espresso-dim); }
+
+/* Blog index: field notes */
+.bl-head { padding-bottom: 1.5rem; }
+.bl-top { padding-top: 1rem; }
+.bl-top .blog-featured { margin-bottom: 2.5rem; padding-bottom: 2.5rem; }
+.sg-blog-recaps .rc-all-list { list-style: none; padding: 0; margin-top: 1.4rem; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem 1.2rem; }
+.sg-blog-recaps .rc-all-list a { display: grid; grid-template-columns: 2.2rem auto 1fr; align-items: center; gap: 0 0.8rem; padding: 0.7rem 0.9rem; border: 1px solid var(--hairline); background: rgba(255, 255, 255, 0.55); text-decoration: none; font-weight: 500; transition: border-color 0.2s ease, background 0.2s ease; }
+.sg-blog-recaps .rc-all-list a:hover { border-color: var(--brass); background: #fff; }
+.rc-n { display: flex; align-items: center; justify-content: center; width: 2rem; height: 2rem; border-radius: 50%; background: var(--brass); color: var(--espresso); font-size: 0.85rem; }
+.rc-d { font: 600 0.72rem var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-faint); white-space: nowrap; }
+.rc-t { font-size: 0.93rem; line-height: 1.35; color: var(--ink); }
+.bl-notes-list { list-style: none; margin: 1.4rem 0 0; padding: 0; border-top: 1px solid var(--hairline); }
+.bl-notes-list a { display: flex; justify-content: space-between; gap: 1.5rem; align-items: baseline; padding: 0.9rem 0; border-bottom: 1px solid var(--hairline); text-decoration: none; color: var(--ink); font-weight: 600; }
+.bl-notes-list a:hover span { text-decoration: underline; text-decoration-color: var(--brass); text-underline-offset: 3px; }
+.bl-notes-list em { font-style: normal; font-weight: 400; font-size: 0.82rem; color: var(--ink-faint); white-space: nowrap; }
+.bl-notes > p a { font-weight: 700; text-decoration: underline; text-decoration-color: rgba(212, 175, 55, 0.7); text-underline-offset: 3px; }
+@media (max-width: 760px) {
+  .sg-blog-recaps .rc-all-list { grid-template-columns: 1fr; }
+  .sg-blog-recaps .rc-all-list a { grid-template-columns: 2.2rem 1fr; }
+  .rc-d { grid-column: 2; }
+  .rc-t { grid-column: 2; }
+  .bl-notes-list a { flex-direction: column; gap: 0.2rem; }
+}
