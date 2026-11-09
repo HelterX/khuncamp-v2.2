@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://khuncamp.com/</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -20,13 +20,13 @@
   </url>
   <url>
     <loc>https://khuncamp.com/founder</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://khuncamp.com/contact</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://khuncamp.com/terms</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
@@ -106,6 +106,6 @@
   <url><loc>https://khuncamp.com/blog/nomads-in-paradise-2026-films</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://khuncamp.com/blog/augmenting-yourself-ai-systems-around-your-gift</loc><lastmod>2026-10-29</lastmod></url>
   <url><loc>https://khuncamp.com/press</loc><lastmod>2026-10-31</lastmod></url>
-  <url><loc>https://khuncamp.com/brands</loc><lastmod>2026-11-02</lastmod></url>
+  <url><loc>https://khuncamp.com/brands</loc><lastmod>2026-11-10</lastmod></url>
   <url><loc>https://khuncamp.com/books</loc><lastmod>2026-11-02</lastmod></url>
 </urlset>
