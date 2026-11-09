@@ -287,3 +287,29 @@ if (document.readyState === "loading") {
 } else {
   khInit();
 }
+
+// ---- Inquiry forms: send to Formspree in the background, then show our own thank-you page ----
+// Formspree's free plan ignores the _next redirect and shows its own page, which would also skip the
+// thank-you page lead conversion. If the background send fails, fall back to the normal form submit.
+(function () {
+  if (!window.fetch || !window.FormData) return;
+  [].forEach.call(document.querySelectorAll('form[action*="formspree.io"]'), function (f) {
+    f.addEventListener("submit", function (e) {
+      if (e.defaultPrevented) return;
+      e.preventDefault();
+      var btn = f.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending..."; }
+      var settled = false;
+      function done() { if (settled) return; settled = true; window.location.href = "/thank-you"; }
+      function fallback() {
+        if (settled) return; settled = true;
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+        f.submit();
+      }
+      fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } })
+        .then(function (r) { if (r.ok) done(); else fallback(); })
+        .catch(fallback);
+    });
+  });
+})();
