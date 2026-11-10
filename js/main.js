@@ -307,9 +307,12 @@ if (document.readyState === "loading") {
         if (btn) { btn.disabled = false; btn.textContent = label; }
         f.submit();
       }
-      fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" } })
-        .then(function (r) { if (r.ok) done(); else fallback(); })
-        .catch(fallback);
+      // Formspree answers with a redirect (to its own thanks page) when it accepts a submission; with redirect "manual"
+      // the browser reports that as an opaque redirect, which is a success. A JSON 200 is a success too.
+      var timer = setTimeout(fallback, 15000);
+      fetch(f.action, { method: "POST", body: new FormData(f), headers: { Accept: "application/json" }, redirect: "manual" })
+        .then(function (r) { clearTimeout(timer); if (r.ok || r.type === "opaqueredirect") done(); else fallback(); })
+        .catch(function () { clearTimeout(timer); fallback(); });
     });
   });
 })();
