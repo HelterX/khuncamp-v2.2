@@ -48,11 +48,10 @@
     { label: "About", href: "founder", cols: [
         ["The story", [
           ["The nomad and the filmmaker", "Army, then a channel from zero", "founder#story"],
-          ["Timeline", "How it got here", "founder#timeline"],
-          ["Watch and listen", "Podcast and interviews", "founder#watch"]]],
+          ["Timeline", "How it got here", "founder#timeline"]
+          ]],
         ["Find me", [
           ["KhunShawn on YouTube", "Gaming and reactions", "https://www.youtube.com/@KhunShawn"],
-          ["KhunVlogs on YouTube", "Travel and events", "https://www.youtube.com/@StillKhunShawn"],
           ["Blog", "Notes and event recaps", "blog"]]]],
       feat: ["images/photos/danang-nomad-fest-content-creators.webp", "Meet KhunShawn", "Gamer, nomad, event filmmaker, author.", "Full story", "founder"] }
   ];

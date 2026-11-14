@@ -224,7 +224,7 @@ def links_block(data, mode, current=None):
         return ('<!--SG-LINKS-->\n      <nav class="rc-all" aria-label="All recaps from Nomads in Paradise 2026 in Siargao">\n'
                 '        <h2>All the recaps from Nomads in Paradise 2026</h2>\n        <ol class="rc-all-list">\n%s        </ol>\n'
                 '        <p class="rc-all-pn">%s</p>\n'
-                '        <p class="rc-all-more"><a href="%s">Siargao Nomad Fest hub: all ten days</a> &middot; <a href="%s">Khun Camp, the on-site media team</a> &middot; <a href="%s">Khun Camp home</a> &middot; <a href="https://nomads-in-paradise.com/" target="_blank" rel="noopener">Official festival site</a></p>\n'
+                '        <p class="rc-all-more"><a href="%s">Siargao Nomad Fest hub: all ten days</a> &middot; <a href="%s">KhunShawn's crew, the on-site media team</a> &middot; <a href="%s">Khun Camp home</a> &middot; <a href="https://nomads-in-paradise.com/" target="_blank" rel="noopener">Official festival site</a></p>\n'
                 '      </nav>\n      <!--/SG-LINKS-->') % (lis, pn, hub, ev, home)
     if mode == 'events':
         items = '<div class="item"><h3><a href="%s">Siargao Nomad Fest daily recaps</a></h3><p>The festival hub: every day, one recap.</p></div>\n' % hub
@@ -387,7 +387,7 @@ def main():
     ld2 = json.dumps({
         '@context': 'https://schema.org', '@type': 'BreadcrumbList',
         'itemListElement': [
-            {'@type': 'ListItem', 'position': 1, 'name': 'Khun Camp', 'item': 'https://khuncamp.com/'},
+            {'@type': 'ListItem', 'position': 1, 'name': 'KhunShawn', 'item': 'https://khuncamp.com/'},
             {'@type': 'ListItem', 'position': 2, 'name': 'Siargao Nomad Fest 2026', 'item': 'https://khuncamp.com/siargao'},
             {'@type': 'ListItem', 'position': 3, 'name': title_full, 'item': page_url}]
     }, ensure_ascii=False)
