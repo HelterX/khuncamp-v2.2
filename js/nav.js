@@ -53,7 +53,7 @@
         ["Find me", [
           ["KhunShawn on YouTube", "Gaming and reactions", "https://www.youtube.com/@KhunShawn"],
           ["Blog", "Notes and event recaps", "blog"]]]],
-      feat: ["images/photos/danang-nomad-fest-content-creators.webp", "Meet KhunShawn", "Gamer, nomad, event filmmaker, author.", "Full story", "founder"] }
+      feat: ["images/photos/siargao-shawn-interview-joanna.webp", "Meet KhunShawn", "Gamer, nomad, event filmmaker, author.", "Full story", "founder"] }
   ];
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
