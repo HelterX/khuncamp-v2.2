@@ -2731,3 +2731,20 @@ h1, h2, .section-title, .hub-sec h2, .hub-night h2, .br-big, .hub-hero h1, .bk-h
   .hub-strip-in > div, .hub-strip-in > div:first-child, .hub-strip-in > div:last-child { border-width: 1px; border-radius: 16px; }
 }
 @media (max-width: 640px) { .gc-grid { grid-template-columns: 1fr; } .hub-sec { padding: 4rem 0; } .gc-img { aspect-ratio: 16 / 11; } }
+
+/* ---- event posters ---- */
+.ps-row { display: flex; gap: 1.4rem; }
+.ps-card { position: relative; flex: 1; min-height: 34rem; border-radius: 26px; overflow: hidden; border: 1px solid var(--k-line); background: var(--k-card); box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45); transition: transform 0.3s ease, border-color 0.3s ease; }
+.ps-card.ps-big { flex: 1.35; }
+.ps-card:hover { transform: translateY(-4px); border-color: var(--k-red); }
+.ps-card > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+.ps-card:hover > img { transform: scale(1.04); }
+.ps-ov { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; min-height: 34rem; height: 100%; padding: 2rem; background: linear-gradient(0deg, rgba(11, 11, 16, 0.96) 6%, rgba(11, 11, 16, 0.55) 46%, transparent 76%); }
+.ps-kick { margin: 0; font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--k-yel); }
+.ps-ov h3 { margin: 0.7rem 0 0.8rem; font-family: var(--font-head); font-weight: 700; font-size: clamp(2.2rem, 4.2vw, 3.6rem); line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase; color: #f4f4f7; }
+.ps-card:not(.ps-big) .ps-ov h3 { font-size: clamp(2rem, 3.6vw, 3.1rem); }
+.ps-ln { margin: 0 0 1rem; max-width: 30rem; font-size: 0.95rem; line-height: 1.5; color: #d8d8e3; }
+.ps-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.1rem; }
+.ps-chips span { padding: 0.25rem 0.75rem; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; font-family: var(--font-head); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #f4f4f7; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.ps-btn { display: inline-block; padding: 0.7rem 1.3rem; border-radius: 999px; background: var(--k-red); color: #fff; font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; }
+@media (max-width: 860px) { .ps-row { flex-direction: column; } .ps-card, .ps-card.ps-big { flex: none; min-height: 28rem; } .ps-ov { min-height: 28rem; padding: 1.5rem; } }
