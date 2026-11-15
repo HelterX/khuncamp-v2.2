@@ -2748,3 +2748,6 @@ h1, h2, .section-title, .hub-sec h2, .hub-night h2, .br-big, .hub-hero h1, .bk-h
 .ps-chips span { padding: 0.25rem 0.75rem; border: 1px solid rgba(255, 255, 255, 0.35); border-radius: 999px; font-family: var(--font-head); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: #f4f4f7; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
 .ps-btn { display: inline-block; padding: 0.7rem 1.3rem; border-radius: 999px; background: var(--k-red); color: #fff; font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; }
 @media (max-width: 860px) { .ps-row { flex-direction: column; } .ps-card, .ps-card.ps-big { flex: none; min-height: 28rem; } .ps-ov { min-height: 28rem; padding: 1.5rem; } }
+/* headings: one type everywhere */
+main h1, main h2, main .section-title, .br-sub h1, .hero h1, .eyebrow-lg + h2, .founder-hero-name { font-family: var(--font-head) !important; font-style: normal; letter-spacing: 0.012em; }
+main h1 em, main h2 em { font-family: var(--font-head) !important; font-style: normal; }
