@@ -2751,3 +2751,8 @@ h1, h2, .section-title, .hub-sec h2, .hub-night h2, .br-big, .hub-hero h1, .bk-h
 /* headings: one type everywhere */
 main h1, main h2, main .section-title, .br-sub h1, .hero h1, .eyebrow-lg + h2, .founder-hero-name { font-family: var(--font-head) !important; font-style: normal; letter-spacing: 0.012em; }
 main h1 em, main h2 em { font-family: var(--font-head) !important; font-style: normal; }
+/* press kit swatches */
+.pk-sw-light { color: #17120a; border-color: transparent; }
+.pk-sw-light code { opacity: 0.75; }
+.pk-thumb-black img, .pk-thumb-teal img { object-fit: contain; }
+.pk-thumb-black { background: #0b0b10; }
