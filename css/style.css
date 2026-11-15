@@ -2686,3 +2686,6 @@ h1, h2, .section-title, .hub-sec h2, .hub-night h2, .br-big, .hub-hero h1, .bk-h
   .nm-m a { font-size: 1.7rem; }
   .nm-mb b { font-size: 1.45rem; }
 }
+/* hero photo width */
+@media (min-width: 901px) { .hub-hero-top { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 2.5rem; } }
+.hub-hero-photo img { border-radius: 26px; }
