@@ -1,10 +1,8 @@
-// Khun Camp navigation: the glass pill and its classic mega menus.
-//  - The pill is nearly clear glass over dark sections and flips to light glass over pale ones
-//    (tone is read from whatever is behind it, or from data-nav="dark|light" on a section).
-//  - Hover or focus a menu item for a panel: two link columns and one featured card. On touch
-//    screens the first tap opens the panel and the second goes to the page. Under 820px the menu
-//    is a plain list.
-//  - While Siargao Nomad Fest is ongoing (data/siargao.json) a Siargao item with a live dot is added.
+// KhunShawn navigation: a glass bar with two mega panels.
+//  - Games opens a grid of the six games with their most-watched video.
+//  - For brands opens the offers, the live numbers (from data/stats.json) and the inquiry button.
+//  - Hover or focus opens a panel. On touch screens the first tap opens it and the second goes to the page.
+//  - Under 820px the menu is a full-screen numbered list.
 (function () {
   var nav = document.querySelector("header.nav");
   var desk = nav && nav.querySelector(".nav-desktop");
@@ -13,68 +11,46 @@
 
   var offerLink = desk.querySelector('a[href$="brands"]');
   var prefix = offerLink ? offerLink.getAttribute("href").replace(/brands$/, "") : "";
-
-  // each menu: two columns of [title, description, link] and one featured card
-  var MENU = [
-    { label: "Brands", href: "brands", cols: [
-        ["Partner with me", [
-          ["Integrated ads", "In videos and YouTube Live streams", "brands#offers"],
-          ["Event coverage", "Films, interviews and clips", "brands#offers"],
-          ["Speaking", "Travel and hotel covered", "brands#offers"]]],
-        ["The proof", [
-          ["Numbers and audience", "Straight from YouTube Analytics", "brands#numbers"],
-          ["Case study: 9.1x views in 28 days", "Real Studio numbers", "case-study"],
-          ["Press kit", "Logos, photos and bio", "press"]]]],
-      feat: ["images/photos/khun-camp-podcast-recording-studio.webp", "Work with me", "Integrations, event coverage and speaking.", "Open the media kit", "brands"] },
-    { label: "Events", href: "events", cols: [
-        ["In 2026", [
-          ["Nomads in Paradise, Siargao", "Ten days, five films, interviews", "siargao"],
-          ["Da Nang Nomad Fest", "Videography and interviews", "events#da-nang"],
-          ["Event media", "How an event gets covered", "events"]]],
-        ["Watch", [
-          ["The films", "From Siargao", "siargao#films"],
-          ["Daily recaps", "One recap for every fest day", "siargao#days"],
-          ["Speaker interviews", "Conversations from the fest", "siargao#films"]]]],
-      feat: ["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Ten days on the island, day by day.", "See the recaps", "siargao"] },
-    { label: "Books", href: "books", cols: [
-        ["By Rashaan Arrington", [
-          ["Energy Chimera", "Kindle, $2.99", "books"],
-          ["Broadcast Yourself", "Kindle, $2.99", "books"],
-          ["Innerstanding: A Way Of Life", "Kindle, $2.99", "books"]]],
-        ["Find them", [
-          ["All books", "The Books page", "books"],
-          ["Amazon author page", "Every title in one place", "https://www.amazon.com/stores/Rashaan-Arrington/author/B0GTC3CNVD"]]]],
-      feat: ["images/photos/shawn-founder-rooftop-smile.webp", "Three Kindle books", "By Rashaan Arrington, $2.99 each.", "See the books", "books"] },
-    { label: "About", href: "founder", cols: [
-        ["The story", [
-          ["The nomad and the filmmaker", "Army, then a channel from zero", "founder#story"],
-          ["Timeline", "How it got here", "founder#timeline"]
-          ]],
-        ["Find me", [
-          ["KhunShawn on YouTube", "Gaming and reactions", "https://www.youtube.com/@KhunShawn"],
-          ["Blog", "Notes and event recaps", "blog"]]]],
-      feat: ["images/photos/siargao-shawn-interview-joanna.webp", "Meet KhunShawn", "Gamer, nomad, event filmmaker, author.", "Full story", "founder"] }
-  ];
+  var SUB = "https://www.youtube.com/@KhunShawn?sub_confirmation=1";
 
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function href(p) { return /^(https?:)?\/\//.test(p) ? p : prefix + p; }
 
-  function linkHtml(it) { return '<a class="nm-link" href="' + esc(href(it[2])) + '"><b>' + esc(it[0]) + "</b><span>" + esc(it[1]) + "</span></a>"; }
-  function colHtml(c) { return '<div class="nm-col"><h4>' + esc(c[0]) + "</h4>" + c[1].map(linkHtml).join("") + "</div>"; }
-  var FEAT_ALT = {
-    "images/photos/process-strategy.webp": "Laptop showing a monthly content plan calendar",
-    "images/case-study/khunshawn-studio-28d-oct28.webp": "YouTube Studio dashboard for the KhunShawn channel showing a 28-day views chart",
-    "images/photos/hero-bts-poster.jpg": "Behind the scenes of a Khun Camp video shoot",
-    "images/photos/danang-nomad-fest-content-creators.webp": "Khun Camp team connecting with content creators at Da Nang Nomad Fest",
-    "images/photos/blog-system.webp": "Whiteboard with sticky notes planning the week by team member",
-    "images/photos/siargao-hero-m.webp": "Siargao Island coast during Siargao Nomad Fest",
-    "images/photos/khun-camp-podcast-recording-studio.webp": "Behind the scenes of a podcast recording with studio lights and cameras",
-    "images/photos/shawn-founder-rooftop-smile.webp": "Rashaan Arrington smiling on a rooftop"
-  };
-  function featHtml(f) {
-    return '<a class="nm-feat" href="' + esc(href(f[4])) + '"><img src="' + esc(href(f[0])) + '" alt="' + esc(FEAT_ALT[f[0]] || "") + '" loading="lazy" width="520" height="293"><div><b>' + esc(f[1]) + "</b><span>" + esc(f[2]) + "</span><em>" + esc(f[3]) + " &rarr;</em></div></a>";
+  var GAMES = [
+    ["Mobile Legends", "mobile-legends", "KtqlF9aHLjE", "191,858"],
+    ["Genshin Impact", "genshin-impact", "4wFccc5T1nk", "20,692"],
+    ["Honkai: Star Rail", "honkai-star-rail", "9fmEzYZCbq4", "17,912"],
+    ["Zenless Zone Zero", "zenless-zone-zero", "aVQeU23R_rA", "16,187"],
+    ["Honor of Kings", "honor-of-kings", "-ZPMGSPmHxM", "12,220"],
+    ["Limbus Company", "limbus-company", "qdast5G6Pjc", "9,620"]
+  ];
+  // fallbacks, replaced from data/stats.json when it loads
+  var STAT = { subs: "68.9K", views: "895K", hours: "47.2K", monthly: "208K", asof: "Nov 13, 2026" };
+
+  var ITEMS = [
+    { label: "Reactions", href: "./#top-reactions" },
+    { label: "Games", panel: "games", href: "brands#games" },
+    { label: "Events", href: "events" },
+    { label: "Books", href: "books" },
+    { label: "About", href: "founder" }
+  ];
+
+  function gamesPanel() {
+    var tiles = GAMES.map(function (g) {
+      return '<a class="nm-tile" href="' + esc(href("games/" + g[1])) + '"><img src="' + esc(href("images/reactions/thumb-" + g[2] + ".webp")) + '" alt="" loading="lazy" width="800" height="450"><b>' + esc(g[0]) + "</b><span>" + g[3] + " views</span></a>";
+    }).join("");
+    return '<div class="nm-games"><div class="nm-gtext"><p class="nm-k">Games</p><h3>Pick a game, press play.</h3><p>Each game has its own page with the full playlist and the most-watched reaction up top.</p><a class="nm-more" href="' + esc(href("./#top-reactions")) + '">All reactions &rarr;</a></div><div class="nm-tiles">' + tiles + "</div></div>";
   }
-  function panelHtml(m) { return '<div class="nm-in">' + colHtml(m.cols[0]) + colHtml(m.cols[1]) + featHtml(m.feat) + "</div>"; }
+  function brandsPanel() {
+    var offers = [["Integrated ads", "In a reaction or live"], ["First-look reactions", "Your trailer or update"], ["Event coverage", "Films and interviews"], ["Speaking", "Host covers travel"]].map(function (o) {
+      return '<a href="' + esc(href("brands#offers")) + '">' + esc(o[0]) + "<small>" + esc(o[1]) + "</small></a>";
+    }).join("");
+    return '<div class="nm-brands"><div><p class="nm-k">Work with me</p><h3>Brands, events and talks.</h3><div class="nm-of">' + offers + '</div><span class="nm-chip">Pricing on request</span></div>' +
+      '<div><p class="nm-k">The numbers</p><div class="nm-nums"><div><b data-nms="subs">' + STAT.subs + '</b><span>subscribers</span></div><div><b data-nms="views">' + STAT.views + '</b><span>views, 28 days</span></div><div><b data-nms="hours">' + STAT.hours + '</b><span>watch hours</span></div><div><b data-nms="monthly">' + STAT.monthly + '</b><span>monthly viewers</span></div></div>' +
+      '<p class="nm-asof">From YouTube Studio, as of <span data-nms="asof">' + STAT.asof + "</span>. No revenue shown.</p></div>" +
+      '<div><a class="nm-ph" href="' + esc(href("events")) + '"><img src="' + esc(href("images/photos/siargao-shawn-interview-joanna.webp")) + '" alt="KhunShawn at Nomads in Paradise, Siargao" loading="lazy" width="520" height="293"><span>On site at Nomads in Paradise, Siargao</span></a>' +
+      '<div class="nm-actions"><a class="btn btn-primary" href="' + esc(href("brands?src=nav#inquire")) + '">Send an inquiry</a><a href="' + esc(href("brands")) + '">Media kit</a><a href="' + esc(href("press")) + '">Press kit</a></div></div></div>';
+  }
 
   var megaWrap = document.createElement("div");
   megaWrap.className = "nav-mega";
@@ -87,24 +63,26 @@
     megaWrap.appendChild(p); panels[id] = p;
   }
 
-  function buildItems(live, siargaoHtml, soon) {
-    var html = "";
-    MENU.forEach(function (m, i) {
-      html += '<li data-mega="' + i + '"><a href="' + esc(href(m.href)) + '" class="has-mega" aria-haspopup="true" aria-expanded="false">' + esc(m.label) + "</a></li>";
+  function build() {
+    var h = "";
+    ITEMS.forEach(function (it) {
+      if (it.panel) h += '<li data-mega="' + it.panel + '"><a href="' + esc(href(it.href)) + '" class="has-mega" aria-haspopup="true" aria-expanded="false">' + esc(it.label) + "</a></li>";
+      else h += '<li><a href="' + esc(href(it.href)) + '">' + esc(it.label) + "</a></li>";
     });
-    if (live) html += '<li data-mega="live"><a href="' + esc(href("siargao")) + '" class="has-mega ' + (soon ? "nav-soon-link" : "nav-live") + '" aria-haspopup="true" aria-expanded="false">Siargao' + (soon ? '<em class="nav-soon">Oct 16</em>' : '<i aria-hidden="true"></i><span class="sr">Ongoing now</span>') + "</a></li>";
-    var cta = desk.querySelector(".btn-primary");
-    var ctaLi = cta ? cta.parentNode.outerHTML : "";
-    desk.innerHTML = html + ctaLi;
-    var mob = nav.querySelector("#nav-mobile-menu ul");
+    h += '<li class="nm-ctas"><a class="nm-sub" href="' + SUB + '" target="_blank" rel="noopener">Subscribe</a></li>';
+    h += '<li class="nm-ctas" data-mega="brands"><a class="btn btn-primary has-mega" href="' + esc(href("brands?src=nav")) + '" aria-haspopup="true" aria-expanded="false">For brands</a></li>';
+    desk.innerHTML = h;
+
+    var mob = nav.querySelector("#nav-mobile-menu");
     if (mob) {
-      var mh = MENU.map(function (m) { return '<li><a href="' + esc(href(m.href)) + '">' + esc(m.label) + "</a></li>"; }).join("");
-      if (live) mh += '<li><a href="' + esc(href("siargao")) + '" class="' + (soon ? "nav-soon-link" : "nav-live") + '">Siargao' + (soon ? '<em class="nav-soon">Oct 16</em>' : '<i aria-hidden="true"></i><span class="sr">Ongoing now</span>') + "</a></li>";
-      mob.innerHTML = mh;
+      var items = ["Reactions|./#top-reactions", "Games|brands#games", "Events|events", "Books|books", "About|founder"];
+      mob.innerHTML = '<ol class="nm-m">' + items.map(function (s, i) { var p = s.split("|"); return '<li><a href="' + esc(href(p[1])) + '"><i>0' + (i + 1) + "</i>" + esc(p[0]) + "</a></li>"; }).join("") + "</ol>" +
+        '<a class="nm-mb" href="' + esc(href("brands?src=nav")) + '"><b>For brands</b><span>Media kit, numbers and the inquiry form. Pricing on request.</span></a>' +
+        '<div class="nm-ms"><a href="' + SUB + '" target="_blank" rel="noopener">Subscribe</a><a href="https://www.youtube.com/@KhunShawn" target="_blank" rel="noopener">YouTube</a><a href="https://www.tiktok.com/@khunshawn1" target="_blank" rel="noopener">TikTok</a><a href="https://www.facebook.com/KhunShawnReacts" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/in/shawn-arrington-/" target="_blank" rel="noopener">LinkedIn</a></div>';
     }
     megaWrap.innerHTML = ""; panels = {};
-    MENU.forEach(function (m, i) { addPanel(String(i), panelHtml(m)); });
-    if (live && siargaoHtml) addPanel("live", siargaoHtml);
+    addPanel("games", gamesPanel());
+    addPanel("brands", brandsPanel());
   }
 
   var openId = null, closeTimer = null;
@@ -130,7 +108,11 @@
   }
   function scheduleClose() { clearTimeout(closeTimer); closeTimer = setTimeout(close, 140); }
 
-  desk.addEventListener("mouseover", function (e) { var li = e.target.closest("li[data-mega]"); if (li) open(li.getAttribute("data-mega")); });
+  desk.addEventListener("mouseover", function (e) {
+    var li = e.target.closest("li");
+    if (!li) return;
+    if (li.getAttribute("data-mega")) open(li.getAttribute("data-mega")); else scheduleClose();
+  });
   desk.addEventListener("focusin", function (e) { var li = e.target.closest("li[data-mega]"); if (li) open(li.getAttribute("data-mega")); });
   desk.addEventListener("click", function (e) {
     var li = e.target.closest("li[data-mega]");
@@ -144,86 +126,48 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && openId !== null) close(); });
   document.addEventListener("click", function (e) { if (openId !== null && !nav.contains(e.target)) close(); });
 
-  // ---------- tone: light or dark glass, from what is behind the pill ----------
-  var DARK = ".video-hero, .hub-hero, .hub-night, .br-hero, .bk-hero, .pf-band, .cs-hero, .cs-dark, .sg-hero, .sg-dark, .rc-hero, .founder-wrap, .footer, .cta-dark";
-  function lum(c) { return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255; }
-  function rgba(s) { var m = /rgba?\(([^)]+)\)/.exec(s); if (!m) return null; var p = m[1].split(",").map(parseFloat); return [p[0], p[1], p[2], p.length > 3 ? p[3] : 1]; }
-  function toneOf(el) {
-    for (var n = el; n && n !== document.documentElement; n = n.parentElement) {
-      if (n.getAttribute && n.getAttribute("data-nav")) return n.getAttribute("data-nav");
-      if (n.matches && n.matches(DARK)) return "dark";
-      var c = rgba(getComputedStyle(n).backgroundColor);
-      if (c && c[3] > 0.6) return lum(c) > 0.55 ? "light" : "dark";
-    }
-    return null;
-  }
+  // the site is dark everywhere now: one tone, plus a solid bar once the page scrolls
+  nav.setAttribute("data-tone", "dark");
   var ticking = false;
-  function update() {
-    ticking = false;
-    nav.classList.toggle("is-scrolled", (window.pageYOffset || 0) > 24);
-    var r = inner.getBoundingClientRect(), x = Math.round(window.innerWidth / 2), cy = Math.round(r.top + r.height / 2);
-    var els = document.elementsFromPoint ? document.elementsFromPoint(x, cy) : [];
-    var t = null;
-    for (var i = 0; i < els.length && !t; i++) {
-      if (nav.contains(els[i])) continue;
-      t = toneOf(els[i]);
-    }
-    nav.setAttribute("data-tone", t || (document.body.classList.contains("theme-light") ? "light" : "dark"));
-  }
+  function update() { ticking = false; nav.classList.toggle("is-scrolled", (window.pageYOffset || 0) > 24); }
   function schedule() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
   window.addEventListener("scroll", schedule, { passive: true });
-  window.addEventListener("resize", schedule);
   window.addEventListener("load", schedule);
 
-  buildItems(false);
+  build();
   schedule();
 
   var script = document.querySelector('script[src*="js/nav.js"]');
-  var dataUrl;
-  try { dataUrl = new URL("../data/siargao.json", script.src).href; } catch (e) { return; }
-  fetch(dataUrl, { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
+  function dataUrl(name) { try { return new URL("../data/" + name, script.src).href; } catch (e) { return null; } }
+
+  // numbers in the For brands panel follow data/stats.json
+  var su = dataUrl("stats.json");
+  if (su) fetch(su, { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (d) {
+    var k = d && d.channels && d.channels.khunshawn; if (!k) return;
+    function fmt(n) { return n >= 1e6 ? (n / 1e6).toFixed(1).replace(/\.0$/, "") + "M" : n >= 1e3 ? (n / 1e3).toFixed(1).replace(/\.0$/, "") + "K" : String(Math.round(n)); }
+    var set = function (key, v) { [].forEach.call(megaWrap.querySelectorAll('[data-nms="' + key + '"]'), function (el) { el.textContent = v; }); };
+    if (typeof k.subscribers_total === "number") set("subs", fmt(k.subscribers_total));
+    if (k.periods && k.periods["28d"]) {
+      if (typeof k.periods["28d"].views === "number") set("views", fmt(k.periods["28d"].views));
+      if (typeof k.periods["28d"].watch_hours === "number") set("hours", fmt(k.periods["28d"].watch_hours));
+    }
+    if (typeof k.monthly_audience === "number") set("monthly", fmt(k.monthly_audience));
+    if (k.as_of) { var t = new Date(k.as_of); if (!isNaN(t)) set("asof", t.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })); }
+  }).catch(function () {});
+
+  // a footer link to the Siargao hub once the fest is over
+  var sj = dataUrl("siargao.json");
+  if (sj) fetch(sj, { cache: "no-cache" }).then(function (r) { return r.json(); }).then(function (d) {
     var p = function (s) { var a = s.split("-"); return new Date(+a[0], +a[1] - 1, +a[2]); };
     var today = new Date(); today.setHours(0, 0, 0, 0);
-    var start = p(d.start), end = p(d.end || d.start); 
+    var start = p(d.start), end = p(d.end || d.start);
     var status = d.status && d.status !== "auto" ? d.status : today < start ? "upcoming" : today > end ? "archived" : "ongoing";
-    var pub = (d.days || []).filter(function (x) { return x.published; });
-    var latest = pub.length ? pub[pub.length - 1] : null;
-
-    if (status === "ongoing") {
-      var base = new URL(prefix || "./", location.href).href;
-      var latestHref = latest && latest.url ? new URL(latest.url, base).href : href("siargao");
-      var html = '<div class="nm-in">' +
-        colHtml(["Live now", [
-          [latest ? "Latest recap" : "Day 1 recap", latest ? latest.title : "Lands the morning after day one", latestHref],
-          ["All ten days", "Every day in one place", "siargao#days"],
-          ["Testimonial wall", "Local owners, on camera", "siargao#wall"]]]) +
-        colHtml(["Good to know", [
-          ["Oct 16 to 25", "Siargao Island", "siargao"],
-          ["Archive after the fest", "Recaps stay on the site", "siargao"]]]) +
-        featHtml(["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Live recaps and owner testimonials.", "Follow the fest", "siargao"]) + "</div>";
-      buildItems(true, html);
-      schedule();
-    }
-    if (status === "upcoming") {
-      var soonHtml = '<div class="nm-in">' +
-        colHtml(["The fest", [
-          ["Siargao Nomad Fest hub", "Countdown and the day-by-day page", "siargao"],
-          ["A recap for every day", "What happened and who we met", "siargao#days"],
-          ["Testimonial wall", "Local owners, on camera", "siargao#wall"]]]) +
-        colHtml(["Good to know", [
-          ["Oct 16 to 25", "Siargao Island", "siargao"],
-          ["Archive after the fest", "Recaps stay on the site", "siargao"]]]) +
-        featHtml(["images/photos/siargao-hero-m.webp", "Siargao Nomad Fest", "Starts Oct 16. Recaps and owner testimonials from the island.", "See the hub", "siargao"]) + "</div>";
-      buildItems(true, soonHtml, true);
-      schedule();
-    }
-    if (status !== "upcoming") {
-      var blog = document.querySelector('.footer-editorial-right a[href$="blog"]');
-      if (blog && blog.parentNode && blog.parentNode.parentNode) {
-        var f = document.createElement("li");
-        f.innerHTML = '<a href="' + esc(href("siargao")) + '">Siargao Nomad Fest</a>';
-        blog.parentNode.parentNode.insertBefore(f, blog.parentNode.nextSibling);
-      }
+    if (status === "upcoming") return;
+    var blog = document.querySelector('.footer-editorial-right a[href$="blog"]');
+    if (blog && blog.parentNode && blog.parentNode.parentNode) {
+      var f = document.createElement("li");
+      f.innerHTML = '<a href="' + esc(href("siargao")) + '">Siargao Nomad Fest</a>';
+      blog.parentNode.parentNode.insertBefore(f, blog.parentNode.nextSibling);
     }
   }).catch(function () {});
 })();
