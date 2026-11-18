@@ -2756,3 +2756,25 @@ main h1 em, main h2 em { font-family: var(--font-head) !important; font-style: n
 .pk-sw-light code { opacity: 0.75; }
 .pk-thumb-black img, .pk-thumb-teal img { object-fit: contain; }
 .pk-thumb-black { background: #0b0b10; }
+
+/* ---- book editions ---- */
+.bc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.7rem; margin-top: 2rem; }
+.bc { padding: 3px; border-radius: 22px; }
+.bc.r1 { background: linear-gradient(160deg, #ffd23f, #ff2e4d 55%, #ffd23f); box-shadow: 0 0 38px rgba(255, 46, 77, 0.32); }
+.bc.r2 { background: linear-gradient(160deg, #c9a7ff, #6a4fb3 60%, #c9a7ff); box-shadow: 0 0 26px rgba(106, 79, 179, 0.28); }
+.bc.r3 { background: linear-gradient(160deg, #8cc8ff, #2f6fb8 60%, #8cc8ff); }
+.bc-in { display: flex; flex-direction: column; height: 100%; padding: 1rem; border-radius: 19px; background: linear-gradient(180deg, #1d1d29, #101018); }
+.bc-st { margin-bottom: 0.6rem; color: var(--k-yel); font-size: 0.95rem; letter-spacing: 0.2em; line-height: 1; }
+.bc-im { display: flex; align-items: center; justify-content: center; height: 22rem; padding: 1.1rem; border-radius: 13px; background: radial-gradient(circle at 50% 40%, #2b2b3b, #0d0d14); }
+.bc-im img { height: 100%; width: auto; max-width: 100%; border-radius: 3px 9px 9px 3px; box-shadow: 0 18px 30px rgba(0, 0, 0, 0.6); transition: transform 0.4s ease; }
+.bc-im:hover img { transform: translateY(-4px) rotate(-1deg); }
+.bc-tag { display: block; margin-top: 0.9rem; font-style: normal; font-family: var(--font-head); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--k-yel); }
+.bc-in h3 { margin: 0.3rem 0 1rem; font-size: 1.1rem; line-height: 1.3; min-height: 2.9em; color: #f4f4f7; }
+.bc-in h3 a:hover { text-decoration: underline; text-decoration-color: var(--k-red); text-underline-offset: 3px; }
+.bc-pw { display: flex; justify-content: space-between; align-items: baseline; margin-top: auto; padding-top: 0.7rem; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.bc-pw span { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-dim); }
+.bc-pw b { font-family: var(--font-head); font-size: 1.7rem; line-height: 1; color: #f4f4f7; }
+.bc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem 1.6rem; margin-top: 1.8rem; }
+.bc-more { font-weight: 700; color: var(--k-yel); }
+@media (max-width: 900px) { .bc-grid { grid-template-columns: 1fr; max-width: 26rem; } .bc-im { height: 20rem; } }
+.bc-row .btn-solid { border-radius: 999px; padding: 0.85rem 1.5rem; font-size: 0.9rem; background: var(--k-red); border-color: var(--k-red); color: #fff; }
