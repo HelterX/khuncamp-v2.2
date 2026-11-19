@@ -2820,3 +2820,20 @@ main h1 em, main h2 em { font-family: var(--font-head) !important; font-style: n
 .br5-nums .br-note { color: var(--ink-dim); }
 @media (max-width: 900px) { .br5-top { grid-template-columns: 1fr; gap: 2rem; } .br5-strip { grid-template-columns: repeat(2, 1fr); } .br5-strip > div:nth-child(2) { border-right: 0; } .br5-strip > div:nth-child(-n+2) { border-bottom: 1px solid var(--k-line); } }
 @media (max-width: 520px) { .br5-strip > div { padding: 1.1rem 1.1rem; } }
+
+/* ---- brands lower sections ---- */
+.br-bygame .br-gamelede { margin: -0.6rem 0 1.6rem; max-width: 40rem; color: var(--ink-dim); line-height: 1.6; }
+.bg-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+.bg-tile { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 20px; border: 1px solid var(--k-line); background: var(--k-card); box-shadow: 0 18px 38px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease, border-color 0.3s ease; }
+.bg-tile:hover { transform: translateY(-4px); border-color: var(--k-red); }
+.bg-tile > img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.bg-tile:hover > img { transform: scale(1.05); }
+.bg-ov { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1rem 1.2rem; background: linear-gradient(0deg, rgba(0, 0, 0, 0.88), transparent 62%); }
+.bg-ov b { font-family: var(--font-head); font-size: 1.15rem; color: #fff; }
+.bg-ov small { font-size: 0.8rem; color: #d8d8e3; }
+.bg-ov em { margin-top: 0.3rem; font-style: normal; font-family: var(--font-head); font-weight: 700; font-size: 0.8rem; color: var(--k-yel); }
+.qa-grid.five .qa:last-child { grid-column: 1 / -1; }
+.br-inquire.contact-sec { background: var(--k-band); }
+.br-inquire.contact-sec::before { background: radial-gradient(ellipse 36% 34% at 90% 96%, rgba(255, 46, 77, 0.12), transparent 70%); }
+@media (max-width: 900px) { .bg-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .bg-grid { grid-template-columns: 1fr; } }
