@@ -3,14 +3,14 @@
   "updated_at": "2026-11-20",
   "channels": {
     "khunshawn": {
-      "as_of": "2026-11-13",
+      "as_of": "2026-11-17",
       "subscribers_total": 71400,
-      "subscribers_gained_28d": 2700,
+      "subscribers_gained_28d": 3420,
       "monthly_audience": 208000,
       "periods": {
         "28d": {
-          "views": 895000,
-          "watch_hours": 47200
+          "views": 781000,
+          "watch_hours": 38200
         },
         "90d": {
           "views": null,
