@@ -25,7 +25,7 @@
     ["Limbus Company", "limbus-company", "qdast5G6Pjc", "9,620"]
   ];
   // fallbacks, replaced from data/stats.json when it loads
-  var STAT = { subs: "71.4K", views: "895K", hours: "47.2K", monthly: "208K", asof: "Nov 13, 2026" };
+  var STAT = { subs: "71.4K", views: "781K", hours: "38.2K", monthly: "208K", asof: "Nov 17, 2026" };
 
   var ITEMS = [
     { label: "Reactions", href: "./#top-reactions" },
