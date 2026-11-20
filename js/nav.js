@@ -37,7 +37,7 @@
 
   function gamesPanel() {
     var tiles = GAMES.map(function (g) {
-      return '<a class="nm-tile" href="' + esc(href("games/" + g[1])) + '"><img src="' + esc(href("images/reactions/thumb-" + g[2] + ".webp")) + '" alt="" loading="lazy" width="800" height="450"><b>' + esc(g[0]) + "</b><span>" + g[3] + " views</span></a>";
+      return '<a class="nm-tile" href="' + esc(href("games/" + g[1])) + '"><img src="' + esc(href("images/reactions/thumb-" + g[2] + ".webp")) + '" alt="" loading="lazy" width="800" height="450"><b>' + esc(g[0]) + "</b><span><i data-nmv=\"" + esc(g[2]) + "\">" + g[3] + "</i> views</span></a>";
     }).join("");
     return '<div class="nm-games"><div class="nm-gtext"><p class="nm-k">Games</p><h3>Pick a game, press play.</h3><p>Each game has its own page with the full playlist and the most-watched reaction up top.</p><a class="nm-more" href="' + esc(href("./#top-reactions")) + '">All reactions &rarr;</a></div><div class="nm-tiles">' + tiles + "</div></div>";
   }
@@ -152,6 +152,7 @@
       if (typeof k.periods["28d"].watch_hours === "number") set("hours", fmt(k.periods["28d"].watch_hours));
     }
     if (typeof k.monthly_audience === "number") set("monthly", fmt(k.monthly_audience));
+    if (k.videos) [].forEach.call(megaWrap.querySelectorAll("[data-nmv]"), function (el) { var v = k.videos[el.getAttribute("data-nmv")]; if (v && typeof v.views === "number") el.textContent = v.views.toLocaleString("en-US"); });
     if (k.as_of) { var t = new Date(k.as_of); if (!isNaN(t)) set("asof", t.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })); }
   }).catch(function () {});
 

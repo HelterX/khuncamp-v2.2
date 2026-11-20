@@ -4,7 +4,7 @@
 // Shape: { updated_at, channels: { khunshawn: { as_of, subscribers_total, periods: { "28d": { views, watch_hours },
 //   "90d": {...} } }, khunvlogs: {...} } }. No audience or revenue data is read or shown.
 (function () {
-  var els = [].slice.call(document.querySelectorAll("[data-stat], [data-stat-show], [data-stat-updated], [data-stat-asof], [data-stat-row]"));
+  var els = [].slice.call(document.querySelectorAll("[data-stat], [data-stat-show], [data-stat-updated], [data-stat-asof], [data-stat-row], [data-stat-live]"));
   if (!els.length) return;
   var tag = document.currentScript || document.querySelector('script[src*="hub-stats.js"]');
   var url;
@@ -31,7 +31,7 @@
     els.forEach(function (el) {
       if (el.hasAttribute("data-stat")) {
         var n = pick(d, el.getAttribute("data-stat"));
-        if (n != null) el.textContent = fmt(n);
+        if (n != null) el.textContent = el.hasAttribute("data-stat-full") ? n.toLocaleString("en-US") : fmt(n);
       }
       if (el.hasAttribute("data-stat-show")) {
         if (pick(d, el.getAttribute("data-stat-show")) != null) el.hidden = false;
@@ -42,6 +42,10 @@
       if (el.hasAttribute("data-stat-asof")) {
         var c = d.channels[el.getAttribute("data-stat-asof")], s = c && c.as_of && day(c.as_of);
         if (s) el.textContent = s;
+      }
+      if (el.hasAttribute("data-stat-live")) {
+        var kk = d.channels.khunshawn, lv = kk && kk.live_as_of && day(kk.live_as_of);
+        if (lv) el.textContent = lv;
       }
       if (el.hasAttribute("data-stat-updated")) {
         var k = d.channels.khunshawn, u = day((k && k.as_of) || d.updated_at);

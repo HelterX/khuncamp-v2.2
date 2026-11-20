@@ -1,5 +1,5 @@
 {
-  "_how_to_update": "Edit the numbers below about once a month from YouTube Studio, set as_of to the last day of the 28 day window, and commit. Use plain numbers (895000, not 895K). Use null for anything not known yet. monthly_audience is Studio's Monthly audience (viewers). Never add revenue. An automated feed can overwrite this file later in the same shape.",
+  "_how_to_update": "Edit the numbers below about once a month from YouTube Studio, set as_of to the last day of the 28 day window, and commit. Use plain numbers (895000, not 895K). Use null for anything not known yet. monthly_audience is Studio's Monthly audience (viewers). Never add revenue. An automated feed can overwrite this file later in the same shape. A daily job (scripts/update-stats.mjs) refreshes subscribers_total, videos.<id>.views and live_as_of; it never touches the 28 day numbers, monthly_audience or as_of.",
   "updated_at": "2026-11-14",
   "channels": {
     "khunshawn": {
@@ -15,6 +15,26 @@
         "90d": {
           "views": null,
           "watch_hours": null
+        }
+      },
+      "videos": {
+        "KtqlF9aHLjE": {
+          "views": 191858
+        },
+        "4wFccc5T1nk": {
+          "views": 20692
+        },
+        "9fmEzYZCbq4": {
+          "views": 17912
+        },
+        "aVQeU23R_rA": {
+          "views": 16187
+        },
+        "-ZPMGSPmHxM": {
+          "views": 12220
+        },
+        "qdast5G6Pjc": {
+          "views": 9620
         }
       }
     }
