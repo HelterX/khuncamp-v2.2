@@ -25,7 +25,7 @@
     ["Limbus Company", "limbus-company", "qdast5G6Pjc", "9,620"]
   ];
   // fallbacks, replaced from data/stats.json when it loads
-  var STAT = { subs: "68.9K", views: "895K", hours: "47.2K", monthly: "208K", asof: "Nov 13, 2026" };
+  var STAT = { subs: "71.4K", views: "895K", hours: "47.2K", monthly: "208K", asof: "Nov 13, 2026" };
 
   var ITEMS = [
     { label: "Reactions", href: "./#top-reactions" },
@@ -47,7 +47,7 @@
     }).join("");
     return '<div class="nm-brands"><div><p class="nm-k">Work with me</p><h3>Brands, events and talks.</h3><div class="nm-of">' + offers + '</div><span class="nm-chip">Pricing on request</span></div>' +
       '<div><p class="nm-k">The numbers</p><div class="nm-nums"><div><b data-nms="subs">' + STAT.subs + '</b><span>subscribers</span></div><div><b data-nms="views">' + STAT.views + '</b><span>views, 28 days</span></div><div><b data-nms="hours">' + STAT.hours + '</b><span>watch hours</span></div><div><b data-nms="monthly">' + STAT.monthly + '</b><span>monthly viewers</span></div></div>' +
-      '<p class="nm-asof">From YouTube Studio, as of <span data-nms="asof">' + STAT.asof + "</span>. No revenue shown.</p></div>" +
+      '<p class="nm-asof">Subscribers update daily. Other numbers are from YouTube Studio, as of <span data-nms="asof">' + STAT.asof + "</span>. No revenue shown.</p></div>" +
       '<div><a class="nm-ph" href="' + esc(href("events")) + '"><img src="' + esc(href("images/photos/siargao-crew-filming-talk.webp")) + '" alt="Crew filming a talk at Nomads in Paradise 2026 in Siargao" loading="lazy" width="520" height="347"><span>On site at Nomads in Paradise, Siargao</span></a>' +
       '<div class="nm-actions"><a class="btn btn-primary" href="' + esc(href("brands?src=nav#inquire")) + '">Send an inquiry</a><a href="' + esc(href("brands")) + '">Media kit</a><a href="' + esc(href("press")) + '">Press kit</a></div></div></div>';
   }
