@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=186">
+  <link rel="stylesheet" href="css/style.css?v=193">
   <link rel="icon" type="image/x-icon" href="favicon.ico?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=3">
@@ -75,28 +75,41 @@
   </header>
 
   <main>
-    <section class="wrap section hero" style="padding-top:4rem; padding-bottom:1rem;">
-      <div style="max-width:38rem; margin:0 auto; text-align:center;">
-        <p class="eyebrow gold center">Contact</p>
-        <h1 style="font-family:var(--font-display); font-weight:700; font-size:clamp(2rem,4vw,2.75rem); margin:0.75rem 0 1rem;">Let's talk.</h1>
-        <p style="color:var(--ink-dim); font-size:0.95rem; line-height:1.6;">Brand deal, event coverage, speaking or press? Send a note and I will reply within one business day. Or write directly: <a href="mailto:Shawn@getkhuncamp.com" style="color:var(--cream);">Shawn@getkhuncamp.com</a></p>
+    <section class="ct3-hero" data-fx>
+      <div class="wrap">
+        <div class="ct3-grid">
+          <div>
+            <span class="gm3-lvl">Contact</span>
+            <h1>Let's <em>talk.</em></h1>
+            <p class="hub-lede">Brand deal, event coverage, speaking or press? Send a note and I will reply within one business day. Or write directly: <a href="mailto:Shawn@getkhuncamp.com">Shawn@getkhuncamp.com</a></p>
+            <div class="ct3-links">
+              <a href="mailto:Shawn@getkhuncamp.com"><span>Email</span><b>Shawn@getkhuncamp.com</b></a>
+              <a href="press"><span>Press</span><b>Press kit &rarr;</b></a>
+              <a href="brands"><span>Brands</span><b>Media kit &rarr;</b></a>
+            </div>
+          </div>
+          <div class="ct3-scene"><div class="ct3-card"><div class="in">
+            <img class="ct3-photo" src="images/photos/shawn-da-nang-laughing-skyline.webp" width="2400" height="1600" fetchpriority="high" decoding="async" alt="KhunShawn (Rashaan Arrington) in Da Nang, Vietnam, laughing">
+            <span class="shine" aria-hidden="true"></span>
+            <div class="bd"><span class="k">Replies within</span><b>1 business day</b></div>
+          </div></div></div>
+        </div>
       </div>
     </section>
 
-    <section class="theme-light wrap section contact-sec">
-      <div class="intake-split" data-fx>
-        <div class="intake-split-text">
-          <p class="eyebrow-lg">What happens next</p>
+    <section class="theme-light wrap section contact-sec ct3-form" data-fx>
+      <div class="ct3-split">
+        <div class="ct3-side">
+          <p class="hub-kicker">What happens next</p>
           <h2>A real reply, not an autoresponder.</h2>
-          <p class="intro">I read every message and reply within one business day.</p>
-          <div class="intake-trust">
-            <div class="intake-trust-item"><b>&#10003;</b><p>Brand deals: integrated ads in videos and YouTube Live streams, and first-look reactions.</p></div>
-            <div class="intake-trust-item"><b>&#10003;</b><p>Event coverage and speaking, with pricing on request.</p></div>
-            <div class="intake-trust-item"><b>&#10003;</b><p>Press and interviews are welcome too. See the <a href="press">press kit</a>.</p></div>
-          </div>
-          <img class="ct-photo" src="images/photos/shawn-da-nang-laughing-skyline.webp" width="2400" height="1600" loading="lazy" decoding="async" alt="KhunShawn (Rashaan Arrington) in Da Nang, Vietnam, laughing">
+          <p class="ct3-intro">I read every message and reply within one business day.</p>
+          <ol class="ct3-steps">
+            <li><span class="node"><b>1</b></span><div class="box"><p>Brand deals: integrated ads in videos and YouTube Live streams, and first-look reactions.</p></div></li>
+            <li><span class="node"><b>2</b></span><div class="box"><p>Event coverage and speaking, with pricing on request.</p></div></li>
+            <li><span class="node"><b>3</b></span><div class="box"><p>Press and interviews are welcome too. See the <a href="press">press kit</a>.</p></div></li>
+          </ol>
         </div>
-        <div class="intake-card">
+        <div class="ct3-frame"><div class="intake-card">
           <form class="intake-form" action="https://formspree.io/f/xbgrqqbr" method="POST" data-inquiry="contact">
             <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true">
             <input type="hidden" name="_next" value="https://khuncamp.com/thank-you">
@@ -139,7 +152,7 @@
             </div>
             <button type="submit" class="btn-solid">Send &rarr;</button>
           </form>
-        </div>
+        </div></div>
       </div>
     </section>
   </main>
@@ -224,6 +237,7 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
   <script src="js/nav.js?v=16"></script>
   <script src="js/tracking.js?v=5"></script>
+  <script src="js/contact3d.js?v=1"></script>
   <script src="js/main.js?v=19"></script>
 </body>
 </html>

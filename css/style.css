@@ -3226,3 +3226,55 @@ main h1 em, main h2 em { font-family: var(--font-head) !important; font-style: n
 }
 @media (max-width: 400px) { .bk3-shelf { gap: 1.1rem; } .bk3-book { --w: 92px; --h: 138px; } .bk3-book:nth-child(2) { --w: 98px; --h: 148px; } }
 @media (prefers-reduced-motion: reduce) { .bk3-book, .bk3-shelf { transition: none; } }
+
+/* ---- Contact page: photo card hero, quick links, numbered steps, framed form (2026-11-24) ---- */
+.ct3-hero { position: relative; isolation: isolate; overflow: hidden; color: #f4f4f7; padding: 8.4rem 0 3.2rem; background: radial-gradient(ellipse at 76% 36%, rgba(255, 46, 77, 0.19), transparent 55%), radial-gradient(ellipse at 6% 100%, rgba(255, 210, 63, 0.07), transparent 45%), var(--k-bg); }
+.ct3-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.4rem; align-items: center; }
+.ct3-hero h1 { margin: 0.7rem 0 1rem; font-size: clamp(2.6rem, 6vw, 4.8rem); line-height: 1; }
+.ct3-hero h1 em { font-style: normal; color: var(--k-red); }
+.ct3-hero .hub-lede { max-width: 34rem; color: #c9c9d6; margin: 0 0 1.6rem; }
+.ct3-hero .hub-lede a { color: var(--k-yel); font-weight: 700; }
+.ct3-links { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.8rem; max-width: 40rem; }
+.ct3-links a { display: block; padding: 0.85rem 1rem; text-decoration: none; background: rgba(21, 21, 29, 0.88); border: 1px solid rgba(255, 210, 63, 0.4); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); transition: border-color 0.2s, background 0.2s; }
+.ct3-links a:hover, .ct3-links a:focus-visible { background: rgba(255, 46, 77, 0.16); border-color: var(--k-red); }
+.ct3-links span { display: block; font: 700 0.62rem var(--font-head); letter-spacing: 0.18em; text-transform: uppercase; color: var(--k-yel); }
+.ct3-links b { display: block; margin-top: 0.3rem; font: 700 0.86rem/1.25 var(--font-head); color: #f4f4f7; overflow-wrap: anywhere; }
+.ct3-scene { perspective: 1300px; }
+.ct3-card { position: relative; width: min(400px, 100%); margin: 0 auto; padding: 5px; border-radius: 24px; background: linear-gradient(135deg, var(--k-yel), var(--k-red) 60%, #8a1228); transform: rotateX(6deg) rotateY(-14deg) rotateZ(1.5deg); transform-style: preserve-3d; transition: transform 0.2s ease-out; box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8), 0 0 70px rgba(255, 46, 77, 0.35); }
+.ct3-card .in { position: relative; overflow: hidden; border-radius: 20px; background: var(--k-card); }
+.ct3-photo { display: block; width: 100%; height: auto; aspect-ratio: 4 / 4.2; object-fit: cover; object-position: 50% 30%; }
+.ct3-card .shine { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.12) 45%, transparent 60%); }
+.ct3-card .bd { position: absolute; left: 0; right: 0; bottom: 0; padding: 3rem 1.3rem 1.2rem; background: linear-gradient(180deg, transparent, rgba(11, 11, 16, 0.96) 70%); }
+.ct3-card .k { display: block; font: 700 0.64rem var(--font-head); letter-spacing: 0.22em; text-transform: uppercase; color: var(--k-yel); }
+.ct3-card b { display: block; margin-top: 0.25rem; font: 700 1.7rem/1 var(--font-head); text-transform: uppercase; color: #f4f4f7; }
+
+.ct3-form { padding-top: 3rem; padding-bottom: 5rem; }
+.ct3-split { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 3rem; align-items: start; }
+.ct3-side h2 { margin: 0.5rem 0 0.8rem; font-size: clamp(1.8rem, 3.2vw, 2.6rem); line-height: 1.05; }
+.ct3-intro { margin: 0 0 1.6rem; max-width: 30rem; color: var(--espresso-dim); line-height: 1.65; }
+.ct3-steps { position: relative; list-style: none; margin: 0; padding: 0; }
+.ct3-steps::before { content: ""; position: absolute; left: 21px; top: 24px; bottom: 24px; width: 3px; background: linear-gradient(180deg, var(--k-red), var(--k-yel)); box-shadow: 0 0 14px rgba(255, 46, 77, 0.5); }
+.ct3-steps li { position: relative; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 1rem; align-items: start; margin-bottom: 1rem; }
+.ct3-steps .node { display: grid; place-items: center; width: 40px; height: 40px; margin: 0.5rem 0 0 2px; background: var(--k-bg); border: 3px solid var(--k-yel); transform: rotate(45deg); box-shadow: 0 0 18px rgba(255, 210, 63, 0.4); }
+.ct3-steps .node b { transform: rotate(-45deg); font: 700 0.9rem var(--font-head); color: var(--k-yel); }
+.ct3-steps .box { padding: 0.9rem 1.1rem; background: rgba(21, 21, 29, 0.88); border: 1px solid var(--k-line); clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px)); }
+.ct3-steps p { margin: 0; font-size: 0.93rem; line-height: 1.55; color: #c9c9d6; }
+.ct3-steps a { color: var(--k-yel); font-weight: 700; }
+.ct3-frame { padding: 4px; border-radius: 28px; background: linear-gradient(160deg, var(--k-yel), var(--k-red) 55%, #8a1228); box-shadow: 0 0 60px rgba(255, 46, 77, 0.28); }
+.ct3-frame .intake-card { border-radius: 24px; box-shadow: none; }
+
+@media (max-width: 900px) {
+  .ct3-hero { padding: 7rem 0 2.4rem; }
+  .ct3-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+  .ct3-card { width: min(320px, 100%); transform: rotateX(4deg) rotateY(-8deg); }
+  .ct3-photo { aspect-ratio: 4 / 3.4; }
+  .ct3-split { grid-template-columns: 1fr; gap: 2rem; }
+}
+@media (max-width: 560px) {
+  .ct3-links { grid-template-columns: 1fr; }
+  .ct3-frame { border-radius: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { .ct3-card, .ct3-links a { transition: none; } }
+.ct3-form.contact-sec { background: var(--k-band); }
+.ct3-form.contact-sec::before { background: radial-gradient(ellipse 36% 34% at 90% 96%, rgba(255, 46, 77, 0.14), transparent 70%), radial-gradient(ellipse 30% 30% at 6% 20%, rgba(255, 210, 63, 0.06), transparent 70%); }
+@media (min-width: 561px) { .ct3-links a:first-child { grid-column: 1 / -1; } }
