@@ -3278,3 +3278,7 @@ main h1 em, main h2 em { font-family: var(--font-head) !important; font-style: n
 .ct3-form.contact-sec { background: var(--k-band); }
 .ct3-form.contact-sec::before { background: radial-gradient(ellipse 36% 34% at 90% 96%, rgba(255, 46, 77, 0.14), transparent 70%), radial-gradient(ellipse 30% 30% at 6% 20%, rgba(255, 210, 63, 0.06), transparent 70%); }
 @media (min-width: 561px) { .ct3-links a:first-child { grid-column: 1 / -1; } }
+
+/* ---- layout-shift guard: a fallback face sized like Satoshi, so text keeps its line breaks while Satoshi loads ---- */
+@font-face { font-family: "Satoshi Fallback"; src: local("Arial"), local("Helvetica Neue"), local("Helvetica"); size-adjust: 97.5%; }
+:root { --font-display: "Satoshi", "Satoshi Fallback", ui-sans-serif, sans-serif; --font-body: "Satoshi", "Satoshi Fallback", ui-sans-serif, sans-serif; --font-mono: "Satoshi", "Satoshi Fallback", ui-sans-serif, sans-serif; }
