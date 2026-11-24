@@ -21,7 +21,7 @@
       <link rel="preconnect" href="https://api.fontshare.com">
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=gambetta@300,301,400,401&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=186">
+  <link rel="stylesheet" href="css/style.css?v=192">
   <link rel="icon" type="image/x-icon" href="favicon.ico?v=3">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png?v=3">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png?v=3">
@@ -168,36 +168,71 @@
   </header>
 
   <main>
-    <section class="bk-hero" data-fx>
+    <section class="bk3-hero" data-fx>
       <div class="wrap">
-        <p class="hub-eyebrow">Books</p>
-        <h1>Books by <em>Rashaan Arrington.</em></h1>
-        <p class="hub-lede">Three Kindle titles from the creator behind KhunShawn.</p>
-        <div class="hub-ctas"><a class="btn-solid" href="https://www.amazon.com/stores/Rashaan-Arrington/author/B0GTC3CNVD" target="_blank" rel="noopener">Amazon author page &rarr;</a></div>
+        <div class="bk3-grid">
+          <div>
+            <span class="gm3-lvl">Books</span>
+            <h1>Books by <em>Rashaan Arrington.</em></h1>
+            <p class="hub-lede">Three Kindle titles from the creator behind KhunShawn.</p>
+            <div class="hub-ctas"><a class="btn-solid" href="https://www.amazon.com/stores/Rashaan-Arrington/author/B0GTC3CNVD" target="_blank" rel="noopener">Amazon author page &rarr;</a><a class="hub-ghost" href="#titles">See the three titles</a></div>
+          </div>
+          <div class="bk3-scene"><div class="bk3-shelf">
+            <a class="bk3-book" href="https://www.amazon.com/dp/B0GTHDDW26" target="_blank" rel="noopener" aria-label="Energy Chimera on Amazon" style="--spine:#1d1106"><span class="f"><img src="images/books/energy-chimera-cover.webp" width="400" height="600" fetchpriority="high" decoding="async" alt="Energy Chimera book cover by KhunShawn"></span><span class="sp"><i>Energy Chimera</i></span><span class="pg"></span><span class="bk"></span></a>
+            <a class="bk3-book" href="https://www.amazon.com/dp/B0GT5XJQHH" target="_blank" rel="noopener" aria-label="Broadcast Yourself on Amazon" style="--spine:#190f09"><span class="f"><img src="images/books/broadcast-yourself-cover.webp" width="400" height="600" fetchpriority="high" decoding="async" alt="Broadcast Yourself book cover by KhunShawn"></span><span class="sp"><i>Broadcast Yourself</i></span><span class="pg"></span><span class="bk"></span></a>
+            <a class="bk3-book" href="https://www.amazon.com/dp/B0HKGH3NF7" target="_blank" rel="noopener" aria-label="Innerstanding: A Way Of Life on Amazon" style="--spine:#181818"><span class="f"><img src="images/books/innerstanding-cover.webp" width="400" height="618" fetchpriority="high" decoding="async" alt="Innerstanding: A Way Of Life book cover by KhunShawn"></span><span class="sp"><i>Innerstanding: A Way Of Life</i></span><span class="pg"></span><span class="bk"></span></a>
+          </div><div class="bk3-plank" aria-hidden="true"></div></div>
+        </div>
       </div>
     </section>
 
-    <section class="hub-sec bk-shelf" data-fx>
+    <section class="hub-sec bk3-titles" id="titles" data-fx>
       <div class="wrap">
         <p class="hub-kicker">Kindle</p>
-        <h2>The three titles.</h2>
-        <div class="bk-grid">
-          <a class="bk-card" href="https://www.amazon.com/dp/B0GTHDDW26" target="_blank" rel="noopener"><span class="bk-cover has-img"><img src="images/books/energy-chimera-cover.webp" width="400" height="600" loading="lazy" decoding="async" alt="Energy Chimera book cover by KhunShawn"></span><span class="bk-meta"><b>Energy Chimera</b><em>Kindle &middot; $2.99</em><u>View on Amazon &rarr;</u></span></a>
-          <a class="bk-card" href="https://www.amazon.com/dp/B0GT5XJQHH" target="_blank" rel="noopener"><span class="bk-cover has-img"><img src="images/books/broadcast-yourself-cover.webp" width="400" height="600" loading="lazy" decoding="async" alt="Broadcast Yourself book cover by KhunShawn"></span><span class="bk-meta"><b>Broadcast Yourself</b><em>Kindle &middot; $2.99</em><u>View on Amazon &rarr;</u></span></a>
-          <a class="bk-card" href="https://www.amazon.com/dp/B0HKGH3NF7" target="_blank" rel="noopener"><span class="bk-cover has-img"><img src="images/books/innerstanding-cover.webp" width="400" height="618" loading="lazy" decoding="async" alt="Innerstanding: A Way Of Life book cover by KhunShawn"></span><span class="bk-meta"><b>Innerstanding: A Way Of Life</b><em>Kindle &middot; $2.99</em><u>View on Amazon &rarr;</u></span></a>
+        <h2>The three <em>titles.</em></h2>
+        <div class="bc-grid">
+          <article class="bc r1">
+            <div class="bc-in">
+              <div class="bc-st" role="img" aria-label="Five stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+              <a class="bc-im" href="https://www.amazon.com/dp/B0GTHDDW26" target="_blank" rel="noopener"><img src="images/books/energy-chimera-cover.webp" width="400" height="600" loading="lazy" decoding="async" alt="Energy Chimera book cover by KhunShawn"></a>
+              <em class="bc-tag">Kindle edition</em>
+              <h3><a href="https://www.amazon.com/dp/B0GTHDDW26" target="_blank" rel="noopener">Energy Chimera</a></h3>
+              <div class="bc-pw"><span>Kindle $2.99</span><a class="bk3-view" href="https://www.amazon.com/dp/B0GTHDDW26" target="_blank" rel="noopener">View on Amazon &rarr;</a></div>
+            </div>
+          </article>
+          <article class="bc r2">
+            <div class="bc-in">
+              <div class="bc-st" role="img" aria-label="Five stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+              <a class="bc-im" href="https://www.amazon.com/dp/B0GT5XJQHH" target="_blank" rel="noopener"><img src="images/books/broadcast-yourself-cover.webp" width="400" height="600" loading="lazy" decoding="async" alt="Broadcast Yourself book cover by KhunShawn"></a>
+              <em class="bc-tag">Kindle edition</em>
+              <h3><a href="https://www.amazon.com/dp/B0GT5XJQHH" target="_blank" rel="noopener">Broadcast Yourself</a></h3>
+              <div class="bc-pw"><span>Kindle $2.99</span><a class="bk3-view" href="https://www.amazon.com/dp/B0GT5XJQHH" target="_blank" rel="noopener">View on Amazon &rarr;</a></div>
+            </div>
+          </article>
+          <article class="bc r3">
+            <div class="bc-in">
+              <div class="bc-st" role="img" aria-label="Five stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+              <a class="bc-im" href="https://www.amazon.com/dp/B0HKGH3NF7" target="_blank" rel="noopener"><img src="images/books/innerstanding-cover.webp" width="400" height="618" loading="lazy" decoding="async" alt="Innerstanding: A Way Of Life book cover by KhunShawn"></a>
+              <em class="bc-tag">Kindle edition</em>
+              <h3><a href="https://www.amazon.com/dp/B0HKGH3NF7" target="_blank" rel="noopener">Innerstanding: A Way Of Life</a></h3>
+              <div class="bc-pw"><span>Kindle $2.99</span><a class="bk3-view" href="https://www.amazon.com/dp/B0HKGH3NF7" target="_blank" rel="noopener">View on Amazon &rarr;</a></div>
+            </div>
+          </article>
         </div>
         <p class="br-note">Each Kindle edition is $2.99. Amazon sets the final price in your country.</p>
       </div>
     </section>
 
-    <section class="hub-sec bk-author" data-fx>
-      <div class="wrap bk-author-in">
-        <img src="images/photos/shawn-da-nang-namaste.webp" width="560" height="840" loading="lazy" decoding="async" alt="KhunShawn (Rashaan Arrington) in Da Nang, Vietnam, hands together in a namaste">
-        <div>
-          <p class="hub-kicker">The author</p>
-          <h2>Rashaan Arrington, a.k.a. KhunShawn.</h2>
-          <p>Rashaan writes under the name KhunShawn. He is a gaming and reaction creator, digital nomad, event filmmaker and speaker, and a US Army veteran. The three books sit alongside his YouTube channel and a camera that travels.</p>
-          <p class="hub-more"><a href="founder">About KhunShawn &rarr;</a></p>
+    <section class="bk3-author" data-fx>
+      <div class="wrap">
+        <div class="bk3-authgrid">
+          <figure class="bk3-poster"><img src="images/photos/shawn-da-nang-namaste.webp" width="560" height="840" loading="lazy" decoding="async" alt="KhunShawn (Rashaan Arrington) in Da Nang, Vietnam, hands together in a namaste"><span class="badge">&#9733; The author</span></figure>
+          <div>
+            <p class="hub-kicker">The author</p>
+            <h2>Rashaan Arrington, a.k.a. KhunShawn.</h2>
+            <p>Rashaan writes under the name KhunShawn. He is a gaming and reaction creator, digital nomad, event filmmaker and speaker, and a US Army veteran. The three books sit alongside his YouTube channel and a camera that travels.</p>
+            <p class="hub-more"><a href="founder">About KhunShawn &rarr;</a></p>
+          </div>
         </div>
       </div>
     </section>
@@ -262,6 +297,7 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
   <script src="js/nav.js?v=16"></script>
   <script src="js/tracking.js?v=5"></script>
+  <script src="js/books3d.js?v=1"></script>
   <script src="js/main.js?v=19"></script>
 </body>
 </html>
